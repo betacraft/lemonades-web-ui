@@ -23,20 +23,100 @@ h4 {
 	font-size: 25px;
 	font-weight: 700;
 }
+
+h5 {
+	font-size: 20px;
+	font-weight: 400;
+}
 a {
 	color: #e8277a;
 }
 a:hover {
 	color: #e8277a;
 }
+
+.priceBox{
+    width: auto;
+    height: auto;
+    float: left;
+    overflow: hidden;
+    
+}
+.priceBox h1{
+    font-size: 30px;
+	font-weight: 700;
+    color: #3e3e3e;
+}
+
+.priceBox h2{
+    font-size: 20px;
+	font-weight: 400;
+    color: #6e6e6e;
+ 
+}
+
+
+.interestedBox h1{
+        font-size: 44px;
+	font-weight: 700;
+    color: #ff227c;
+}
+
+.interestedBox h2{
+        font-size: 14px;
+	font-weight: 700;
+    color: #6e6e6e;
+}
+
+
+
+.closeDealBox h1{
+        font-size: 44px;
+	font-weight: 700;
+    color: #ff227c;
+}
+
+.closeDealBox h2{
+        font-size: 14px;
+	font-weight: 700;
+    color: #6e6e6e;
+}
+
+.bigWhiteSliderBigCircle h1{ 
+    font-size: 44px;
+	font-weight: 700;
+    color: #3e3e3e;
+}
+.bigWhiteSliderBigCircle h2{
+        font-size: 14px;
+	font-weight: 700;
+    color: #6e6e6e;
+}
+
+.infoText{
+    width: 200px;
+    height:  auto;
+    position: absolute;
+         font-size: 14px;
+	font-weight: 400;
+    color: #6e6e6e;
+    text-align: center;
+    z-index: 15;
+    bottom: -30px;
+    left: -30px;
+}
 .colorWhite {
-	color: #ffffff;
+	color: #fff;
 }
 .colorPink {
 	color: #e8277a;
 }
 .colorDarkGray {
 	color: #2f2f2f;
+}
+
+.colorLightGray {
+	color: #6e6e6e;
 }
 .heart {
 	background: url(../images/love.png) no-repeat;

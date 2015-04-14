@@ -1,1 +1,126 @@
-p This is the dashboard view.
+section(ng-init="init()")
+  div.container-fluid.bgGray(style="padding:10px;")
+    div.row
+      div.col-md-12
+        div.col-md-2
+          img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
+        div.col-md-8
+          div.input-group
+            input.heroInput.form-control(type="text",placeholder="Search for product")
+            span.input-group-btn
+              button.heroBTN.btn.btn-default(type="button")
+                img(src="images/search.png",width="18px;")
+        div.col-md-2.pull-right
+          a.btn.pinkBTN(ng-show="sessionKey")="Create Group"
+          a.btn.pinkBTN(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+section
+  div.container(style="margin-top:30px;")
+    div.row
+      div.col-md-6
+        h4.colorDarkGray.rightPinkLine="Trending Deals"
+    div.row
+      div.col-md-4
+        div.socialShare
+          div.col-md-12
+            div.col-md-12(style="margin-bottom:10px;")
+              div.fb-share-button(data-href="http://www.lemonades.in/#!/?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+            div.col-md-12(style="margin-bottom:10px;")
+              a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on mobiles #mobiledevices #smartphones",data-url="http://www.lemonades.in/#!/?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+            div.col-md-12
+              a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+        a.card
+          div.offerTag
+            span.offerTagBigText="22% Off"
+            span.offerTagSmallText="6 Days Left"
+          div.productImageAndInfo.text-center
+            div.Imageinfo
+              div.width100p
+                h4.colorWhite="Google Nexus 6"
+              div.width100p.colorWhite="Midnight Blue, 32 GB"
+              div.width100p.colorWhite="Lowest Online Price"
+              div.width100p.colorWhite
+                strong="Rs 43,000.00"
+            div.imageBox
+              img.img-responsive(src="images/demoProduct.png")
+            div.statusBar-white
+              div.smallPinkCircle(style="left:10%")
+              div.smallPinkCircle(style="left:30%")
+              div.BigPinkCircle(style="left:60%")
+              div.smallWhiteCircle(style="left:80%")
+              div.statusBar-pink
+        div.cardInfo
+          div.JoinedThisGroup
+            div.cardBigText="29"
+            div.cardSmallText="Joined\nthis group"
+          div.lowestPrice
+            div.lowestPriceSmallText="4 more for"
+            div.lowestPriceBigText="LOWEST PRICE"
+        div.finalPriceBtn
+          div.textAlignment
+            span="Current Price\nRs. 35000.00"
+hr(style="margin-top:100px;")
+footer
+  div.container(style="margin-top:50px")
+    div.row
+      div.col-md-12.text-center
+        h2.colorDarkGray
+          | Spread your
+          span.heart
+          | for us
+      div.col-md-12.text-center(style="margin-top:30px;")
+        div.col-md-2.col-md-offset-3
+          div.fb-share-button(data-href="http://www.lemonades.in/#!/?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+        div.col-md-2.text-center
+          a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on mobiles #mobiledevices #smartphones",data-url="http://www.lemonades.in/#!/?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+        div.col-md-2.text-center
+          a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+      div.col-md-12.text-center(style="margin-top:20px;margin-bottom:20px;")
+        div.fb-page(data-href="https://www.facebook.com/lemonades.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false")
+      div.row
+      div.col-md-12.text-center
+    div.footerInside
+      div.row
+        div.col-md-2.col-md-offset-4.text-right
+          ul.footerLinks
+            li
+              a="Privacy Policy"
+              br
+              a="Suggest Deal Type"
+              br
+              a="Join Our Vendor List"
+        div.col-md-2.text-left
+          ul.footerLinks
+            li
+              a="How It Works"
+              br
+              a="Contact Us"
+              br
+              a="FAQ"
+  div.container
+    div.row
+      dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
+#fb-root
+  script(type="text/javascript").
+    FB = null;
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+      js = d.createElement(s);
+      js.id = id;
+      js.src = p + '://platform.twitter.com/widgets.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'twitter-wjs'));
+    (function () {
+      var po = document.createElement('script');
+      po.type = 'text/javascript';
+      po.async = true;
+      po.src = 'https://apis.google.com/js/platform.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(po, s);
+    })();

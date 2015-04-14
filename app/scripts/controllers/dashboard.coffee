@@ -1,9 +1,8 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller 'DashboardCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'DashboardCtrl', ($scope,$cookies) ->
+    $scope.sessionKey = $cookies.get("lmn_session_key")
+    $scope.init = ()->
+      console.log($scope.sessionKey)
+
