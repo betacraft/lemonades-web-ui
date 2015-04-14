@@ -1,0 +1,181 @@
+div.container-fluid
+  section.home-hero
+    div.container
+      div.row.marginTop15px
+        div.col-md-12
+          a.pull-right.yellow-line-btn(ng-click="login()")="Login"
+          a.pull-right.yellow-line-btn.marginRight10px(ng-click="register()")="Register"
+    div.container
+      div.row
+        div.col-md-12.text-center
+          img.home-logo(src="images/home_logo.png")
+      div.row
+        div.col-md-12.text-center.marginTop15px
+          img(src="images/gap.png")
+      div.row.marginTop15px
+        div.col-md-12.text-center
+          h3.colorWhite="What Would you like to buy"
+      div.row.marginTop25px
+        div.col-md-10.col-md-offset-1
+          div.input-group
+            input.heroInput.form-control(type="text",placeholder="Google Nexus 5")
+            span.input-group-btn
+              button.heroBTN.btn.btn-default()
+                img(src="images/search.png",width="20px")
+  section.howItWorksBg.paddingTopBottom
+    div.container
+      div.row
+        div.col-md-12.text-center
+          h1.colorPink="How It Works"
+      div.row.text-center.marginTop50px
+        div.col-md-12
+          img.img-responsive(src="images/how_it_work.png")
+  section
+    div.container.paddingTopBottom
+      div.row
+        div.col-md-6
+          h2.colorDarkGray.rightPinkLine="Trending Groups"
+        div.col-md-6.text-right
+          a="More"
+      div.row
+        div.col-md-4
+          a.card
+            div.productImageAndInfo.text-center
+              div.ImageInfoGroup
+                div.width100p
+                  h4.colorWhite="name"
+                div.width100p.colorWhite="description"
+              div.imageBox
+                img.img-responsive(src="images/demoProduct.png")
+          div.cardInfo
+            div.JoinedThisGroup
+              div.cardBigText="22"
+              div.cardSmallText="Joined\nthis group"
+            div.lowestPrice(style="padding-right:10px;")
+              div.cardBigText=50
+              div.cardSmallText="More Required to create a deal"
+          div.cardInfo
+            hr(style="margin-top:-20px;")
+            div.col-md-12.text-center
+              div.col-md-4
+                div.fb-share-button(data-href="http://www.lemonades.in/#!/?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+              div.col-md-4.text-center
+                a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on mobiles #mobiledevices #smartphones",data-url="http://www.lemonades.in/#!/?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+              div.col-md-4.text-center
+                a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+          div.finalPriceBtn
+            div.textAlignment
+              span="Price "
+    section
+      div.container.paddingTopBottom
+        div.row
+          div.col-md-6
+            h2.colorDarkGray.rightPinkLine="Trending Deals"
+          div.col-md-6.text-right
+            a="More"
+        div.row
+          div.col-md-4
+            a.card
+              div.offerTag
+                span.offerTagBigText="22% Off"
+                span.offerTagSmallText="6 Days Left"
+              div.productImageAndInfo.text-center
+                div.Imageinfo
+                  div.width100p
+                    h4.colorWhite="Google Nexus 6"
+                  div.width100p.colorWhite="Midnight Blue, 32 GB"
+                  div.width100p.colorWhite="Lowest Online Price"
+                  div.width100p.colorWhite
+                    strong="Rs 43,000.00"
+                div.imageBox
+                  img.img-responsive(src="images/demoProduct.png")
+                div.statusBar-white
+                  div.smallPinkCircle(style="left:10%")
+                  div.smallPinkCircle(style="left:30%")
+                  div.BigPinkCircle(style="left:60%")
+                  div.smallWhiteCircle(style="left:80%")
+                  div.statusBar-pink
+            div.cardInfo
+              div.JoinedThisGroup
+                div.cardBigText="29"
+                div.cardSmallText="Joined\nthis group"
+              div.lowestPrice
+                div.lowestPriceSmallText="4 more for"
+                div.lowestPriceBigText="LOWEST PRICE"
+            div.cardInfo
+              hr(style="margin-top:-20px;")
+              div.col-md-12.text-center
+                div.col-md-4
+                  div.fb-share-button(data-href="http://www.lemonades.in/#!/?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+                div.col-md-4.text-center
+                  a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on mobiles #mobiledevices #smartphones",data-url="http://www.lemonades.in/#!/?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+                div.col-md-4.text-center
+                  a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+            div.finalPriceBtn
+              div.textAlignment
+                span="Current Price\nRs. 35000.00"
+  footer
+    div.container(style="margin-top:50px")
+      div.row
+        div.col-md-12.text-center
+          h2.colorDarkGray
+            | Spread your
+            span.heart
+            | for us
+        div.col-md-12.text-center(style="margin-top:30px;")
+          div.col-md-2.col-md-offset-3
+            div.fb-share-button(data-href="http://www.lemonades.in/#!/?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+          div.col-md-2.text-center
+            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on mobiles #mobiledevices #smartphones",data-url="http://www.lemonades.in/#!/?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+          div.col-md-2.text-center
+            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+        div.col-md-12.text-center(style="margin-top:20px;margin-bottom:20px;")
+          div.fb-page(data-href="https://www.facebook.com/lemonades.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false")
+        div.row
+        div.col-md-12.text-center
+      div.footerInside
+        div.row
+          div.col-md-2.col-md-offset-4.text-right
+            ul.footerLinks
+              li
+                a="Privacy Policy"
+                br
+                a="Suggest Deal Type"
+                br
+                a="Join Our Vendor List"
+          div.col-md-2.text-left
+            ul.footerLinks
+              li
+                a="How It Works"
+                br
+                a="Contact Us"
+                br
+                a="FAQ"
+    div.container
+      div.row
+        dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
+  #fb-root
+  script(type="text/javascript").
+    FB = null;
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+      js = d.createElement(s);
+      js.id = id;
+      js.src = p + '://platform.twitter.com/widgets.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'twitter-wjs'));
+    (function () {
+      var po = document.createElement('script');
+      po.type = 'text/javascript';
+      po.async = true;
+      po.src = 'https://apis.google.com/js/platform.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(po, s);
+    })();

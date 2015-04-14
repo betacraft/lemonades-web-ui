@@ -1,0 +1,368 @@
+@charset "utf-8";
+/* CSS Document */
+html, body {
+    height: 100%;
+}
+
+.home-hero {
+    background: #e8277a;
+    height: 100%;
+}
+
+.width100p {
+    width: 100%;
+    height: auto;
+}
+
+.howItWorksBg {
+    background: url(../images/grayBG.png) center top repeat;
+}
+
+.rightPinkLine {
+    border-left: solid 5px #ff227c;
+    padding-left: 20px;
+}
+
+.card {
+    border-radius: 5px;
+    position: relative;
+    background: #dedede;
+    border: solid 1px #d1d1d1;
+    height: auto;
+    width: 100%;
+    display: block;
+    margin-top: 50px;
+}
+
+.offerTag {
+    background: url(../images/offerTAg.png) no-repeat left top;
+    position: absolute;
+    width: 115px;
+    height: 67px;
+    left: -12px;
+    top: -12px;
+    z-index: 99;
+}
+
+.offerTagBigText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #343434;
+    text-transform: uppercase;
+    float: left;
+    width: 100%;
+    color: #FFFFFF;
+    padding-left: 15px;
+    padding-top: 12px;
+}
+
+.offerTagSmallText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #343434;
+    text-transform: uppercase;
+    float: left;
+    width: 100%;
+    color: #FFFFFF;
+    padding-left: 15px;
+}
+
+.cardInfo {
+    background: #f2f2f2;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    height: auto;
+    overflow: hidden;
+}
+
+.cardBigText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #343434;
+    margin-bottom: -10px;
+    margin-left: 30px;
+    text-transform: uppercase;
+}
+
+.lowestPriceSmallText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #343434;
+    line-height: normal;
+    margin-bottom: -5px;
+    margin-left: 30px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.lowestPriceBigText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #343434;
+    margin-bottom: -10px;
+    margin-left: 30px;
+    text-transform: uppercase;
+}
+
+.cardSmallText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #343434;
+    line-height: normal;
+    margin-left: 30px;
+    text-transform: uppercase;
+}
+
+.JoinedThisGroup {
+    width: 34%;
+    height: auto;
+    float: left;
+    background: url(../images/border.png) repeat-y right top;
+}
+
+.lowestPrice {
+    width: 66%;
+    height: auto;
+    float: left;
+}
+
+.productImageAndInfo {
+    position: relative;
+    background: #dbdbdb;
+}
+
+.statusBar-white {
+    width: 100%;
+    background: #fff;
+    height: 2px;
+    position: relative;
+    outline: 1px solid #cdcdcd;
+
+}
+
+.statusBar-pink {
+    width: 60%;
+    background: #ff227c;
+    height: 2px;
+    position: absolute;
+    outline: 1px solid #cdcdcd;
+
+}
+
+.smallPinkCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background: #ff227c;
+    position: absolute;
+    top: -4px;
+    z-index: 9;
+
+}
+
+.BigPinkCircle {
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    background: #fff;
+    position: absolute;
+    top: -6px;
+    z-index: 9;
+    border: 5px solid #ff227c;
+
+}
+
+.smallWhiteCircle {
+    width: 11px;
+    height: 11px;
+    border-radius: 20px;
+    background: #fff;
+    position: absolute;
+    top: -4px;
+    z-index: 9;
+    border: 1px solid #cdcdcd;
+
+}
+
+.smallCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background: #ff227c;
+    position: absolute;
+    top: -4px;
+    z-index: 9;
+
+}
+
+.Imageinfo {
+    width: 100%;
+    height: 220px;
+    background: url(../images/ovarlay.png) bottom left repeat-x;
+    position: absolute;
+    bottom: 0px;
+    padding-top: 100px;
+}
+
+.ImageInfoGroup {
+    width: 100%;
+    height: 200px;
+    background: url(../images/ovarlay.png) bottom left repeat-x;
+    position: absolute;
+    bottom: 0px;
+    padding-top: 100px;
+}
+
+.imageBox {
+    width: 100%;
+    height: 320px;
+}
+
+.imageBox img {
+    border-radius: 5px;
+}
+
+.textAlignment {
+    display: inline-block;
+    text-align: left;
+    color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    text-transform: uppercase;
+    line-height: 20px;
+}
+
+.finalPriceBtn {
+    background: #343434;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.finalPriceBtn span {
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.footerInside {
+    /*border-bottom: #cccccc 1px solid;*/
+    border-top: #cccccc 1px solid;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.footerLinks {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+}
+
+.footerLinks li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.footerLinks a {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #5a5a5a;
+}
+
+.copyrightTxt {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #5a5a5a;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.paddingTopBottom {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.marginTop50px {
+    margin-top: 50px;
+}
+
+.marginTop25px {
+    margin-top: 25px;
+}
+
+.marginTop15px {
+    margin-top: 15px;
+}
+
+.marginRight10px {
+    margin-right: 10px;
+}
+
+/*btn*/
+.yellow-line-btn {
+    font-family: 'Ubuntu', sans-serif;
+    width: auto;
+    display: inline-block;
+    border: #fee33d 2px solid;
+    border-radius: 5px;
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+    text-align: center;
+    color: #fee33d;
+    text-decoration: none;
+    background: none;
+}
+
+.yellow-line-btn:hover {
+    width: auto;
+    display: inline-block;
+    border: #fee33d 2px solid;
+    border-radius: 5px;
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+    text-align: center;
+    color: #e8277a;
+    background: #fee33d;
+    text-decoration: none;
+}
+
+@media (max-width: 990px) {
+    .home-logo {
+        width: 40%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .home-logo {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .home-logo {
+        width: 550px;
+    }
+}
+
+.userName {
+    width: auto;
+    float: right;
+}
+
+

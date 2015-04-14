@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+h1, h2, h3, h4, h5, h6, p {
+	font-family: 'Ubuntu', sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+h1 {
+	font-size: 66px;
+	font-weight: 700;
+}
+h2 {
+	font-size: 40px;
+	font-weight: 700;
+}
+h3 {
+	font-size: 30px;
+	font-weight: 700;
+}
+h4 {
+	font-size: 25px;
+	font-weight: 700;
+}
+a {
+	color: #e8277a;
+}
+a:hover {
+	color: #e8277a;
+}
+.colorWhite {
+	color: #ffffff;
+}
+.colorPink {
+	color: #e8277a;
+}
+.colorDarkGray {
+	color: #2f2f2f;
+}
+.heart {
+	background: url(../images/love.png) no-repeat;
+	height: 31px;
+	width: 34px;
+	display: inline-block;
+	margin-right: 8px;
+	margin-left: 8px;
+	margin-bottom: -5px;
+}
