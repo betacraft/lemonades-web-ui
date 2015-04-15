@@ -3,6 +3,8 @@
 angular.module('lemonades')
 .controller('RegisterCtrl', ($scope, $location, $http, $rootScope) ->
   $scope.user = {};
+  $scope.landing = ->
+    $location.path("/")
   $scope.register = ()->
     if $scope.user.password == undefined
       $scope.status =

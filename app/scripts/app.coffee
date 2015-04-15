@@ -63,6 +63,9 @@ angular
       .when '/register/success',
         templateUrl: 'views/register/success.html'
         controller: 'RegisterSuccessCtrl'
+      .when '/group/:id',
+        templateUrl: 'views/group.html'
+        controller: 'GroupCtrl'
       .otherwise
         redirectTo: '/'
 #   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();
