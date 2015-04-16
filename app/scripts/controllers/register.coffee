@@ -5,6 +5,8 @@ angular.module('lemonades')
   $scope.user = {};
   $scope.landing = ->
     $location.path("/")
+  $scope.login = ->
+    $location.path("/login")
   $scope.register = ()->
     if $scope.user.password == undefined
       $scope.status =

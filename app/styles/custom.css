@@ -83,8 +83,8 @@ html, body {
 
 .cardInfo {
   background: #f2f2f2;
-  padding-bottom: 25px;
-  padding-top: 25px;
+  padding-bottom: 10px;
+  padding-top: 5px;
   height: auto;
   overflow: hidden;
 }
@@ -401,6 +401,21 @@ html, body {
   margin-left: 15px;
   margin-top: -5px;
 }
+
+
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-top-width: 5px;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.bs-callout-user {
+  border-top-color: #ff227c;
+}
+
 
 .bigPink100pBtn {
   position: absolute;

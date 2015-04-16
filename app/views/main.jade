@@ -4,8 +4,9 @@ div.container-fluid(ng-init="init()")
       div.row.marginTop15px
         div.col-md-12
           img.pull-left(src="images/innerPageLogo.png",width="200px;")
-          a.pull-right.btn.btn-primary-border(ng-click="login()")="Login"
-          a.pull-right.btn.btn-primary-border.marginRight10px(ng-click="register()")="Register"
+          a.pull-right.btn.btn-primary-border(ng-show="sessionKey",ng-click="dashboard()")="Dashboard"
+          a.pull-right.btn.btn-primary-border(ng-show="sessionKey===undefined",ng-click="login()")="Login"
+          a.pull-right.btn.btn-primary-border.marginRight10px(ng-show="sessionKey===undefined",ng-click="register()")="Register"
     div.row
       div.col-md-12.text-center(style="margin-top:15px;margin-bottom:15px;")
         p.pinkText(style="font-size:45px;font-weight:thin;")="Next Generation Of Group Buying"
@@ -19,7 +20,7 @@ div.container-fluid(ng-init="init()")
         div.col-md-6
           p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Trending Groups"
         div.col-md-6.text-right
-          a.btn.btn-primary-border="More"
+          a.btn.btn-primary-border(ng-click="dashboard()")="More"
       div.row
         div.col-md-4(ng-repeat="group in groups",ng-click="goToGroup(group.id)")
           a.card
@@ -35,11 +36,14 @@ div.container-fluid(ng-init="init()")
               div.cardBigText="{{group.interested_users_count}}"
               div.cardSmallText="Joined"
             div.lowestPrice
-              div.lowestPriceSmallText(ng-show="group.interested_users_count < 50")="{{50 - group.interested_users_count}} more for"
-              div.lowestPriceSmallText(ng-show="group.interested_users_count >= 50")="It's up for"
+              div.lowestPriceSmallText(ng-show="group.interested_users_count < group.required_user_count")="{{group.required_user_count - group.interested_users_count}} more for"
+              div.lowestPriceSmallText(ng-show="group.interested_users_count >= group.required_user_count")="It's up for"
               div.lowestPriceBigText="DEAL"
           div.finalPriceBtn
-            p.colorWhite(style="font-size:20px;")="Rs. {{group.product.price_value}}"
+            p.colorWhite(style="font-size:20px;")="{{group.product.price_value | currency:'Rs. ' }}"
+  div.row(style="margin-top:30px;")
+    div.col-md-12.text-center
+      a.btn.btn-primary-border(ng-click="dashboard()")="More"
   hr
   footer
     div.container(style="margin-top:50px")
@@ -60,32 +64,18 @@ div.container-fluid(ng-init="init()")
           div.fb-page(data-href="https://www.facebook.com/lemonades.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false")
         div.row
         div.col-md-12.text-center
-      div.footerInside
-        div.row
-          div.col-md-2.col-md-offset-4.text-right
-            ul.footerLinks
-              li
-                a="Privacy Policy"
-                br
-                a="Suggest Deal Type"
-                br
-                a="Join Our Vendor List"
-          div.col-md-2.text-left
-            ul.footerLinks
-              li
-                a="How It Works"
-                br
-                a="Contact Us"
-                br
-                a="FAQ"
+
     div.container
       div.row
         dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
   #fb-root
   script(type="text/javascript").
+    var count = 0
     FB = null;
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id) && count === 1) return;
+      count = count + 1;
       js = d.createElement(s);
       js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
@@ -106,3 +96,49 @@ div.container-fluid(ng-init="init()")
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(po, s);
     })();
+    // Include the UserVoice JavaScript SDK (only needed once on a page)
+    UserVoice = window.UserVoice || [];
+    (function () {
+      var uv = document.createElement('script');
+      uv.type = 'text/javascript';
+      uv.async = true;
+      uv.src = '//widget.uservoice.com/f5oeTjQEmzbG51fJhjObxg.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(uv, s)
+    })();
+    //
+    // UserVoice Javascript SDK developer documentation:
+    // https://www.uservoice.com/o/javascript-sdk
+    //
+    // Set colors
+    UserVoice.push(['set', {
+      accent_color: '#e8277a',
+      trigger_color: 'white',
+      trigger_background_color: '#e8277a'
+    }]);
+      // Identify the user and pass traits
+      // To enable, replace sample data with actual user traits and uncomment the line
+    UserVoice.push(['identify', {
+    //email:      'john.doe@example.com', // User’s email address
+    //name:       'John Doe', // User’s real name
+    //created_at: 1364406966, // Unix timestamp for the date the user signed up
+    //id:         123, // Optional: Unique id of the user (if set, this should not change)
+    //type:       'Owner', // Optional: segment your users by type
+    //account: {
+    //  id:           123, // Optional: associate multiple users with a single account
+    //  name:         'Acme, Co.', // Account name
+    //  created_at:   1364406966, // Unix timestamp for the date the account was created
+    //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+    //  ltv:          1495.00, // Decimal; lifetime value of the account
+    //  plan:         'Enhanced' // Plan name for the account
+    //}
+    }]);
+      // Add default trigger to the bottom-right corner of the window:
+    UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
+    // Or, use your own custom trigger:
+    //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+    // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+    UserVoice.push(['autoprompt', {}])
+
+
+

@@ -1,8 +1,14 @@
-div.container-fluid(style="padding-top:20px;padding-bottom:50px;")
-  div.container
+div.container-fluid
+  div.container-fluid.bgGray(style="padding:10px;")
+    div.row
+      div.col-md-12
+        div.col-md-2
+          a(ng-click="landing()")
+            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
+        div.col-md-4.pull-right.col-md-offset-6.text-right
+          .btn.btn-primary-border(ng-click="register()")="Register"
+  div.container(style="margin-top:50px;")
     div.col-md-4.col-sm-4.col-sm-offset-4.col-md-offset-4
-      a(href="",ng-click="landing()")
-        img(src="images/glass.png",height="80px",style="display:block;margin-top:30px;margin-left:auto;margin-right:auto;")
       h2.text-center(style="color:#E8277A")="Login"
       hr
       div.panel(ng-show="status !== undefined && status.success !== true")
@@ -17,3 +23,49 @@ div.container-fluid(style="padding-top:20px;padding-bottom:50px;")
           input#password.form-control(type="password",style="font-size:16px;",name="pwd",ng-model="user.password",placeholder="password",required="")
         div.text-center(style="margin-top:10px;")
           button.btn.btn-primary-border#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...")="Login"
+script(type="text/javascript").
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice = window.UserVoice || [];
+  (function () {
+    var uv = document.createElement('script');
+    uv.type = 'text/javascript';
+    uv.async = true;
+    uv.src = '//widget.uservoice.com/f5oeTjQEmzbG51fJhjObxg.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(uv, s)
+  })();
+    //
+    // UserVoice Javascript SDK developer documentation:
+    // https://www.uservoice.com/o/javascript-sdk
+    //
+    // Set colors
+  UserVoice.push(['set', {
+    accent_color: '#e8277a',
+    trigger_color: 'white',
+    trigger_background_color: '#e8277a'
+  }]);
+      // Identify the user and pass traits
+      // To enable, replace sample data with actual user traits and uncomment the line
+  UserVoice.push(['identify', {
+    //email:      'john.doe@example.com', // User’s email address
+    //name:       'John Doe', // User’s real name
+    //created_at: 1364406966, // Unix timestamp for the date the user signed up
+    //id:         123, // Optional: Unique id of the user (if set, this should not change)
+    //type:       'Owner', // Optional: segment your users by type
+    //account: {
+    //  id:           123, // Optional: associate multiple users with a single account
+    //  name:         'Acme, Co.', // Account name
+    //  created_at:   1364406966, // Unix timestamp for the date the account was created
+    //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+    //  ltv:          1495.00, // Decimal; lifetime value of the account
+    //  plan:         'Enhanced' // Plan name for the account
+    //}
+  }]);
+      // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
+    // Or, use your own custom trigger:
+    //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+    // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+  UserVoice.push(['autoprompt', {}])
+
+

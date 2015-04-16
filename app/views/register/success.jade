@@ -1,1 +1,17 @@
-p This is the register/success view.
+section(ng-init="init()")
+  div.container-fluid.bgGray(style="padding:10px;")
+    div.row
+      div.col-md-12.col-sm-12
+        div.col-md-2.col-sm-2
+          a(ng-click="landing()")
+            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
+
+section
+  div.container
+    div.row
+      div.col-md-4.col-md-offset-4
+        div.bs-callout.bs-callout-user.text-center
+          p(style="font-size:20px;")="We have been notified"
+          hr
+          p(style="font-size:15px;")="We will contact you soon for adding you to the lemonades platform. Till then you can view different groups on Lemonades."
+          a.btn.btn-primary-border(style="margin-top:20px;",ng-click="dashboard()")="View Groups"

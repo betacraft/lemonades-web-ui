@@ -5,21 +5,38 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'angulartics',
+    'angulartics.google.analytics'
   ])
-  .run(($rootScope,$location)->
+  .run(($rootScope,$location,$http,$cookieStore)->
     $rootScope.baseUrl = "http://localhost:3000"
     $rootScope.loading = false;
 
+    $rootScope.getUser = ->
+      console.log("getting user")
+      req =
+        method: "GET"
+        url: $rootScope.baseUrl + "/api/v1/user"
+        headers:
+          'Session-Key': $cookieStore.get("lmnsskey")
+      $http(req).success(
+        ()->
+
+      ).error(
+        ()->
+      )
+
     $rootScope.goToLogin = ->
       $location.path("/login")
+
   )
-  .factory('myHttpInterceptor', ($q, $window, $rootScope,$location) ->
+  .factory('myHttpInterceptor', ($q, $window, $rootScope,$location,$cookieStore) ->
     return{
     # optional method
     'request': (config) ->
       console.log("requesting",config);
-      #$rootScope.loading = true if !config.ignoreLoadingFlag
+      $rootScope.loading = true if !config.ignoreLoadingFlag
       return config
     'requestError': (rejection) ->
       $rootScope.loading = false
@@ -37,7 +54,7 @@ angular
       status = rejection.status;
       if (status == 401)
         console.log($location.pathname)
-        $location.path("login") if ($location.pathname != '/login')
+        $cookieStore.remove("lmnsskey")
       return $q.reject(rejection)
     }
   )
@@ -66,6 +83,9 @@ angular
       .when '/group/:id',
         templateUrl: 'views/group.html'
         controller: 'GroupCtrl'
+      .when '/my-groups',
+        templateUrl: 'views/my-groups.html'
+        controller: 'MyGroupsCtrl'
       .otherwise
         redirectTo: '/'
 #   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();

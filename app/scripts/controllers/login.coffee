@@ -5,6 +5,8 @@ angular.module('lemonades')
     $scope.user = {};
     $scope.landing = ->
       $location.path("/")
+    $scope.register = ->
+      $location.path("/register")
     $scope.login = ->
       console.log("login")
       btn = $("#loginButton").button("loading")

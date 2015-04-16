@@ -6,6 +6,48 @@ angular.module('lemonades')
     $scope.groupId = $routeParams.id;
     $scope.group = {}
     $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #lemonades";
+
+    $scope.init = ()->
+      $rootScope.getUser()
+
+    $scope.login = ()->
+      $location.path("/login")
+
+    $scope.joinGroup = ->
+      req =
+        method: "POST"
+        url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId + "/join"
+        headers:
+          'Session-Key': $scope.sessionKey
+      $http(req).success(
+        (data)->
+          if data.success
+            console.log(data)
+            $scope.group = data.group
+            return
+      ).error(
+        (data)->
+          #doing nothing
+      )
+
+    $scope.logout = ->
+      req =
+        method: "POST"
+        url: $rootScope.baseUrl + "/api/v1/user/logout"
+        headers:
+          'Session-Key': $scope.sessionKey
+      $http(req).success(
+        (data)->
+          if data.success
+            $cookieStore.remove("lmnsskey")
+            console.log(data)
+            $scope.sessionKey=null
+            return
+      ).error(
+        (data)->
+          #doing nothing
+      )
+
     $scope.createGroup = ->
       btn = $("#createGroup").button("loading")
       req =

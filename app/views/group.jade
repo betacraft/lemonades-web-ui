@@ -1,50 +1,22 @@
-div#createGroupModal.modal(name="createGroupModal",tabindex="-1",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true")
-  div.modal-dialog
-    div.modal-content
-      div.modal-header
-        button.close(type="button",data-dismiss="modal")
-          span(aria-hidden="true")
-          span.sr-only="Close"
-        h4#createGroupModal.modal-title="Create Group"
-      div.modal-body
-        form(role="form",name="form",novalidate)
-          div.form-group
-            label(for="productLink")="Flipkart Product Link"
-            input#productLink.form-control(type="uri",placeholder="Flipkart Product Link",ng-model="object.product_link",name="productLink",required)
-      div.modal-footer
-        button#createGroup.btn.btn-primary(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Create"
 section(ng-init="init()")
   div.container-fluid.bgGray(style="padding:10px;")
     div.row
-      div.col-md-12
-        div.col-md-2
+      div.col-md-12.col-sm-12
+        div.col-md-2.col-sm-2
           a(ng-click="dashboard()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-8
-          div.input-group
-            input.heroInput.form-control(type="text",placeholder="Search for product")
-            span.input-group-btn
-              button.heroBTN.btn.btn-default(type="button")
-                img(src="images/search.png",width="18px;")
-        div.col-md-2.pull-right
-          .btn.pinkBTN(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create Group"
-          a.btn.pinkBTN(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+        div.col-md-4.pull-right.text-right.col-sm-2.col-md-offset-6
+          .btn.btn-primary-border(ng-click="dashboard()")="More Groups"
+          .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 div.container
   div.row
     div.col-lg-4(style="margin-top:25px;")
-      div.sideImagewrapp(style="height:400px;")
+      div.sideImagewrapp(style="height:450px;")
         div.bigPink100pBtn(ng-show="sessionKey && group !== undefined && group.is_joined",style="z-index:1000;")="You are part of this group"
-        a.bigPink100pBtn(ng-hide="sessionKey",style="z-index:1000;")="Login to show interest"
-        a.bigPink100pBtn(ng-show="sessionKey && group !== undefined && !group.is_joined",style="z-index:1000;")="I am interested"
+        a.bigPink100pBtn(ng-hide="sessionKey",style="z-index:1000;",ng-click="login()")="Login to Join"
+        a.bigPink100pBtn(ng-show="sessionKey && group !== undefined && !group.is_joined",style="z-index:1000;",ng-click="joinGroup()")="I am interested"
         div(style="width:100%;")
           img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
-      div.col-md-12(style="margin-top:10px;")
-        div.col-md-4.pull-left
-          div.fb-share-button(data-href="?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
-        div.col-md-4.text-center
-          a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.lemonades.in/#/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
-        div.col-md-4.text-center
-          a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
     div.col-lg-8
       div.row
         div.col-md-12.marginTop25px
@@ -56,19 +28,38 @@ div.container
         div.col-md-12
           div.priceBox
             p(style="font-size=25px;")="Online Price"
-              a(href="{{group.product.product_link}}",target="_blank")=" (Flipkart)"
-            h3="Rs. {{group.product.price_value}}"
+              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1")=" (Flipkart)"
+              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1")=" (Amazon)"
+            h3="{{group.product.price_value | currency:'Rs. '}}"
+      div.row
+        div.col-md-12(style="margin-top:10px;")
+          p.colorPink(style="font-size:20px;")="Spread the news"
+      div.row
+        div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
+          div.col-md-2.col-sm-12.text-center
+            div.fb-share-button(data-href="?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+          div.col-md-2.text-center.col-sm-12
+            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.lemonades.in/#/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+          div.col-md-2.text-center.col-sm-12
+            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
       div.row
         div.col-md-12
-          div.interestedBox
+          div.interestedBox(style="margin-right:5px;")
             h1="{{group.interested_users_count}}"
-            p(ng-show="group.interested_users_count === 1",style="font-size:20px;")="User has joined this group"
-            p(ng-show="group.interested_users_count > 1",style="font-size:20px;")="Users have joined this group"
-          div.interestedBox
-            h1(ng-show="group.interested_users_count < 50")="{{50-group.interested_users_count}}"
-            p(style="font-size:20px;")="More are required to offer a deal."
-
-      div.row(style="margin-top:15px;")
+            p(style="font-size:20px;")="Joined"
+          div.interestedBox(style="margin-right:5px;")
+            h1(ng-show="group.interested_users_count < group.required_user_count")="{{group.required_user_count-group.interested_users_count}}"
+            p(style="font-size:20px;")="Remaining"
+          div.interestedBox(style="margin-right:5px;")
+            h1(ng-show="group.interested_users_count < group.required_user_count")="{{group.expires_in}}"
+            p(style="font-size:20px;")="Days Remaining"
+      div.row
+        div.col-md-12(style="margin-top:15px;")
+          p(style="font-size:15px;")="We will required "
+            span(style="color:#ff227c;")="{{group.required_user_count}} people "
+            | interested in this product to get you an attractive deal.
+          a="How it works ?"
+      div.row(style="margin-top:5px;")
         div.col-md-12
           hr
           h2="Discussions"
@@ -76,9 +67,14 @@ div.container
         div.fb-comments(data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=fb_comments&utm_medium=website&utm_campaign=comments",data-numposts="5",data-colorscheme="light",style="width:100%;")
 #fb-root
 script(type="text/javascript").
+  var count = 0;
   FB = null;
   (function (d, s, id) {
+    if(FB != null)
+      return;
     var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id) && count === 1) return;
+    count = count + 1;
     js = d.createElement(s);
     js.id = id;
     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
@@ -99,7 +95,46 @@ script(type="text/javascript").
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(po, s);
   })();
-
-
-
-
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice = window.UserVoice || [];
+  (function () {
+    var uv = document.createElement('script');
+    uv.type = 'text/javascript';
+    uv.async = true;
+    uv.src = '//widget.uservoice.com/f5oeTjQEmzbG51fJhjObxg.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(uv, s)
+  })();
+    //
+    // UserVoice Javascript SDK developer documentation:
+    // https://www.uservoice.com/o/javascript-sdk
+    //
+    // Set colors
+  UserVoice.push(['set', {
+    accent_color: '#e8277a',
+    trigger_color: 'white',
+    trigger_background_color: '#e8277a'
+  }]);
+    // Identify the user and pass traits
+    // To enable, replace sample data with actual user traits and uncomment the line
+  UserVoice.push(['identify', {
+        //email:      'john.doe@example.com', // User’s email address
+        //name:       'John Doe', // User’s real name
+        //created_at: 1364406966, // Unix timestamp for the date the user signed up
+        //id:         123, // Optional: Unique id of the user (if set, this should not change)
+        //type:       'Owner', // Optional: segment your users by type
+        //account: {
+        //  id:           123, // Optional: associate multiple users with a single account
+        //  name:         'Acme, Co.', // Account name
+        //  created_at:   1364406966, // Unix timestamp for the date the account was created
+        //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+        //  ltv:          1495.00, // Decimal; lifetime value of the account
+        //  plan:         'Enhanced' // Plan name for the account
+        //}
+  }]);
+    // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
+    // Or, use your own custom trigger:
+    //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+    // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+  UserVoice.push(['autoprompt', {}])
