@@ -1,4 +1,4 @@
-// Generated on 2015-04-14 using generator-angular-jade-stylus 0.8.7
+// Generated on 2015-04-16 using generator-angular-jade-stylus 0.8.7
 'use strict';
 
 // # Globbing
@@ -62,9 +62,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-
-
-
 
     jade: {
       options: {
@@ -193,7 +190,6 @@ module.exports = function (grunt) {
         }]
       },
       dist: {
-        sourceMap: false,
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/scripts',
@@ -260,7 +256,15 @@ module.exports = function (grunt) {
     cssmin: {
       options: {
         root: '<%= yeoman.app %>'
-      }
+      },
+         dist: {
+           files: {
+             '<%= yeoman.dist %>/styles/main.css': [
+               '.tmp/styles/{,*/}*.css',
+               '<%= yeoman.app %>/styles/{,*/}*.css'
+             ]
+           }
+         }
     },
 
     imagemin: {
@@ -375,7 +379,7 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
+    //cssmin: {
     //   dist: {
     //     files: {
     //       '<%= yeoman.dist %>/styles/main.css': [
@@ -384,19 +388,19 @@ module.exports = function (grunt) {
     //       ]
     //     }
     //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    //},
+    uglify: {
+       dist: {
+         files: {
+           '<%= yeoman.dist %>/scripts/scripts.js': [
+             '.tmp/scripts/{,*/}*.js'
+           ]
+         }
+       }
+    },
+    concat: {
+       dist: {}
+    },
 
     // Test settings
     karma: {
