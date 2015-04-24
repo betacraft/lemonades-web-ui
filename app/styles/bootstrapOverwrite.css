@@ -8,32 +8,32 @@
 }
 
 .img-responsive {
-	display: inline-block;
+  display: inline-block;
 }
 .heroInput {
-	height: 40px;
-	font-family: 'Ubuntu', sans-serif;
-	font-weight: normal;
-	color: #8d8d8d;
-	font-size: 16px;
-	border: #c3bbbe 2px solid;
+  height: 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: normal;
+  color: #8d8d8d;
+  font-size: 16px;
+  border: #c3bbbe 2px solid;
 }
 .heroDropDown {
-	height: 60px;
-	border-radius: 0px;
-	font-family: 'Ubuntu', sans-serif;
-	font-weight: 400;
-	color: #8d8d8d;
-	font-size: 20px;
-	border: #c3bbbe 2px solid;
-	border-left: none;
-	border-right: none;
+  height: 60px;
+  border-radius: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: #8d8d8d;
+  font-size: 20px;
+  border: #c3bbbe 2px solid;
+  border-left: none;
+  border-right: none;
 }
 .heroBTN {
-	height: 40px;
-	background: #FFFFFF;
-	border: #c3bbbe 2px solid;
+  height: 40px;
+  background: #FFFFFF;
+  border: #c3bbbe 2px solid;
 }
 .heroBTN:hover {
-	background: #ead136;
+  background: #ead136;
 }

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller 'GroupCtrl', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location) ->
+  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location) ->
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
     $scope.group = {}
@@ -98,3 +98,4 @@ angular.module('lemonades')
             message: data.message
             success: false
       )
+])

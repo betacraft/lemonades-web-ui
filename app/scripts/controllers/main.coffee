@@ -1,7 +1,6 @@
 'use strict';
-
 angular.module('lemonades')
-.controller('MainCtrl', ($scope, $location, $rootScope, $cookieStore, $http) ->
+.controller('MainCtrl', ['$scope', '$location', '$rootScope', '$cookieStore', '$http',($scope, $location, $rootScope, $cookieStore, $http) ->
   $scope.sessionKey = $cookieStore.get("lmnsskey")
   $scope.deals = {}
 
@@ -41,4 +40,4 @@ angular.module('lemonades')
 
   $scope.dashboard = ->
     $location.path("/dashboard")
-)
+])

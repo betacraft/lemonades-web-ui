@@ -1,7 +1,6 @@
 {
   "name": "lemonades",
   "version": "0.0.1",
-  "appPath":"",
   "dependencies": {
     "angular": "1.4.0-rc.0",
     "json3": "3.3.2",

@@ -7,9 +7,8 @@ angular
     'ngSanitize',
     'ngRoute',
     'angulartics',
-    'angulartics.google.analytics'
-  ])
-  .run(($rootScope,$location,$http,$cookieStore)->
+    'angulartics.google.analytics'])
+  .run(['$rootScope','$location','$http','$cookieStore',($rootScope,$location,$http,$cookieStore)->
     $rootScope.baseUrl = "http://localhost:3000"
     $rootScope.loading = false;
 
@@ -30,8 +29,8 @@ angular
     $rootScope.goToLogin = ->
       $location.path("/login")
 
-  )
-  .factory('myHttpInterceptor', ($q, $window, $rootScope,$location,$cookieStore) ->
+  ])
+  .factory('myHttpInterceptor', ['$window','$rootScope','$location','$cookieStore',($window, $rootScope,$location,$cookieStore) ->
     return{
     # optional method
     'request': (config) ->
@@ -57,13 +56,13 @@ angular
         $cookieStore.remove("lmnsskey")
       return $q.reject(rejection)
     }
-  )
-  .config(($httpProvider)->
+  ])
+  .config(['$httpProvider',($httpProvider)->
     $httpProvider.interceptors.push('myHttpInterceptor');
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
-  )
-  .config(($routeProvider,$locationProvider) ->
+  ])
+  .config(['$routeProvider','$locationProvider',($routeProvider,$locationProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
@@ -90,4 +89,4 @@ angular
         redirectTo: '/'
 #   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix();
-  )
+  ])

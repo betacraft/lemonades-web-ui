@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lemonades')
-  .controller('LoginCtrl',($scope,$cookieStore,$http,$rootScope,$location,session) ->
+  .controller('LoginCtrl',['$scope','$cookieStore','$http','$rootScope','$location','session',($scope,$cookieStore,$http,$rootScope,$location,session) ->
     $scope.user = {};
     $scope.landing = ->
       $location.path("/")
@@ -30,4 +30,4 @@ angular.module('lemonades')
             message: data.message
             success: false
       )
-)
+])

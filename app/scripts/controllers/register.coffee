@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lemonades')
-.controller('RegisterCtrl', ($scope, $location, $http, $rootScope) ->
+.controller('RegisterCtrl', ['$scope', '$location', '$http', '$rootScope',($scope, $location, $http, $rootScope) ->
   $scope.user = {};
   $scope.landing = ->
     $location.path("/")
@@ -37,4 +37,4 @@ angular.module('lemonades')
           message: data.message
           success: false
     )
-)
+])

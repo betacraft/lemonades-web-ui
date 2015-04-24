@@ -1,7 +1,6 @@
 'use strict'
-
 angular.module('lemonades')
-.controller 'DashboardCtrl', ($scope, $cookies, $cookieStore, $http, $rootScope, $location) ->
+.controller('DashboardCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location', ($scope, $cookies, $cookieStore, $http, $rootScope, $location) ->
   $scope.sessionKey = $cookieStore.get("lmnsskey")
   $scope.object = {}
   $scope.pageNo = 0;
@@ -92,4 +91,5 @@ angular.module('lemonades')
           message: data.message
           success: false
     )
+])
 

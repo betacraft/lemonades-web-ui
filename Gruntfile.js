@@ -5,7 +5,6 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically, when needed
   require('jit-grunt')(grunt, {
-    express: 'grunt-express-server',
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn',
@@ -81,10 +80,10 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>/public',
+          dest: '<%= yeoman.dist %>',
           src: ['views/{,*/}*.jade'],
           ext: '.html'
-        },{
+        }, {
           expand: true,
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
@@ -224,10 +223,10 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= yeoman.dist %>/public/{,*/}*.js',
-            '<%= yeoman.dist %>/public/{,*/}*.css',
-            '<%= yeoman.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/public/fonts/*'
+            '<%= yeoman.dist %>/{,*/}*.js',
+            '<%= yeoman.dist %>/{,*/}*.css',
+            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/fonts/*'
           ]
         }
       }
@@ -241,29 +240,20 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/index.html'],
       options: {
         root: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>',
-        flow: {
-          html: {
-            steps: {
-              js: ['concat', 'uglifyjs'],
-              css: ['cssmin']
-            },
-            post: {}
-          }
-        }
+        dest: '<%= yeoman.dist %>'
       }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/public/{,*/}*.html',
+      html: ['<%= yeoman.dist %>/{,*/}*.html',
         '<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
+      css: ['<%= yeoman.dist %>/{,*/}*.css'],
+      js: ['<%= yeoman.dist %>/{,*/}*.js'],
       options: {
         assetsDirs: [
-          '<%= yeoman.dist %>/public',
-          '<%= yeoman.dist %>/public/images'
+          '<%= yeoman.dist %>',
+          '<%= yeoman.dist %>/images'
         ],
         // This is so we update image references in our ng-templates
         patterns: {
@@ -273,6 +263,13 @@ module.exports = function (grunt) {
         }
       }
     },
+    //usemin: {
+    //  html: ['<%= yeoman.dist %>/{,*/}*.html'],
+    //  css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+    //  options: {
+    //    assetsDirs: ['<%= yeoman.dist %>']
+    //  }
+    //},
 
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
@@ -281,9 +278,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          '<%= yeoman.dist %>/public/styles/main.css': [
-            '.tmp/public/styles/{,*/}*.css',
-            '<%= yeoman.app %>/public/styles/{,*/}*.css'
+          '<%= yeoman.dist %>/styles/main.css': [
+            '<%= yeoman.app %>/styles/{,*/}*.css'
           ]
         }
       }
@@ -296,7 +292,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/public/images'
+          dest: '<%= yeoman.dist %>/images'
         }]
       }
     },
@@ -307,10 +303,24 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/public/images'
+          dest: '<%= yeoman.dist %>/images'
         }]
       }
     },
+
+    concat: {
+      generated: {
+        files: [
+          {
+            dest: '.tmp/concat/scripts/app.js',
+            src: [
+              '.tmp/scripts/{,*/}*.js'
+            ]
+          }
+        ]
+      }
+    },
+
 
     htmlmin: {
       dist: {
@@ -327,7 +337,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.dist %>',
           src: ['*.html', 'views/{,*/}*.html'],
-          dest: '<%= yeoman.dist %>/public'
+          dest: '<%= yeoman.dist %>'
         }]
       }
     },
@@ -348,7 +358,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html','<%= yeoman.dist %>/public/*.html']
+        html: ['<%= yeoman.dist %>/*.html', '<%= yeoman.dist %>/*.html']
       }
     },
 
@@ -359,7 +369,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>/public',
+          dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -371,15 +381,15 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/public/images',
+          dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>',
+        cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/',
-        src: ['styles/**/*.css']
+        src: ['*.css']
       }
     },
 
@@ -413,17 +423,18 @@ module.exports = function (grunt) {
 
 
     uglify: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '.tmp/scripts/{,*/}*.js'
-          ]
-        }
-      }
-    },
+      options: {
+        sourceMap: true
+      },
 
-    concat: {
-      dist: {}
+      generated: {
+        files: [
+          {
+            dest: '<%= yeoman.dist %>/scripts/app.js',
+            src: ['.tmp/concat/js/app.js']
+          }
+        ]
+      }
     },
 
 
@@ -436,27 +447,6 @@ module.exports = function (grunt) {
       }
     },
 
-
-    //
-    //// Package all the html partials into a single javascript payload
-    //ngtemplates: {
-    //  options: {
-    //    // This should be the name of your apps angular module
-    //    module: 'lemonades',
-    //
-    //    usemin: 'app/app.js'
-    //  },
-    //  main: {
-    //    cwd: '<%= yeoman.app %>',
-    //    src: ['views/**/*.html'],
-    //    dest: '.tmp/templates.js'
-    //  },
-    //  tmp: {
-    //    cwd: '.tmp',
-    //    src: ['views/**/*.html'],
-    //    dest: '.tmp/tmp-templates.js'
-    //  }
-    //},
 
 
     buildcontrol: {
@@ -559,8 +549,6 @@ module.exports = function (grunt) {
   });
 
 
-
-
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -613,7 +601,6 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'autoprefixer',
-    'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
@@ -621,6 +608,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
+
     'usemin'
   ]);
 
