@@ -3112,10 +3112,12 @@ fieldset[disabled] .btn-default.active {
     color: #95a5a6;
     background-color: #ffffff;
 }
+
+
 .btn-primary {
-    color: #ffffff;
-    background-color: #e8277a;
-    border-color: #e8277a;
+  color: #ffffff;
+  background-color: #e8277a;
+  border-color: #e8277a;
 }
 
 .btn-primary-border {

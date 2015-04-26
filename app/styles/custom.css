@@ -20,6 +20,8 @@ html, body {
 
 .howItWorksBg {
   background: url(../images/grayBG.png) center top repeat;
+  background-size: cover;
+  height: 100%;
 }
 
 .rightPinkLine {

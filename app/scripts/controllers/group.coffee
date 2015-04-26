@@ -86,6 +86,11 @@ angular.module('lemonades')
         (data)->
           if data.success
             console.log(data)
+            $rootScope.title = "Buy " + data.group.product.name + " with a group on lemonades.in"
+            $rootScope.image = data.group.product.product_image
+            $rootScope.url = $location.absUrl()
+            $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on lemonades and get huge discount." if data.group.interested_users_count == 1
+            $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on lemonades and get huge discount." if data.group.interested_users_count > 1
             $scope.group = data.group
             $scope.shareText = "Buy " + data.group.product.name + " with " + data.group.interested_users_count + " on lemonades.in"
             return

@@ -8,13 +8,13 @@ div.container-fluid
         div.col-md-4.pull-right.col-md-offset-6.text-right
           .btn.btn-primary-border(ng-click="login()")="Login"
   div.container(style="margin-top:50px;")
-    div.col-md-4.col-sm-4.col-sm-offset-4.col-md-offset-4
-      h2.text-center(style="color:#E8277A")="Register"
-      hr
+  h2.text-center(style="color:#E8277A;margin-top:20px;")="Register"
+  hr
+  div.container(style="margin-top:50px;margin-bottom:50px;")
+    div.col-md-4.col-sm-4.col-sm-offset-1.col-md-offset-1
       div(ng-show="status !== undefined && status.success !== true")
         div.panel-danger.text-center
           p {{status.message}}
-
       form#signUpForm(role="form",name="form",style="margin-top:20px;",novalidate)
         div(ng-class="{'has-error form-group':form.$submitted && form.name.$error.required || form.name.$error.required === true,'form-group':true}")
           label(for="name")="Name"
@@ -35,6 +35,11 @@ div.container-fluid
           input#confirmPassword.form-control(type="password",style="font-size:16px;",name="confirm_password",placeholder="Confirm Password",ng-model="user.confirm_password",required="",ng-minlength="8")
         div.text-center(style="margin-top:10px;")
           button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...")="Register"
+    div.col-md-4.col-sm-4.col-sm-offset-1.col-md-offset-1.text-center
+      button.btn.btn-facebook#login(ng-click="loginWithFacebook()",style="margin-top:50px;")="Login With Facebook"
+      br
+      div(style="margin-top:20px;")
+        | <google-plus-signin clientid="277507848931-4jccaqqqi3jllpam40n7j1jrq2kup01i.apps.googleusercontent.com" language="en"></google-plus-signin>
 script(type="text/javascript").
   // Include the UserVoice JavaScript SDK (only needed once on a page)
   UserVoice = window.UserVoice || [];

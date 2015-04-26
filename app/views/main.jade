@@ -1,16 +1,15 @@
-div.container-fluid(ng-init="init()")
+div(ng-init="init()")
   section.howItWorksBg(style="padding-bottom:50px;")
-    div.container
-      div.row.marginTop15px
+    div.container-fluid
+      div.row(style="padding-top:15px;")
         div.col-md-12
           img.pull-left(src="images/innerPageLogo.png",width="200px;")
           a.pull-right.btn.btn-primary-border(ng-show="sessionKey",ng-click="dashboard()")="Dashboard"
           a.pull-right.btn.btn-primary-border(ng-show="sessionKey===undefined",ng-click="login()")="Login"
           a.pull-right.btn.btn-primary-border.marginRight10px(ng-show="sessionKey===undefined",ng-click="register()")="Register"
-    div.row
-      div.col-md-12.text-center(style="margin-top:15px;margin-bottom:15px;")
-        p.pinkText(style="font-size:45px;font-weight:thin;")="Next Generation Of Group Buying"
-    div.container
+      div.row
+        div.col-md-12.text-center(style="margin-top:15px;margin-bottom:15px;")
+          p.pinkText(style="font-size:45px;font-weight:thin;")="Next Generation Of Group Buying"
       div.row.text-center.marginTop50px
         div.col-md-12
           img.img-responsive(src="images/how_it_work.png")
@@ -61,7 +60,7 @@ div.container-fluid(ng-init="init()")
           div.col-md-2.text-center
             a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
         div.col-md-12.text-center(style="margin-top:20px;margin-bottom:20px;")
-          div.fb-page(data-href="https://www.facebook.com/lemonades.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false")
+          div.fb-page(data-href="https://www.facebook.com/lemonades.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false", data-width="500",style="width:500px;")
         div.row
         div.col-md-12.text-center
 
@@ -70,7 +69,7 @@ div.container-fluid(ng-init="init()")
         dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
   #fb-root
   script(type="text/javascript").
-    var count = 0
+    var count = 0;
     FB = null;
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -78,7 +77,7 @@ div.container-fluid(ng-init="init()")
       count = count + 1;
       js = d.createElement(s);
       js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1614694728745231&version=v2.3";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     (function (d, s, id) {

@@ -1,10 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
-
-
-.container-fluid{
-  padding-right: 0;
+.container-fluid-full{
   padding-left: 0;
+  padding-right: 0;
 }
 
 .img-responsive {

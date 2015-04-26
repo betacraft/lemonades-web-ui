@@ -37,4 +37,22 @@ angular.module('lemonades')
           message: data.message
           success: false
     )
+    $scope.loginWithFacebook = ->
+      console.log("Logging in with facebook" + $facebook.isConnected())
+      $scope.fbStatus = $facebook.isConnected()
+      if $scope.fbStatus
+        $facebook.api('/me').then (user) ->
+          console.log(user)
+          $scope.fbUser = user
+          return
+        return
+
+    $scope.$on('event:google-plus-signin-success', (event,authResult) ->
+      # Send login to server or save into cookie
+      console.log("log in success",authResult,event);
+    );
+    $scope.$on('event:google-plus-signin-failure',  (event,authResult) ->
+      # Auth failure or signout detected
+      console.log("log in success");
+    );
 ])

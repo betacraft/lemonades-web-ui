@@ -9,9 +9,13 @@
     "bootstrap": "3.3.4",
     "angular-resource": "1.4.0-rc.0",
     "angular-cookies": "1.4.0-rc.0",
+    "angular-animate":"latest",
     "angular-sanitize": "1.4.0-rc.0",
     "angular-route": "1.4.0-rc.0",
-    "angulartics":"0.17.2"
+    "angulartics":"0.17.2",
+    "ng-facebook":"latest",
+    "angular-google-plus":"latest",
+    "ngtoast":"latest"
   },
   "devDependencies": {
     "angular-mocks": "1.4.0-rc.0",

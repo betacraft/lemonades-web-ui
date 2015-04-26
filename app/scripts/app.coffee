@@ -6,12 +6,18 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
+    'googleplus',
+    'ngFacebook',
     'angulartics',
+    'ngToast',
     'angulartics.google.analytics'])
   .run(['$rootScope','$location','$http','$cookieStore',($rootScope,$location,$http,$cookieStore)->
     $rootScope.baseUrl = "http://localhost:3000"
     $rootScope.loading = false;
-
+    $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
+    $rootScope.image = ""
+    $rootScope.url = "http://www.lemonades.in"
+    $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
     $rootScope.getUser = ->
       console.log("getting user")
       req =
@@ -30,7 +36,7 @@ angular
       $location.path("/login")
 
   ])
-  .factory('myHttpInterceptor', ['$window','$rootScope','$location','$cookieStore',($window, $rootScope,$location,$cookieStore) ->
+  .factory('myHttpInterceptor', ['$q','$window','$rootScope','$location','$cookieStore',($q,$window, $rootScope,$location,$cookieStore) ->
     return{
     # optional method
     'request': (config) ->
@@ -57,10 +63,38 @@ angular
       return $q.reject(rejection)
     }
   ])
+  .config(['ngToastProvider',(ngToastProvider)->
+    ngToastProvider.configure({
+      animation:"slide"
+    })
+  ])
   .config(['$httpProvider',($httpProvider)->
     $httpProvider.interceptors.push('myHttpInterceptor');
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
+  ])
+  .config(($facebookProvider )->
+    $facebookProvider.setAppId('1614694728745231').setPermissions(['email']);
+  )
+  .config(['GooglePlusProvider', (GooglePlusProvider) ->
+    GooglePlusProvider.init({
+        clientId: '277507848931-4jccaqqqi3jllpam40n7j1jrq2kup01i.apps.googleusercontent.com',
+        apiKey: 'AIzaSyA3F3vE_vglkKVeMq-U6mnSkg4h1vhQHPM'
+      });
+  ])
+  .run(['$rootScope', '$window', ($rootScope, $window) ->
+    ((d, s, id) ->
+      fjs = d.getElementsByTagName(s)[0];
+      return if (d.getElementById(id))
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1614694728745231&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+      ) document, 'script', 'facebook-jssdk'
+    $rootScope.$on 'fb.load', ->
+      console.log("fb loaded")
+      $window.dispatchEvent new Event('fb.load')
+      return
   ])
   .config(['$routeProvider','$locationProvider',($routeProvider,$locationProvider) ->
     $routeProvider

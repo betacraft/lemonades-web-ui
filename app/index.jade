@@ -1,12 +1,21 @@
 doctype html
-html(lang="en")
+html(lang="en",ng-app="lemonades")
   head
     base(href="/")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(property='og:type', content='website')
+    meta(property='og:url', content='{{$root.url}}')
+    meta(property='og:title', content='{{$root.title}}')
+    meta(property='og:image', content='{{$root.image}}')
+    meta(property='og:description', content='{{$root.description}}')
+    meta(property='fb:app_id', content='1608020712745966')
+
     title="Lemonades.in : Next Generation of Group Buying"
     link(href="bower_components/bootstrap/dist/css/bootstrap.css",rel="stylesheet")
+    link(href="bower_components/ngToast/dist/ngToast.css",rel="stylesheet")
+    link(href="bower_components/ngToast/dist/ngToast-animations.css",rel="stylesheet")
     link(href="styles/flatty.css",rel="stylesheet")
     link(href="styles/bootstrapOverwrite.css",rel="stylesheet")
     link(href="styles/custom.css",rel="stylesheet")
@@ -26,7 +35,7 @@ html(lang="en")
       ga('create', 'UA-61572806-1', 'auto');
     script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
     script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
-  body(ng-app="lemonades")
+  body
     <!--[if lt IE 7]>
     p.browsehappy
       | You are using an
@@ -35,7 +44,8 @@ html(lang="en")
       a(href="http://browsehappy.com/") upgrade your browser
       |  to improve your experience.
     <![endif]-->
-    div.container-fluid(ng-view)
+    toast
+    div(ng-view)
     <!--[if lt IE 9]>
     script(src="bower_components/es5-shim/es5-shim.js")
     script(src="bower_components/json3/lib/json3.min.js")
@@ -49,6 +59,7 @@ html(lang="en")
     script(src='bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='bower_components/angular-resource/angular-resource.js')
     script(src='bower_components/angular-cookies/angular-cookies.js')
+    script(src='bower_components/angular-animate/angular-animate.js')
     script(src='bower_components/angular-sanitize/angular-sanitize.js')
     script(src='bower_components/angular-route/angular-route.js')
     script(src='bower_components/waypoints/waypoints.js')
@@ -70,6 +81,9 @@ html(lang="en")
     script(src='bower_components/angulartics/src/angulartics-woopra.js')
     script(src='bower_components/angulartics/src/angulartics-marketo.js')
     script(src='bower_components/angulartics/src/angulartics-intercom.js')
+    script(src='bower_components/ng-facebook/ngFacebook.js')
+    script(src='bower_components/angular-google-plus/dist/angular-google-plus.js')
+    script(src='bower_components/ngtoast/dist/ngToast.js')
     // endbower
     // endbuild
     // build:js(.tmp) scripts/app.js
