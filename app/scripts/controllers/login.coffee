@@ -74,7 +74,7 @@ angular.module('lemonades')
               .error((data)->
                 ngToast.create({
                   className: 'danger',
-                  content: 'There was some error in logging in with facebook. Please try again',
+                  content: 'There was some error in logging in with Facebook. Please try again',
                 })
               )
             return
@@ -103,10 +103,16 @@ angular.module('lemonades')
                 $location.path("/dashboard")
             )
             .error((data)->
-              console.log data
+              ngToast.create({
+                className: 'danger',
+                content: 'There was some error in logging in with Google Plus. Please try again',
+              })
             )
             return
           return
           ),(err) ->
-            console.log err
+            ngToast.create({
+              className: 'danger',
+              content: 'There was some error in logging in with Google Plus. Please try again',
+            })
   ])
