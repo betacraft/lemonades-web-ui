@@ -8,6 +8,10 @@ angular.module('lemonades')
     $scope.joinedGroupPageNo = 0;
     $scope.createdGroups = []
     $scope.joinedGroups = []
+    $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
+    $rootScope.image = ""
+    $rootScope.url = "http://www.lemonades.in"
+    $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
 
     $scope.init = ()->
       if($scope.sessionKey == "")

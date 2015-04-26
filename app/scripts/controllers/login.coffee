@@ -8,6 +8,10 @@ angular.module('lemonades')
       $scope.fbUser = {}
       $scope.fbStatus = null
       $scope.object = {}
+      $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
+      $rootScope.image = ""
+      $rootScope.url = "http://www.lemonades.in"
+      $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
       $scope.landing = ->
         $location.path("/")
 
