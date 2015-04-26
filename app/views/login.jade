@@ -42,10 +42,10 @@ div.container-fluid-full
         div.text-center(style="margin-top:10px;margin-bottom:20px;")
           a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",data-toggle="modal",data-target="#forgotPasswordModal")="Forgot Password"
           button.btn.btn-primary-border.pull-right#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...")="Login"
-    div.col-md-3.col-sm-3.text-center(style="margin-top:10px;")
-      a#login.text-center(ng-click="loginWithFacebook()")
-        image(src="images/fb_login.png",style="width:220px;")
-      a#login.text-center(ng-click="loginWithGooglePlus()")
+    div.col-md-3.col-sm-3.text-center(style="margin-top:60px;")
+      a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
+        image(src="images/fb_login.png",style="width:190px;")
+      a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
         image(src="images/google_sign_in.png",style="width:195px;")
 
 script(type="text/javascript").

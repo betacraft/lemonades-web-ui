@@ -1,4 +1,4 @@
-div(ng-init="init()")
+div.container-fluid-full(ng-init="init()")
   section.howItWorksBg(style="padding-bottom:50px;")
     div.container-fluid
       div.row(style="padding-top:15px;")
@@ -13,7 +13,7 @@ div(ng-init="init()")
       div.row.text-center.marginTop50px
         div.col-md-12
           img.img-responsive(src="images/how_it_work.png")
-  section
+  section(ng-show="groups.length > 0")
     div.container(style="padding-top:30px;")
       div.row
         div.col-md-6
@@ -40,10 +40,10 @@ div(ng-init="init()")
               div.lowestPriceBigText="DEAL"
           div.finalPriceBtn
             p.colorWhite(style="font-size:20px;")="{{group.product.price_value | currency:'Rs. ' }}"
-  div.row(style="margin-top:30px;")
-    div.col-md-12.text-center
-      a.btn.btn-primary-border(ng-click="dashboard()")="More"
-  hr
+    div.row(style="margin-top:30px;")
+      div.col-md-12.text-center
+        a.btn.btn-primary-border(ng-click="dashboard()")="More"
+    hr
   footer
     div.container(style="margin-top:50px")
       div.row
@@ -67,7 +67,7 @@ div(ng-init="init()")
     div.container
       div.row
         dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
-  #fb-root
+    #fb-root
   script(type="text/javascript").
     FB = null;
     (function (d, s, id) {

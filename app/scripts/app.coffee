@@ -58,7 +58,6 @@ angular
       $rootScope.loading = false;
       status = rejection.status;
       if (status == 401)
-        console.log($location.pathname)
         $cookieStore.remove("lmnsskey")
       return $q.reject(rejection)
     }

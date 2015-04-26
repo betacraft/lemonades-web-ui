@@ -10,18 +10,12 @@ div.container-fluid-full
   div.container(style="margin-top:50px;")
   h2.text-center(style="color:#E8277A;margin-top:20px;")="Register"
   hr
-  div.container(style="margin-top:50px;margin-bottom:50px;")
-    div.col-md-4.col-sm-4.col-sm-offset-3.col-md-offset-3
+  div.container(style="margin-top:30px;margin-bottom:50px;")
+    div.col-md-4.col-sm-4.col-sm-offset-2.col-md-offset-2
       div(ng-show="status !== undefined && status.success !== true")
         div.panel-danger.text-center
           p {{status.message}}
       form#signUpForm(role="form",name="form",style="margin-top:20px;",novalidate)
-        div(ng-class="{'has-error form-group':form.$submitted && form.name.$error.required || form.name.$error.required === true,'form-group':true}")
-          label(for="name")="Name"
-          input#name.form-control(type="text",style="font-size:16px;",name="name",placeholder="Name",ng-model="user.name",required="")
-        div(ng-class="{'has-error form-group':form.$submitted && form.mobile.$error.required === true,'form-group':true}")
-          label(for="mobileNumber")="Mobile Number"
-          input#mobileNumber.form-control(type="text",style="font-size:16px;",name="mobile",placeholder="Mobile Number",ng-model="user.mobile",required="")
         div(ng-class="{'has-error form-group':form.$submitted && form.email.$error.required || form.email.$error.email === true,'form-group':true}")
           label(for="email")="Email"
           input#email.form-control(type="text",style="font-size:16px;",name="email",placeholder="Email",ng-model="user.email",required="")
@@ -35,10 +29,10 @@ div.container-fluid-full
           input#confirmPassword.form-control(type="password",style="font-size:16px;",name="confirm_password",placeholder="Confirm Password",ng-model="user.confirm_password",required="",ng-minlength="8")
         div.text-center(style="margin-top:10px;")
           button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...")="Register"
-    div.col-md-3.col-sm-3.text-center(style="margin-top:10px;")
-      a#login.text-center(ng-click="loginWithFacebook()")
-        image(src="images/fb_login.png",style="width:220px;")
-      a#login.text-center(ng-click="loginWithGooglePlus()")
+    div.col-md-3.col-sm-3.text-center(style="margin-top:80px;")
+      a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
+        image(src="images/fb_login.png",style="width:190px;")
+      a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
         image(src="images/google_sign_in.png",style="width:195px;")
 script(type="text/javascript").
   // Include the UserVoice JavaScript SDK (only needed once on a page)

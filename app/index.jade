@@ -12,15 +12,16 @@ html(lang="en",ng-app="lemonades")
     meta(property='og:description', content='{{$root.description}}')
     meta(property='fb:app_id', content='1608020712745966')
     title="Lemonades.in : Next Generation of Group Buying"
-    // build:css styles/main.css
+    // build:css styles/vendor.css
     link(href="bower_components/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
     link(href="bower_components/ngtoast/dist/ngToast.min.css",rel="stylesheet")
     link(href="bower_components/ngtoast/dist/ngToast-animations.min.css",rel="stylesheet")
+    // endbuild
     link(href="styles/flatty.css",rel="stylesheet")
     link(href="styles/bootstrapOverwrite.css",rel="stylesheet")
     link(href="styles/custom.css",rel="stylesheet")
     link(href="styles/font.css",rel="stylesheet")
-    // endbuild
+
     script(type="text/javascript").
       (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -66,22 +67,7 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/waypoints/waypoints.js')
     script(src='bower_components/SHA-1/sha1.js')
     script(src='bower_components/angulartics/src/angulartics.js')
-    script(src='bower_components/angulartics/src/angulartics-adobe.js')
-    script(src='bower_components/angulartics/src/angulartics-chartbeat.js')
-    script(src='bower_components/angulartics/src/angulartics-cnzz.js')
-    script(src='bower_components/angulartics/src/angulartics-flurry.js')
-    script(src='bower_components/angulartics/src/angulartics-ga-cordova.js')
     script(src='bower_components/angulartics/src/angulartics-ga.js')
-    script(src='bower_components/angulartics/src/angulartics-gtm.js')
-    script(src='bower_components/angulartics/src/angulartics-kissmetrics.js')
-    script(src='bower_components/angulartics/src/angulartics-mixpanel.js')
-    script(src='bower_components/angulartics/src/angulartics-piwik.js')
-    script(src='bower_components/angulartics/src/angulartics-scroll.js')
-    script(src='bower_components/angulartics/src/angulartics-segmentio.js')
-    script(src='bower_components/angulartics/src/angulartics-splunk.js')
-    script(src='bower_components/angulartics/src/angulartics-woopra.js')
-    script(src='bower_components/angulartics/src/angulartics-marketo.js')
-    script(src='bower_components/angulartics/src/angulartics-intercom.js')
     script(src='bower_components/ng-facebook/ngFacebook.js')
     script(src='bower_components/angular-google-plus/dist/angular-google-plus.js')
     script(src='bower_components/ngtoast/dist/ngToast.js')
