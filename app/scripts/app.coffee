@@ -74,7 +74,7 @@ angular
     $httpProvider.defaults.useXDomain = true;
   ])
   .config(($facebookProvider )->
-    $facebookProvider.setAppId('1614694728745231').setPermissions(['email']);
+    $facebookProvider.setAppId('1608020712745966').setPermissions(['email']);
   )
   .config(['GooglePlusProvider', (GooglePlusProvider) ->
     GooglePlusProvider.init({
@@ -88,7 +88,7 @@ angular
       return if (d.getElementById(id))
       js = d.createElement(s);
       js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1614694728745231&version=v2.3";
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
       fjs.parentNode.insertBefore(js, fjs);
       ) document, 'script', 'facebook-jssdk'
     $rootScope.$on 'fb.load', ->
@@ -119,6 +119,12 @@ angular
       .when '/my-groups',
         templateUrl: 'views/my-groups.html'
         controller: 'MyGroupsCtrl'
+      .when '/user/:auth_key/reset_password',
+        templateUrl: 'views/reset_password.html'
+        controller: 'ResetPasswordCtrl'
+      .when '/user/:auth_key/confirm_email',
+        templateUrl: 'views/confirm_email.html'
+        controller: 'ConfirmEmailCtrl'
       .otherwise
         redirectTo: '/'
 #   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();

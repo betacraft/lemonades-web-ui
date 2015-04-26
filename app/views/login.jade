@@ -1,3 +1,20 @@
+div#forgotPasswordModal.modal(name="forgotPasswordModal",tabindex="-1",role="dialog",aria-labelledby="forgotPasswordModalLabel",aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close(type="button",data-dismiss="modal")
+          span(aria-hidden="true")
+          span.sr-only="Close"
+        h4#createGroupModal.modal-title="Forgot Password"
+      div.modal-body
+        div(ng-show="fg_status !== undefined && fg_status.success === false",style="margin-bottom:10px;")
+          p.colorPink="{{fg_status.message}}"
+        form(role="form",name="form",novalidate)
+          div.form-group
+            label(for="emailAddress")="Email Address"
+            input#emailAddress.form-control(type="email",placeholder="me@you.com",ng-model="object.email",name="emailAddress",required)
+      div.modal-footer
+        button#forgotPassword.btn.btn-primary-border(type="button",data-loading-text="Loading...",ng-disabled="form.emailAddress.$error.required===true",ng-click="forgotPassword()")="Reset"
 div.container-fluid-full
   div.container-fluid.bgGray(style="padding:10px;")
     div.row
@@ -11,7 +28,7 @@ div.container-fluid-full
     div.col-md-12.text-center
       h2.text-center(style="color:#E8277A")="Login"
       hr
-    div.col-md-3.col-sm-3.col-sm-offset-3.col-md-offset-3
+    div.col-md-4.col-sm-4.col-sm-offset-2.col-md-offset-2
       div.panel(ng-show="status !== undefined && status.success !== true")
         div.panel-body.text-center
           p {{status.message}}
@@ -23,7 +40,7 @@ div.container-fluid-full
           label(for="password")="Password"
           input#password.form-control(type="password",style="font-size:16px;",name="pwd",ng-model="user.password",placeholder="password",required="")
         div.text-center(style="margin-top:10px;margin-bottom:20px;")
-          a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",ng-click="forgotPassword()",data-loading-text="Logging in...")="Forgot Password"
+          a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",data-toggle="modal",data-target="#forgotPasswordModal")="Forgot Password"
           button.btn.btn-primary-border.pull-right#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...")="Login"
     div.col-md-3.col-sm-3.text-center(style="margin-top:10px;")
       a#login.text-center(ng-click="loginWithFacebook()")

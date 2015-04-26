@@ -5,7 +5,7 @@ div#createGroupModal.modal(name="createGroupModal",tabindex="-1",role="dialog",a
         button.close(type="button",data-dismiss="modal")
           span(aria-hidden="true")
           span.sr-only="Close"
-        h4#createGroupModal.modal-title="Create/Search Group"
+        h4#createGroupModal.modal-title="Create / Search Group"
       div.modal-body
         div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
           p.colorPink="{{status.message}}"
@@ -25,7 +25,7 @@ section(ng-init="init()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.col-md-offset-6.text-right
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
-          .btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create/Search Group"
+          .btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create / Search Group"
           a.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 section

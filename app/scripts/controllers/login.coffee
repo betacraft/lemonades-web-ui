@@ -7,7 +7,7 @@ angular.module('lemonades')
       $scope.user = {}
       $scope.fbUser = {}
       $scope.fbStatus = null
-
+      $scope.object = {}
       $scope.landing = ->
         $location.path("/")
 
@@ -115,4 +115,33 @@ angular.module('lemonades')
               className: 'danger',
               content: 'There was some error in logging in with Google Plus. Please try again',
             })
+      $scope.forgotPassword = ->
+        $scope.fg_status = {}
+        console.log $scope.object
+        if $scope.object.email == undefined ||$scope.object.email == ""
+          $scope.fg_status = {
+            message: "Please provide a valid email address",
+            success: false
+          }
+          return
+        $http.post($rootScope.baseUrl + '/api/v1/user/forgot_password',$scope.object)
+        .success((data)->
+          if data.success
+            $('#forgotPasswordModal').modal('hide')
+            ngToast.create({
+              className: 'success',
+              content: data.message,
+            })
+            return
+          ngToast.create({
+            className: 'danger',
+            content: data.message,
+          })
+        )
+        .error((data)->
+          ngToast.create({
+            className: 'danger',
+            content: 'There was some error while resetting the password, Please try again !',
+          })
+        )
   ])

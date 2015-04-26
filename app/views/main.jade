@@ -69,15 +69,12 @@ div(ng-init="init()")
         dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
   #fb-root
   script(type="text/javascript").
-    var count = 0;
     FB = null;
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id) && count === 1) return;
-      count = count + 1;
       js = d.createElement(s);
       js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1614694728745231&version=v2.3";
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     (function (d, s, id) {
