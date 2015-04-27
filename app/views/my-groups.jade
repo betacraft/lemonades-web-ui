@@ -91,27 +91,9 @@ section(ng-show="joinedGroups.length > 0")
         a.btn.btn-primary-border(ng-show="joinedGroupPageNo > -1",ng-click="getJoinedGroups()")="Load more"
 hr(style="margin-top:100px;")
 footer
-  div.footerInside
+  div.container
     div.row
-      div.col-md-2.col-md-offset-4.text-right
-        ul.footerLinks
-          li
-            a="Privacy Policy"
-            br
-            a="Suggest Deal Type"
-            br
-            a="Join Our Vendor List"
-      div.col-md-2.text-left
-        ul.footerLinks
-          li
-            a="How It Works"
-            br
-            a="Contact Us"
-            br
-            a="FAQ"
-div.container
-  div.row
-    dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
+      dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
 script(type="text/javascript").
   // Include the UserVoice JavaScript SDK (only needed once on a page)
   UserVoice = window.UserVoice || [];

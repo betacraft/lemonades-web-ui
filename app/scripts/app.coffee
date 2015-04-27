@@ -84,7 +84,6 @@ angular
   .run(['$rootScope', '$window', ($rootScope, $window) ->
     ((d, s, id) ->
       fjs = d.getElementsByTagName(s)[0];
-      return if (d.getElementById(id))
       js = d.createElement(s);
       js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";

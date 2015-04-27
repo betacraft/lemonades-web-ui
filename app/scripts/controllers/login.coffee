@@ -82,7 +82,13 @@ angular.module('lemonades')
                 })
               )
             return
-          return
+          (err)->
+            ngToast.create({
+              className: 'danger',
+              content: 'There was some error in logging in with Facebook. Please try again',
+            })
+
+
 
       $scope.loginWithGooglePlus = ->
         GooglePlus.login().then ((authResult) ->
