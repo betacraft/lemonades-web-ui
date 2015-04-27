@@ -1,7 +1,7 @@
 'use strict';
 angular.module('lemonades')
 .controller('MainCtrl',
-  ['$scope', '$location', '$rootScope', '$cookieStore', '$http', ($scope, $location, $rootScope, $cookieStore, $http) ->
+  ['$scope', '$location', '$rootScope', '$cookieStore', '$http','$intercom', ($scope, $location, $rootScope, $cookieStore, $http,$intercom) ->
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.deals = {}
 
@@ -9,6 +9,13 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
+      ((d, s, id) ->
+        fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+      ) document, 'script', 'facebook-jssdk'
       $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
       $rootScope.image = ""
       $rootScope.url = "http://www.lemonades.in"

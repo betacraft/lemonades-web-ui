@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('MyGroupsCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location',($scope, $cookies, $cookieStore, $http, $rootScope, $location) ->
+  .controller('MyGroupsCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location','$intercom',($scope, $cookies, $cookieStore, $http, $rootScope, $location,$intercom) ->
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.object = {}
     $scope.pageNo = 0;
@@ -14,6 +14,7 @@ angular.module('lemonades')
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
 
     $scope.init = ()->
+      $rootScope.getUser()
       if($scope.sessionKey == "")
         $location.path("/dashboard")
         return
@@ -39,6 +40,7 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
+            $intercom.shutdown();
             $cookieStore.remove("lmnsskey")
             $location.path("/dashboard")
             $scope.sessionKey = null

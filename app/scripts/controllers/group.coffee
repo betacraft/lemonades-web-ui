@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location) ->
+  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','$intercom', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,$intercom) ->
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
     $scope.group = {}
@@ -9,6 +9,14 @@ angular.module('lemonades')
 
     $scope.init = ()->
       $rootScope.getUser()
+      ((d, s, id) ->
+        fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+      ) document, 'script', 'facebook-jssdk'
+
 
     $scope.login = ()->
       $location.path("/login")
@@ -39,6 +47,7 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
+            $intercom.shutdown();
             $cookieStore.remove("lmnsskey")
             console.log(data)
             $scope.sessionKey=null

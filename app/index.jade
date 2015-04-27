@@ -5,6 +5,8 @@ html(lang="en",ng-app="lemonades")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="description",content="Select Product -> Form Groups -> Get Huge Discounts")
+
     meta(property='og:type', content='website')
     meta(property='og:url', content='{{$root.url}}')
     meta(property='og:title', content='{{$root.title}}')
@@ -35,6 +37,8 @@ html(lang="en",ng-app="lemonades")
         m.parentNode.insertBefore(a, m)
       })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
       ga('create', 'UA-61572806-1', 'auto');
+      //ga('create', 'UA-61572806-2', 'auto');
+
     script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
     script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
   body
@@ -71,10 +75,12 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/ng-facebook/ngFacebook.js')
     script(src='bower_components/angular-google-plus/dist/angular-google-plus.js')
     script(src='bower_components/ngtoast/dist/ngToast.js')
+    script(src='bower_components/angular-intercom/angular-intercom.js')
     // endbower
     // endbuild
     // build:js(.tmp) scripts/app.js
     script(src="scripts/app.js")
+    script(src="scripts/shared/config.js")
     script(src="scripts/controllers/main.js")
     script(src="scripts/controllers/login.js")
     script(src="scripts/controllers/register.js")
@@ -85,4 +91,5 @@ html(lang="en",ng-app="lemonades")
     script(src="scripts/controllers/my-groups.js")
     script(src="scripts/controllers/reset_password.js")
     script(src="scripts/controllers/confirm_email.js")
+    script(src="scripts/directives/group.js")
     // endbuild

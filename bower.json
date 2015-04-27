@@ -15,7 +15,8 @@
     "angulartics":"0.17.2",
     "ng-facebook":"latest",
     "angular-google-plus":"latest",
-    "ngtoast":"latest"
+    "ngtoast":"latest",
+    "angular-intercom":"latest"
   },
   "devDependencies": {
     "angular-mocks": "1.4.0-rc.0",

@@ -10,12 +10,15 @@ angular
     'ngFacebook',
     'angulartics',
     'ngToast',
+    'ngIntercom',
+    'lemonades.config',
     'angulartics.google.analytics'])
-  .run(['$rootScope','$location','$http','$cookieStore',($rootScope,$location,$http,$cookieStore)->
-    $rootScope.baseUrl = "http://localhost:3000"
-    $rootScope.loading = false;
+  .run(['$rootScope','$location','$http','$cookieStore','$intercom','config',($rootScope,$location,$http,$cookieStore,$intercom,config)->
+    $rootScope.baseUrl = config.baseUrl
+    $rootScope.loading = false
     $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
     $rootScope.image = ""
+    $rootScope.user = {}
     $rootScope.url = "http://www.lemonades.in"
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
     $rootScope.getUser = ->
@@ -26,8 +29,15 @@ angular
         headers:
           'Session-Key': $cookieStore.get("lmnsskey")
       $http(req).success(
-        ()->
-
+        (data)->
+          if data.success
+            $rootScope.user = data.user
+            $intercom.boot({
+              email:data.user.email,
+              user_id:data.user.id,
+              created_at:data.user.created_at
+            })
+            $intercom.hide()
       ).error(
         ()->
       )
@@ -36,6 +46,17 @@ angular
       $location.path("/login")
 
   ])
+   #Configure your $intercom module with appID
+  .config(['$intercomProvider','config',($intercomProvider,config) ->
+    #Either include your app_id here or later on boot
+    $intercomProvider.appID(config.intercomAppId);
+    #you can include the Intercom's script yourself or use the built in async loading feature
+    $intercomProvider.asyncLoading(true)
+  ])
+  .run(['$intercom','$rootScope',($intercom,$rootScope)->
+    #kept it for reference
+  ])
+
   .factory('myHttpInterceptor', ['$q','$window','$rootScope','$location','$cookieStore',($q,$window, $rootScope,$location,$cookieStore) ->
     return{
     # optional method

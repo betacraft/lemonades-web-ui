@@ -10,7 +10,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
     injector: 'grunt-asset-injector',
-    buildcontrol: 'grunt-build-control'
+    buildcontrol: 'grunt-build-control',
+    ngconstant:'grunt-ng-constant'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -393,7 +394,6 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
@@ -494,15 +494,6 @@ module.exports = function (grunt) {
       }
     },
 
-    //env: {
-    //  test: {
-    //    NODE_ENV: 'test'
-    //  },
-    //  prod: {
-    //    NODE_ENV: 'production'
-    //  },
-    //  all: localConfig
-    //},
 
 
     injector: {
@@ -545,7 +536,40 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+
+    ngconstant: {
+      options: {
+        name: 'lemonades.config',
+        wrap: '"use strict";\n\n{%= __ngModule %}',
+        space: '  '
+      },
+      development: {
+        options: {
+          dest: '.tmp/scripts/shared/config.js'
+        },
+        constants: {
+          config:{
+            name: 'dev',
+            baseUrl: 'http://localhost:3000',
+            intercomAppId:'ywcp8ipz'
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/shared/config.js'
+        },
+        constants: {
+          config:{
+            name: 'production',
+            baseUrl: 'lemonades.elasticbeanstalk.com',
+            intercomAppId:'cqvishpk'
+          }
+        }
+      }
     }
+
   });
 
 
@@ -566,6 +590,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bowerInstall',
+      'ngconstant:development',
       'jade:server',
       'concurrent:server',
       'injector',
@@ -584,8 +609,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', function (target) {
     if (target === 'server') {
       return grunt.task.run([
-        'env:all',
-        'env:test',
         'mochaTest'
       ]);
     }
@@ -594,6 +617,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bowerInstall',
+    'ngconstant:production',
     'jade:dist',
     'coffee:dist',
     'concurrent:dist',
@@ -608,7 +632,6 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-
     'usemin'
   ]);
 

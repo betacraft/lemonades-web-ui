@@ -6,6 +6,7 @@ section(ng-init="init()")
           a(ng-click="dashboard()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.text-right.col-sm-2.col-md-offset-6
+          .btn.btn-primary-border(ng-click="dashboard()")="How it Works ?"
           .btn.btn-primary-border(ng-click="dashboard()")="More Groups"
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 div.container
@@ -27,13 +28,13 @@ div.container
       div.row
         div.col-md-12
           div.priceBox
-            p(style="font-size=25px;")="Online Price"
+            p(style="font-size=25px;")="Online Market Price"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1")=" (Flipkart)"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1")=" (Amazon)"
             h3="{{group.product.price_value | currency:'Rs. '}}"
       div.row
         div.col-md-12(style="margin-top:10px;")
-          p.colorPink(style="font-size:20px;")="Spread the news"
+          p.colorPink(style="font-size:20px;")="Share the group to get huge discount on market price."
       div.row
         div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
           div.col-md-2.col-sm-12.text-center
@@ -47,18 +48,20 @@ div.container
           div.interestedBox(style="margin-right:5px;")
             h1="{{group.interested_users_count}}"
             p(style="font-size:20px;")="Joined"
-          div.interestedBox(style="margin-right:5px;")
-            h1(ng-show="group.interested_users_count < group.required_user_count")="{{group.required_user_count-group.interested_users_count}}"
+          div.interestedBox(style="margin-right:5px;",ng-show="group.interested_users_count < group.required_user_count")
+            h1()="{{group.required_user_count-group.interested_users_count}}"
             p(style="font-size:20px;")="Remaining"
-          div.interestedBox(style="margin-right:5px;")
-            h1(ng-show="group.interested_users_count < group.required_user_count")="{{group.expires_in}}"
+          div.interestedBox(style="margin-right:5px;",ng-show="group.interested_users_count < group.required_user_count")
+            h1()="{{group.expires_in}}"
             p(style="font-size:20px;")="Days Remaining"
+          div.interestedBox(ng-show="group.interested_users_count >= group.required_user_count")
+            h1()="3 Days"
+            p(style="font-size:20px;")="We are collecting deals for this group in 3 Days."
       div.row
         div.col-md-12(style="margin-top:15px;")
-          p(style="font-size:15px;")="We will required "
+          p(style="font-size:15px;")="We will required minimum "
             span(style="color:#ff227c;")="{{group.required_user_count}} people "
             | interested in this product to get you an attractive deal.
-          a="How it works ?"
       div.row(style="margin-top:5px;")
         div.col-md-12
           hr
@@ -92,46 +95,3 @@ script(type="text/javascript").
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(po, s);
   })();
-  // Include the UserVoice JavaScript SDK (only needed once on a page)
-  UserVoice = window.UserVoice || [];
-  (function () {
-    var uv = document.createElement('script');
-    uv.type = 'text/javascript';
-    uv.async = true;
-    uv.src = '//widget.uservoice.com/f5oeTjQEmzbG51fJhjObxg.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(uv, s)
-  })();
-    //
-    // UserVoice Javascript SDK developer documentation:
-    // https://www.uservoice.com/o/javascript-sdk
-    //
-    // Set colors
-  UserVoice.push(['set', {
-    accent_color: '#e8277a',
-    trigger_color: 'white',
-    trigger_background_color: '#e8277a'
-  }]);
-    // Identify the user and pass traits
-    // To enable, replace sample data with actual user traits and uncomment the line
-  UserVoice.push(['identify', {
-        //email:      'john.doe@example.com', // User’s email address
-        //name:       'John Doe', // User’s real name
-        //created_at: 1364406966, // Unix timestamp for the date the user signed up
-        //id:         123, // Optional: Unique id of the user (if set, this should not change)
-        //type:       'Owner', // Optional: segment your users by type
-        //account: {
-        //  id:           123, // Optional: associate multiple users with a single account
-        //  name:         'Acme, Co.', // Account name
-        //  created_at:   1364406966, // Unix timestamp for the date the account was created
-        //  monthly_rate: 9.99, // Decimal; monthly rate of the account
-        //  ltv:          1495.00, // Decimal; lifetime value of the account
-        //  plan:         'Enhanced' // Plan name for the account
-        //}
-  }]);
-    // Add default trigger to the bottom-right corner of the window:
-  UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
-    // Or, use your own custom trigger:
-    //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
-    // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
-  UserVoice.push(['autoprompt', {}])

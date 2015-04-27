@@ -2,6 +2,7 @@
 /* CSS Document */
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 .home-hero {
@@ -103,13 +104,12 @@ html, body {
 
 .lowestPriceSmallText {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   color: #343434;
   line-height: normal;
-  margin-bottom: -5px;
+
   margin-left: 30px;
-  margin-top: 10px;
   text-transform: uppercase;
 }
 
