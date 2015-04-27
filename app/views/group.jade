@@ -55,8 +55,8 @@ div.container
             h1()="{{group.expires_in}}"
             p(style="font-size:20px;")="Days Remaining"
           div.interestedBox(ng-show="group.interested_users_count >= group.required_user_count")
-            h1()="3 Days"
-            p(style="font-size:20px;")="We are collecting deals for this group in 3 Days."
+            h1()="{{8 - group.reached_goal}} Days"
+            p(style="font-size:20px;")="We are collecting deals for this group in {{8 - group.reached_goal}} Days."
       div.row
         div.col-md-12(style="margin-top:15px;")
           p(style="font-size:15px;")="We will required minimum "
