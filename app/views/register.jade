@@ -17,22 +17,23 @@ div.container-fluid-full
       form#signUpForm(role="form",name="form",style="margin-top:20px;",novalidate)
         div(ng-class="{'has-error form-group':form.$submitted && form.email.$error.required || form.email.$error.email === true,'form-group':true}")
           label(for="email")="Email"
-          input#email.form-control(type="text",style="font-size:16px;",name="email",placeholder="Email",ng-model="user.email",required="")
+          input#email.form-control(type="email",style="font-size:16px;",name="email",placeholder="Email",ng-model="user.email",required="")
+          span(ng-show="hasError(form.email) && !form.email.$error.required") Invalid Email Address
+          span(ng-show="form.email.$dirty && form.email.$error.required") Required
         div(ng-class="{'has-error form-group':form.$submitted && form.mobile.$error.required || form.mobile.$error.email === true,'form-group':true}")
           label(for="mobile")="Mobile Number"
-          input#mobile.form-control(type="text",style="font-size:16px;",name="mobile",placeholder="Mobile Number",ng-model="user.mobile_number",required="")
-        div(ng-show="form.$submitted &&form.password.$error.minlength")
-          | Min length of password must be 8 characters
-        div(ng-class="{'has-error form-group':form.$submitted &&form.password.$error.required === true,'form-group':true}")
+          input#mobile.form-control(type="text",style="font-size:16px;",name="mobile",placeholder="Mobile Number",ng-model="user.mobile_number",ng-pattern='/^[0-9]+$/',required="",minlength="10",maxlength="10")
+          span(ng-show="form.mobile.$dirty && form.mobile.$error.required") Required
+          span(ng-show="form.mobile.$error.pattern || form.mobile.$error.minlength || form.mobile.$error.maxlength") Invalid mobile number
+        div(ng-class="{'has-error form-group':form.$submitted && form.password.$error.required === true,'form-group':true}")
           label(for="password")="Password"
           input#password.form-control(type="password",style="font-size:16px;",name="password",placeholder="Password",ng-model="user.password",required="",ng-minlength="8")
-        div(ng-class="{'has-error form-group':form.$submitted &&form.confirm_password.$error.required === true,'form-group':true}")
+          span(ng-show="form.password.$dirty && form.password.$error.required") Required
+          span(ng-show="form.password.$error.minlength") Min length of password must be 8 characters
+        div(ng-class="{'has-error form-group':form.$submitted && form.confirm_password.$error.required === true,'form-group':true}")
           label(for="confirmPassword")="Confirm Password"
-          input#confirmPassword.form-control(type="password",style="font-size:16px;",name="confirm_password",placeholder="Confirm Password",ng-model="user.confirm_password",required="",ng-minlength="8")
+          input#confirmPassword.form-control(type="password",style="font-size:16px;",name="confirm_password",placeholder="Confirm Password",ng-model="user.confirm_password",required="",min="8")
+          span(ng-show="form.confirm_password.$dirty && form.confirm_password.$error.required") Required
+          span(ng-show="form.confirm_password.$dirty && form.confirm_password.$viewValue !== form.password.$viewValue") Passwords should match
         div.text-center(style="margin-top:10px;")
-          button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...")="Register"
-    //div.col-md-3.col-sm-3.text-center(style="margin-top:80px;")
-    //  a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
-    //    image(src="images/fb_login.png",style="width:190px;")
-    //  a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
-    //    image(src="images/google_sign_in.png",style="width:195px;")
+          button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...",ng-disabled="form.$invalid || form.confirm_password.$dirty && form.confirm_password.$viewValue !== form.password.$viewValue")="Register"

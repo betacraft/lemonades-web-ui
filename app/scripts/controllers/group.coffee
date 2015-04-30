@@ -30,6 +30,7 @@ angular.module('lemonades')
       $location.path("/login")
 
     $scope.joinGroup = ->
+      btn = $("#joinGroup").button('loading')
       req =
         method: "POST"
         url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId + "/join"
@@ -39,9 +40,11 @@ angular.module('lemonades')
         (data)->
           if data.success
             $scope.group = data.group
+            btn.button("reset")
             return
       ).error(
         (data)->
+          btn.button("reset")
           #doing nothing
       )
 

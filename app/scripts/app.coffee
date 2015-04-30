@@ -22,7 +22,6 @@ angular
     $rootScope.url = "http://www.lemonades.in"
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
     $rootScope.getUser = ->
-      console.log("getting user")
       req =
         method: "GET"
         url: $rootScope.baseUrl + "/api/v1/user"
@@ -41,6 +40,10 @@ angular
       ).error(
         ()->
       )
+
+    $rootScope.hasError  = (obj)->
+      return obj.$invalid && obj.$touched
+
 
     $rootScope.goToLogin = ->
       $location.path("/login")
@@ -61,7 +64,6 @@ angular
     return{
     # optional method
     'request': (config) ->
-      console.log("requesting",config);
       $rootScope.loading = true if !config.ignoreLoadingFlag
       return config
     'requestError': (rejection) ->
@@ -111,7 +113,6 @@ angular
       fjs.parentNode.insertBefore(js, fjs);
       ) document, 'script', 'facebook-jssdk'
     $rootScope.$on 'fb.load', ->
-      console.log("fb loaded")
       $window.dispatchEvent new Event('fb.load')
       return
   ])

@@ -1,4 +1,4 @@
-div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true")
+div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true",style="z-index:10000;")
   div.modal-dialog
     div.modal-content
       div.modal-header
@@ -9,11 +9,11 @@ div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",a
       div.modal-body
         div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
           p.colorPink="{{status.message}}"
-
         form(role="form",name="form",novalidate)
             div.form-group
               label(for="productLink")="Flipkart/Amazon.in Product Link"
               input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
+        a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}") Mail Us this link, we will try to fix this
       div.modal-footer
         button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
 section(ng-init="init()")
@@ -37,7 +37,7 @@ section
       group(ng-repeat="group in groups",group=group)
     div.row(style="margin-top:30px;")
       div.col-md-12.text-center
-        a.btn.btn-primary-border(ng-show="pageNo > -1",ng-click="getGroups()")="Load more"
+        a.btn.btn-primary-border(ng-show="pageNo > -1 && group",ng-click="getGroups()")="Load more"
 hr(style="margin-top:100px;")
 footer
   div.container
