@@ -238,10 +238,18 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= yeoman.dist %>/index.html'],
+      html: '<%= yeoman.dist %>/index.html',
       options: {
-        root: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          html: {
+            steps: {
+              js: ['concat', 'uglifyjs'],
+              css: ['cssmin']
+            },
+            post: {}
+          }
+        }
       }
     },
 
@@ -254,7 +262,8 @@ module.exports = function (grunt) {
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',
-          '<%= yeoman.dist %>/images'
+          '<%= yeoman.dist %>/images',
+          '<%= yeoman.dist %>/styles'
         ],
         // This is so we update image references in our ng-templates
         patterns: {
@@ -264,13 +273,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    //usemin: {
-    //  html: ['<%= yeoman.dist %>/{,*/}*.html'],
-    //  css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-    //  options: {
-    //    assetsDirs: ['<%= yeoman.dist %>']
-    //  }
-    //},
 
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
@@ -552,7 +554,8 @@ module.exports = function (grunt) {
           config:{
             name: 'dev',
             baseUrl: 'http://localhost:3000',
-            intercomAppId:'ywcp8ipz'
+            intercomAppId:'ywcp8ipz',
+            fbAppId:'1614694728745231'
           }
         }
       },
@@ -564,7 +567,8 @@ module.exports = function (grunt) {
           config:{
             name: 'production',
             baseUrl: 'http://lemonades.elasticbeanstalk.com',
-            intercomAppId:'nasq14dx'
+            intercomAppId:'nasq14dx',
+            fbAppId:'1608020712745966'
           }
         }
       }

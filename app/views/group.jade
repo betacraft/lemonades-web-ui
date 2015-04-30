@@ -6,7 +6,7 @@ section(ng-init="init()")
           a(ng-click="dashboard()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.text-right.col-sm-2.col-md-offset-6
-          a.btn.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autplay=1',target="_blank") How It Works ?
+          a.btn.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1',target="_blank") How It Works ?
           .btn.btn-primary-border(ng-click="dashboard()")="More Groups"
           .btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
@@ -19,6 +19,12 @@ div.container
         a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...")="I am interested"
         div(style="width:100%;")
           img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
+      div(ng-hide="group.updates")
+        div.row
+          div.col-md-12
+            div.bs-callout-l.bs-callout-update
+              p="We have been notified about this group and We are talking to the vendors to get a list of deals they can offer, once we have {{group.required_user_count}} people interested in this product."
+              p.pull-right(style="font-size:12px")="{{group.created_at | date:'dd-MMM-yyyy HH:mm a'}}"
     div.col-lg-8
       div.row
         div.col-md-12.marginTop25px
@@ -36,11 +42,11 @@ div.container
       div.row(style="margin-top:10px;")
         div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
           div.col-md-2.col-sm-12.text-center
-            div.fb-share-button(data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
+            div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.lemonades.in/#!/group/{{groupId}}?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button_count")
           div.col-md-2.text-center.col-sm-12
-            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.lemonades.in/#/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.lemonades.in/#!/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
           div.col-md-2.text-center.col-sm-12
-            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/group/{{groupId}}?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
       div.row
         div.col-md-12
           div.interestedBox(style="margin-right:5px;")
@@ -64,32 +70,13 @@ div.container
       div.row(style="margin-left:1px;margin-top:15px;",role="tabpanel")
         ul.nav.nav-tabs(role="tablist")
           li.active(role="presentation")
-            a(showtab="",href="#updates",aria-controls="updates",role="tab",data-toggle="tab",style="font-size:17px;")="Updates"
-          li(role="presentation")
             a(showtab="",href="#discussions",aria-controls="discussions",role="tab",data-toggle="tab",style="font-size:17px;")="Discussions"
         div.tab-content
-          div#updates.tab-pane.active(role="tabpanel")
-            div(ng-hide="group.updates")
-              div.row
-                div.col-md-10
-                  div.bs-callout-l.bs-callout-update
-                    p="We have been notified about this group and We are talking to the vendors to get a list of deals they can offer, once we have {{group.required_user_count}} people interested in this product."
-                    p.pull-right(style="font-size:12px")="{{group.created_at | date:'dd-MMM-yyyy HH:mm a'}}"
-          div#discussions.tab-pane(role="tabpanel",style="overflow-x:hidden;")
+          div#discussions.tab-pane.active(role="tabpanel",style="overflow-x:hidden;")
             div.fb-comments(data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=fb_comments&utm_medium=website&utm_campaign=comments",data-numposts="5",data-colorscheme="light",style="width:100%;")
 
-#fb-root
+
 script(type="text/javascript").
-  var count = 0;
-  FB = null;
-  (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    count = count + 1;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
   (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
     js = d.createElement(s);

@@ -51,16 +51,7 @@ div.container-fluid-full(ng-init="init()")
     div.container
       div.row
         dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
-    #fb-root
   script(type="text/javascript").
-    FB = null;
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
       js = d.createElement(s);

@@ -7,7 +7,7 @@ angular
     'ngSanitize',
     'ngRoute',
     'googleplus',
-    'ngFacebook',
+    'ezfb',
     'angulartics',
     'ngToast',
     'ngIntercom',
@@ -95,26 +95,17 @@ angular
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
   ])
-  .config(($facebookProvider )->
-    $facebookProvider.setAppId('1608020712745966').setPermissions(['email']);
-  )
+  .config(['ezfbProvider','config',(ezfbProvider,config)->
+    ezfbProvider.setInitParams({
+      appId: config.fbAppId,
+      version:'v2.3'
+    })
+  ])
   .config(['GooglePlusProvider', (GooglePlusProvider) ->
     GooglePlusProvider.init({
         clientId: '277507848931-4jccaqqqi3jllpam40n7j1jrq2kup01i.apps.googleusercontent.com',
         apiKey: 'AIzaSyA3F3vE_vglkKVeMq-U6mnSkg4h1vhQHPM'
       });
-  ])
-  .run(['$rootScope', '$window', ($rootScope, $window) ->
-    ((d, s, id) ->
-      fjs = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
-      fjs.parentNode.insertBefore(js, fjs);
-      ) document, 'script', 'facebook-jssdk'
-    $rootScope.$on 'fb.load', ->
-      $window.dispatchEvent new Event('fb.load')
-      return
   ])
   .config(['$routeProvider','$locationProvider',($routeProvider,$locationProvider) ->
     $routeProvider
@@ -148,5 +139,5 @@ angular
       .otherwise
         redirectTo: '/'
 #   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();
-    $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix();
+    $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');
   ])

@@ -5,18 +5,11 @@ angular.module('lemonades')
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
     $scope.group = {}
+    $scope.joining = false
     $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #lemonades";
 
     $scope.init = ()->
       $rootScope.getUser()
-      ((d, s, id) ->
-        fjs = d.getElementsByTagName(s)[0];
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1608020712745966&version=v2.3";
-        fjs.parentNode.insertBefore(js, fjs);
-      ) document, 'script', 'facebook-jssdk'
-
 
     $scope.initHowItWorks = ()->
       $("#howItWorks").carousel({
@@ -30,6 +23,8 @@ angular.module('lemonades')
       $location.path("/login")
 
     $scope.joinGroup = ->
+      return if $scope.joining
+      $scope.joining = true
       btn = $("#joinGroup").button('loading')
       req =
         method: "POST"
@@ -37,12 +32,14 @@ angular.module('lemonades')
         headers:
           'Session-Key': $scope.sessionKey
       $http(req).success(
+        $scope.joining = false
         (data)->
           if data.success
             $scope.group = data.group
             btn.button("reset")
             return
       ).error(
+        $scope.joining = false
         (data)->
           btn.button("reset")
           #doing nothing
