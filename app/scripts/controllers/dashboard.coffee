@@ -11,7 +11,6 @@ angular.module('lemonades')
   $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
 
   $scope.init = ()->
-    console.log($scope.sessionKey)
     $rootScope.getUser()
     $scope.getGroups()
 
@@ -24,6 +23,14 @@ angular.module('lemonades')
   $scope.goToGroup = (groupId)->
     $location.path("/group/" + groupId)
 
+
+  $scope.initHowItWorks = ()->
+    $("#howItWorks").carousel({
+      interval:5000
+    })
+    $("#howItWorks").carousel('cycle')
+    $("#howItWorks").carousel(0)
+
   $scope.logout = ->
     req =
       method: "POST"
@@ -35,7 +42,6 @@ angular.module('lemonades')
         if data.success
           $intercom.shutdown();
           $cookieStore.remove("lmnsskey")
-          console.log(data)
           $scope.sessionKey = null
           return
     ).error(
@@ -52,7 +58,6 @@ angular.module('lemonades')
     $http(req).success(
       (data)->
         if data.success
-          console.log(data)
           if data.groups == null
             $scope.pageNo = -1
             return
@@ -84,7 +89,6 @@ angular.module('lemonades')
         btn.button("reset")
         if data.success
           $location.path("/group/" + data.group.id)
-          console.log(data)
           return
         $scope.status =
           message: data.message

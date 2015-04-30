@@ -18,6 +18,14 @@ angular.module('lemonades')
       ) document, 'script', 'facebook-jssdk'
 
 
+    $scope.initHowItWorks = ()->
+      $("#howItWorks").carousel({
+        interval:5000,
+      })
+      $("#howItWorks").carousel('cycle')
+      $("#howItWorks").carousel(0)
+
+
     $scope.login = ()->
       $location.path("/login")
 
@@ -30,7 +38,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            console.log(data)
             $scope.group = data.group
             return
       ).error(
@@ -49,7 +56,6 @@ angular.module('lemonades')
           if data.success
             $intercom.shutdown();
             $cookieStore.remove("lmnsskey")
-            console.log(data)
             $scope.sessionKey=null
             return
       ).error(
@@ -71,7 +77,6 @@ angular.module('lemonades')
           $("#createGroupModal").modal("hide")
           if data.success
             $location.path("/group/"+data.group.id)
-            console.log(data)
             return
           $scope.status =
             message: data.message
@@ -94,7 +99,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            console.log(data)
             $rootScope.title = "Buy " + data.group.product.name + " with a group on lemonades.in"
             $rootScope.image = data.group.product.product_image
             $rootScope.url = $location.absUrl()

@@ -558,7 +558,7 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          dest: '<%= yeoman.dist %>/scripts/shared/config.js'
+          dest: '.tmp/scripts/shared/config.js'
         },
         constants: {
           config:{

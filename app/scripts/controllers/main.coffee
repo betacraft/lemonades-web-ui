@@ -35,9 +35,7 @@ angular.module('lemonades')
           'Session-Key': $scope.sessionKey
       $http(req).success(
         (data)->
-          console.log "Got groups"
           if data.success
-            console.log(data)
             $scope.groups = data.groups.slice(0, 6) if(data.groups.length > 6)
             $scope.groups = data.groups if(data.groups.length <= 6)
             return

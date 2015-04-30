@@ -53,7 +53,6 @@ angular.module('lemonades')
             console.log(user)
             $scope.fbUser = user
             $facebook.api('/' + user.id + '/picture').then (data) ->
-              console.log(data)
               fbUserReq = {
                 email: user.email,
                 name: user.first_name + " " + user.last_name,
@@ -66,7 +65,6 @@ angular.module('lemonades')
               console.log("Sending ", fbUserReq)
               $http.post($rootScope.baseUrl + '/api/v1/user/fb_login', fbUserReq)
               .success((data) ->
-                console.log(data)
                 if data.success
                   session.store(data.user)
                   $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
@@ -85,7 +83,6 @@ angular.module('lemonades')
         GooglePlus.login().then ((authResult) ->
           console.log authResult
           GooglePlus.getUser().then (user) ->
-            console.log user
             gplusUserRequest = {
               email: user.email,
               name: user.name,
@@ -95,7 +92,6 @@ angular.module('lemonades')
               gplus_token: authResult.access_token,
               is_gplus: true
             }
-            console.log "Sending", gplusUserRequest
             $http.post($rootScope.baseUrl + '/api/v1/user/gplus_login', gplusUserRequest)
             .success((data)->
               if data.success

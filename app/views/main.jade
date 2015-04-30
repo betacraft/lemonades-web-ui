@@ -8,13 +8,15 @@ div.container-fluid-full(ng-init="init()")
           a.pull-right.btn.btn-primary-border(ng-show="sessionKey===undefined",ng-click="login()")="Login"
           a.pull-right.btn.btn-primary-border.marginRight10px(ng-show="sessionKey===undefined",ng-click="register()")="Register"
       div.row
-        div.col-md-12.text-center(style="margin-top:15px;margin-bottom:15px;")
+        div.col-md-12.text-center(style="margin-top:5px;margin-bottom:15px;")
           p.pinkText(style="font-size:45px;font-weight:thin;")="Next Generation Of Group Buying"
       div.row.text-center.marginTop50px
         div.col-md-12
           img.img-responsive(src="images/how_it_work.png")
+      div.row.text-center.marginTop50px
+        a.btn.btn-lg.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1') How It Works ?
   section(ng-show="groups.length > 0")
-    div.container(style="padding-top:30px;")
+    div.container(style="padding-top:10px;")
       div.row
         div.col-md-6
           p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Trending Groups"

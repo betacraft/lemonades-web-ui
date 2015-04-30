@@ -18,7 +18,6 @@ angular.module('lemonades')
       if($scope.sessionKey == "")
         $location.path("/dashboard")
         return
-      console.log($scope.sessionKey)
       $scope.getCreatedGroups()
       $scope.getJoinedGroups()
 
@@ -59,7 +58,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            console.log(data)
             if data.created_groups == null
               $scope.pageNo = -1
               return
@@ -86,7 +84,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            console.log(data)
             if data.joined_groups == null
               $scope.joinedGroupPageNo = -1
               return
@@ -118,7 +115,6 @@ angular.module('lemonades')
           btn.button("reset")
           if data.success
             $location.path("/group/" + data.group.id)
-            console.log(data)
             return
           $scope.status =
             message: data.message

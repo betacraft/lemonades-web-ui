@@ -1,4 +1,4 @@
-div#createGroupModal.modal(name="createGroupModal",tabindex="-1",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true")
+div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true")
   div.modal-dialog
     div.modal-content
       div.modal-header
@@ -23,10 +23,10 @@ section(ng-init="init()")
         div.col-md-2
           a(ng-click="landing()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-4.pull-right.col-md-offset-6.text-right
+        div.col-md-6.pull-right.col-md-offset-4.text-right
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
           .btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create / Search Group"
-          a.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+          .btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
           .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 section
   div.container(style="margin-top:30px;")

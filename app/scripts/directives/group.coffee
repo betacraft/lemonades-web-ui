@@ -9,6 +9,4 @@ angular.module('lemonades')
          $location.path("/group/" + groupId)
     ]
     link: (scope, element, attrs) ->
-      console.log attrs
-
   )
