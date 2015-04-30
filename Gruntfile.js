@@ -563,7 +563,7 @@ module.exports = function (grunt) {
         constants: {
           config:{
             name: 'production',
-            baseUrl: 'lemonades.elasticbeanstalk.com',
+            baseUrl: 'http://lemonades.elasticbeanstalk.com',
             intercomAppId:'cqvishpk'
           }
         }

@@ -27,8 +27,7 @@ div.container-fluid-full
   div.container(style="margin-top:50px;")
     div.col-md-12.text-center
       h2.text-center(style="color:#E8277A")="Login"
-      hr
-    div.col-md-4.col-sm-4.col-sm-offset-2.col-md-offset-2
+    div.col-md-4.col-sm-4.col-sm-offset-4.col-md-offset-4
       div.panel(ng-show="status !== undefined && status.success !== true")
         div.panel-body.text-center
           p {{status.message}}
@@ -42,8 +41,8 @@ div.container-fluid-full
         div.text-center(style="margin-top:10px;margin-bottom:20px;")
           a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",data-toggle="modal",data-target="#forgotPasswordModal")="Forgot Password"
           button.btn.btn-primary-border.pull-right#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...")="Login"
-    div.col-md-3.col-sm-3.text-center(style="margin-top:60px;")
-      a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
-        image(src="images/fb_login.png",style="width:190px;")
-      a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
-        image(src="images/google_sign_in.png",style="width:195px;")
+    //div.col-md-3.col-sm-3.text-center(style="margin-top:60px;")
+    //  a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
+    //    image(src="images/fb_login.png",style="width:190px;")
+    //  a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
+    //    image(src="images/google_sign_in.png",style="width:195px;")
