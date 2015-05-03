@@ -24,10 +24,10 @@ section(ng-init="init()")
           a(ng-click="landing()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-6.pull-right.col-md-offset-4.text-right
-          .btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
-          .btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create / Search Group"
-          .btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
-          .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
+          button.btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create / Search Group"
+          button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 section
   div.container(style="margin-top:30px;")
     div.row

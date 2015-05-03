@@ -48,7 +48,7 @@ module.exports = function (grunt) {
       },
       jade: {
         files: ['<%= yeoman.app %>/views/{,*/}*.jade', '<%= yeoman.app %>/*.jade'],
-        tasks: ['bowerInstall', 'jade:server']
+        tasks: ['jade:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']

@@ -6,10 +6,10 @@ section(ng-init="init()")
           a(ng-click="dashboard()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.text-right.col-sm-2.col-md-offset-6
-          a.btn.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1',target="_blank") How It Works ?
-          .btn.btn-primary-border(ng-click="dashboard()")="More Groups"
-          .btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
-          .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
+          button.btn.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1',target="_blank") How It Works ?
+          button.btn.btn-primary-border(ng-click="dashboard()")="More Groups"
+          button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 div.container
   div.row
     div.col-lg-4(style="margin-top:25px;")
