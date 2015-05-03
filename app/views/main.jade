@@ -1,5 +1,18 @@
+script(type="text/javascript").
+  $('#myModal').on('shown.bs.modal', function () {
+    callPlayer('yt-player', 'playVideo');
+  });
+  $('#myModal').on('hidden.bs.modal', function () {
+    $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
+  });
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      #yt-player.modal-body
+        iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
+
 div.container-fluid-full(ng-init="init()")
-  section.howItWorksBg(style="padding-bottom:50px;")
+  section(style="padding-bottom:50px;background-color:#ECECEC;")
     div.container-fluid
       div.row(style="padding-top:15px;")
         div.col-md-12
@@ -10,13 +23,14 @@ div.container-fluid-full(ng-init="init()")
       div.row
         div.col-md-12.text-center(style="margin-top:5px;margin-bottom:15px;")
           p.pinkText(style="font-size:45px;font-weight:thin;")="Next Generation Of Group Buying"
-      div.row.text-center.marginTop50px
+      div.row.text-center.marginTop50px(style="margin-right:10px;margin-left:10px;")
         div.col-md-12
           img.img-responsive(src="images/how_it_work.png")
       div.row.text-center.marginTop50px
-        a.btn.btn-lg.btn-primary-border.youtube(href='http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1',target="_blank") How It Works ?
+        button.btn.btn-primary-border.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
+          | How It Works ?
   section(ng-show="groups.length > 0")
-    div.container(style="padding-top:10px;")
+    div.container(style="margin-top:20px;")
       div.row
         div.col-md-6
           p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Trending Groups"

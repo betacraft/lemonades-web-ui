@@ -12,6 +12,7 @@ angular
     'ngToast',
     'ngIntercom',
     'lemonades.config',
+    'seo',
     'angulartics.google.analytics'])
   .run(['$rootScope','$location','$http','$cookieStore','$intercom','config',($rootScope,$location,$http,$cookieStore,$intercom,config)->
     $rootScope.baseUrl = config.baseUrl

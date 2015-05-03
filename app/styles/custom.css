@@ -103,7 +103,6 @@ p {
   width: 100%;
   color: #FFFFFF;
   padding-left: 15px;
-  padding-top: 12px;
 }
 
 .offerTagSmallText {
@@ -111,7 +110,7 @@ p {
   font-size: 10px;
   font-weight: 700;
   color: #343434;
-  text-transform: uppercase;
+  padding-top: 12px;
   float: left;
   width: 100%;
   color: #FFFFFF;
@@ -172,6 +171,7 @@ p {
   height: auto;
   float: left;
   background: url(../images/border.png) repeat-y right top;
+  background-origin: padding-box;
 }
 
 .lowestPrice {
@@ -413,26 +413,27 @@ p {
   background: url(../images/offerTAgBig.png) left top no-repeat;
   position: absolute;
   z-index: 9;
+  color: #ffffff;
   top: 0px;
   left: 0px;
   width: 152px;
   height: 78px;
 }
 
-.bigtagBigTxt {
+.bigtagBigText {
   font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   margin-top: 16px;
   margin-left: 15px;
 }
 
-.bigtagSmallTxt {
+.bigtagSmallText {
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   text-transform: uppercase;
   margin-left: 15px;
   margin-top: -5px;
@@ -485,6 +486,27 @@ p {
 .bigPink100pBtn:hover {
   text-decoration: none;
   color: #fff;
+  background: #d9226d;
+}
+
+.bigGray100pBtn {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background: #ececec;
+  bottom: 0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #a5a5a5;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.bigGray100pBtn:hover {
+  text-decoration: none;
+  color: #ffffff;
   background: #d9226d;
 }
 

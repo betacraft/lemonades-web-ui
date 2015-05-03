@@ -14,17 +14,11 @@ div.container
   div.row
     div.col-lg-4(style="margin-top:25px;")
       div.sideImagewrapp(style="height:450px;cursor:pointer;")
-        div.bigPink100pBtn(ng-show="sessionKey && group.id !== undefined && group.is_joined")="You are part of this group"
+        div.bigGray100pBtn(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()")="Leave This Group"
         a.bigPink100pBtn(ng-hide="sessionKey",ng-click="login()")="Login to Join"
         a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...")="I am interested"
         div(style="width:100%;")
           img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
-      div(ng-hide="group.updates")
-        div.row
-          div.col-md-12
-            div.bs-callout-l.bs-callout-update
-              p="We have been notified about this group and We are talking to the vendors to get a list of deals they can offer, once we have {{group.required_user_count}} people interested in this product."
-              p.pull-right(style="font-size:12px")="{{group.created_at | date:'dd-MMM-yyyy HH:mm a'}}"
     div.col-lg-8
       div.row
         div.col-md-12.marginTop25px
@@ -55,25 +49,33 @@ div.container
           div.interestedBox(style="margin-right:5px;",ng-show="group.interested_users_count < group.required_user_count")
             h1()="{{group.required_user_count-group.interested_users_count}}"
             p(style="font-size:20px;")="Remaining"
-          div.interestedBox(style="margin-right:5px;",ng-show="group.interested_users_count < group.required_user_count")
-            h1()="{{group.expires_in}}"
-            p(style="font-size:20px;")="Days Remaining"
-          div.interestedBox(ng-show="group.interested_users_count >= group.required_user_count")
-            h1()="{{8 - group.reached_goal}} Days"
-            p(style="font-size:20px;")="We are collecting deals for this group in {{8 - group.reached_goal}} Days."
+          div.interestedBox(style="margin-right:5px;")
+            h1()="{{group.min_discount}}"
+            p(style="font-size:20px;")="Min. Discount"
       div.row
         div.col-md-12(style="margin-top:15px;")
           p(style="font-size:15px;")="We will required minimum "
             span(style="color:#ff227c;")="{{group.required_user_count}} people "
-            | interested in this product to get you an attractive deal.
+            | interested in this product in next
+            span(style="color:#ff227c;")=" {{group.expires_in}} days "
+            | to get you an attractive deal.
       hr
       div.row(style="margin-left:1px;margin-top:15px;",role="tabpanel")
         ul.nav.nav-tabs(role="tablist")
           li.active(role="presentation")
             a(showtab="",href="#discussions",aria-controls="discussions",role="tab",data-toggle="tab",style="font-size:17px;")="Discussions"
-        div.tab-content
+          li(role="presentation")
+            a(showtab="",href="#updates",aria-controls="updates",role="tab",data-toggle="tab",style="font-size:17px;")="Group Updates"
+        div.tab-content(style="min-height:300px;")
           div#discussions.tab-pane.active(role="tabpanel",style="overflow-x:hidden;")
             div.fb-comments(data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=fb_comments&utm_medium=website&utm_campaign=comments",data-numposts="5",data-colorscheme="light",style="width:100%;")
+          div#updates.tab-pane(role="tabpanel",style="overflow-x:hidden;")
+            div(ng-hide="group.updates")
+              div.row
+                div.col-md-12
+                  div.bs-callout-l.bs-callout-update
+                    p="We have been notified about this group and We are talking to the vendors to get a list of deals they can offer, once we have {{group.required_user_count}} people interested in this product."
+                    p.pull-right(style="font-size:12px")="{{group.created_at | date:'dd-MMM-yyyy HH:mm a'}}"
 
 
 script(type="text/javascript").
