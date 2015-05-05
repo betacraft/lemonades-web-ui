@@ -6,6 +6,10 @@ html, body {
   overflow-x: hidden;
 }
 
+.toastClass{
+  z-index: 10000;
+}
+
 p {
   margin:0;
 }

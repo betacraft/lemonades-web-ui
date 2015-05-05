@@ -1,7 +1,8 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller 'ResetPasswordCtrl', ['$scope','$http','$rootScope','$routeParams','$location','ngToast',($scope,$http,$rootScope,$routeParams,$location,ngToast) ->
+  .controller 'ResetPasswordCtrl', ['$scope','$http','$rootScope','$routeParams','$location','ngToast','session','$cookieStore',
+  ($scope,$http,$rootScope,$routeParams,$location,ngToast,session,$cookieStore) ->
     $scope.user = {}
     $scope.status= {}
     authKey = $routeParams.auth_key
@@ -15,7 +16,9 @@ angular.module('lemonades')
       $http.post($rootScope.baseUrl + '/api/v1/user/'+authKey+'/update_password',$scope.user)
       .success((data)->
         if data.success
-          $location.path('/login')
+          session.store(data.user)
+          $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
+          $location.path('/dashboard')
           return
         ngToast.create({
           className: 'danger',

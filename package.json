@@ -2,9 +2,10 @@
   "name": "lemonades",
   "version": "0.0.1",
   "dependencies": {
-    "serve-favicon": "~2.0.1",
+    "grunt-cdn": "^0.6.5",
+    "jade": "~1.2.0",
     "lodash": "~2.4.1",
-    "jade": "~1.2.0"
+    "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -43,7 +44,7 @@
     "grunt-filerev": "^2.1.2",
     "grunt-express-server": "~0.4.17",
     "grunt-open": "~0.2.3",
-    "grunt-ng-constant":"~1.1.0",
+    "grunt-ng-constant": "~1.1.0",
     "open": "~0.0.4",
     "jshint-stylish": "~0.1.5",
     "connect-livereload": "~0.4.0",

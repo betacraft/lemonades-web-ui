@@ -1,22 +1,50 @@
 'use strict';
 angular.module('lemonades')
 .controller('RegisterCtrl',
-  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', '$facebook', 'ngToast', 'GooglePlus',
-    ($scope, $cookieStore, $http, $rootScope, $location, session, $facebook, ngToast, GooglePlus) ->
-      $scope.user = {};
+  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', 'ngToast', 'GooglePlus',
+    ($scope, $cookieStore, $http, $rootScope, $location, session, ngToast, GooglePlus) ->
+      $scope.user = {}
+      $scope.captchaResponse = ""
+      $scope.captchaInvalid = false
+
+      $scope.isCaptchaValid = ()->
+        console.log "calling is captcha valid"
+        return $scope.captchaResponse != ""
+
       $scope.landing = ->
         $location.path("/")
+
       $scope.login = ->
         $location.path("/login")
+
       $scope.register = ()->
+        if !$scope.isCaptchaValid()
+          $scope.captchaInvalid = true
+          return
+        $scope.captchaInvalid = false
         btn = $("#signUpButton").button("loading")
         console.log("registering")
+        $scope.user["captcha"] = $scope.captchaResponse
+        console.log "Sending ",$scope.user
         $http.post($rootScope.baseUrl + "/api/v1/user", $scope.user).success(
           (data)->
             btn.button("reset")
             $scope.status = {}
             if data.success
-              $location.path("/register/success")
+              session.store(data.user)
+              ngToast.create({
+                className: 'info',
+                content: 'We have sent you a confirmation email on provided email address. Please click on the link in that email to validate the same.',
+                timeout:20000,
+                dismissOnTimeout:true,
+                dismissButton:true
+              })
+              $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
+              if $location.search()["join"]!= undefined
+                groupId = $location.search()["join"]
+                $location.path("/group/"+groupId).search({"join":"true"})
+                return
+              $location.path("/dashboard")
               return
             $scope.status =
               message: data.message
@@ -28,46 +56,6 @@ angular.module('lemonades')
               message: data.message
               success: false
         )
-
-      $scope.loginWithFacebook = ->
-        console.log("Logging in with facebook", $facebook.isConnected())
-        if $facebook.isConnected() == null || $facebook.isConnected() == false
-          ngToast.create({
-            className: 'danger',
-            content: 'There was some error in logging in with facebook !!\nRefresh Page and Try again',
-          })
-          return
-        $scope.fbStatus = $facebook.isConnected()
-        if $scope.fbStatus
-          $facebook.api('/me').then (user) ->
-            console.log(user)
-            $scope.fbUser = user
-            $facebook.api('/' + user.id + '/picture').then (data) ->
-              fbUserReq = {
-                email: user.email,
-                name: user.first_name + " " + user.last_name,
-                profile_pic: data.data.url,
-                fb_user_id: user.id,
-                fb_token: $facebook.getAuthResponse().accessToken,
-                is_fb: true,
-                gender: user.gender
-              }
-              console.log("Sending ", fbUserReq)
-              $http.post($rootScope.baseUrl + '/api/v1/user/fb_login', fbUserReq)
-              .success((data) ->
-                if data.success
-                  session.store(data.user)
-                  $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
-                  $location.path("/dashboard")
-              )
-              .error((data)->
-                ngToast.create({
-                  className: 'danger',
-                  content: 'There was some error in logging in with Facebook. Please try again',
-                })
-              )
-            return
-          return
 
       $scope.loginWithGooglePlus = ->
         GooglePlus.login().then ((authResult) ->

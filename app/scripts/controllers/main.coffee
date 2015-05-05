@@ -1,7 +1,7 @@
 'use strict';
 angular.module('lemonades')
 .controller('MainCtrl',
-  ['$scope', '$location', '$rootScope', '$cookieStore', '$http','$intercom', ($scope, $location, $rootScope, $cookieStore, $http,$intercom) ->
+  ['$scope', '$location', '$rootScope', '$cookieStore', '$http', ($scope, $location, $rootScope, $cookieStore, $http) ->
     $scope.htmlReady();
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.deals = {}

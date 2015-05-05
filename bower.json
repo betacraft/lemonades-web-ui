@@ -15,11 +15,10 @@
     "angulartics": "0.17.2",
     "angular-google-plus": "latest",
     "ngtoast": "latest",
-    "angular-intercom": "latest",
     "angular-easyfb": "~1.2.1",
-    "html5shiv":"~3.7.2",
-    "respond":"~1.4.2",
-    "angular-seo":"latest"
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "angular-seo": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.4.0-rc.0",

@@ -10,11 +10,10 @@ angular
     'ezfb',
     'angulartics',
     'ngToast',
-    'ngIntercom',
     'lemonades.config',
     'seo',
     'angulartics.google.analytics'])
-  .run(['$rootScope','$location','$http','$cookieStore','$intercom','config',($rootScope,$location,$http,$cookieStore,$intercom,config)->
+  .run(['$rootScope','$location','$http','$cookieStore','config',($rootScope,$location,$http,$cookieStore,config)->
     $rootScope.baseUrl = config.baseUrl
     $rootScope.loading = false
     $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
@@ -32,14 +31,11 @@ angular
         (data)->
           if data.success
             $rootScope.user = data.user
-            $intercom.boot({
-              email:data.user.email,
-              user_id:data.user.id,
-              created_at:data.user.created_at
-            })
-            $intercom.hide()
+            return
+          $cookieStore.remove("lmnsskey")
       ).error(
         ()->
+          $cookieStore.remove("lmnsskey")
       )
 
     $rootScope.hasError  = (obj)->
@@ -50,17 +46,6 @@ angular
       $location.path("/login")
 
   ])
-   #Configure your $intercom module with appID
-  .config(['$intercomProvider','config',($intercomProvider,config) ->
-    #Either include your app_id here or later on boot
-    $intercomProvider.appID(config.intercomAppId);
-    #you can include the Intercom's script yourself or use the built in async loading feature
-    $intercomProvider.asyncLoading(true)
-  ])
-  .run(['$intercom','$rootScope',($intercom,$rootScope)->
-    #kept it for reference
-  ])
-
   .factory('myHttpInterceptor', ['$q','$window','$rootScope','$location','$cookieStore',($q,$window, $rootScope,$location,$cookieStore) ->
     return{
     # optional method
@@ -88,7 +73,9 @@ angular
   ])
   .config(['ngToastProvider',(ngToastProvider)->
     ngToastProvider.configure({
-      animation:"slide"
+      animation:"slide",
+      horizontalPosition:"center",
+      additionalClasses:"toastClass"
     })
   ])
   .config(['$httpProvider',($httpProvider)->

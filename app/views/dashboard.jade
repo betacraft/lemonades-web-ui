@@ -37,7 +37,7 @@ section
       group(ng-repeat="group in groups",group=group)
     div.row(style="margin-top:30px;")
       div.col-md-12.text-center
-        a.btn.btn-primary-border(ng-show="pageNo > -1 && group",ng-click="getGroups()")="Load more"
+        a.btn.btn-primary-border(ng-show="pageNo > -1 && groups",ng-click="getGroups()")="Load more"
 hr(style="margin-top:100px;")
 footer
   div.container

@@ -1,3 +1,10 @@
+script(src='https://www.google.com/recaptcha/api.js', async='', defer='')
+script(type="text/javascript").
+  captchaCallback = function(resp) {
+    console.log(resp);
+    angular.element(document.getElementById('signUpForm')).scope().captchaResponse = resp;
+  };
+
 div.container-fluid-full
   div.container-fluid-full.bgGray(style="padding:10px;")
     div.row
@@ -35,5 +42,7 @@ div.container-fluid-full
           input#confirmPassword.form-control(type="password",style="font-size:16px;",name="confirm_password",placeholder="Confirm Password",ng-model="user.confirm_password",required="",min="8")
           span(ng-show="form.confirm_password.$dirty && form.confirm_password.$error.required") Required
           span(ng-show="form.confirm_password.$dirty && form.confirm_password.$viewValue !== form.password.$viewValue") Passwords should match
+        #captcha.g-recaptcha(name="captcha",data-sitekey='6LefTAYTAAAAALE9MR14qd30M3DHdHwv6tNyyNDC',data-callback="captchaCallback")
+        span(ng-show="captchaInvalid") Please validate reCaptcha
         div.text-center(style="margin-top:10px;")
-          button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...",ng-disabled="form.$invalid || form.confirm_password.$dirty && form.confirm_password.$viewValue !== form.password.$viewValue")="Register"
+          button.btn.btn-primary-border#signUpButton(type="submit",ng-click="register()",data-loading-text="Registering...",ng-disabled="form.$invalid || (form.confirm_password.$dirty && form.confirm_password.$viewValue !== form.password.$viewValue)")="Register"

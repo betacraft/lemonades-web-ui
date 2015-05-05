@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','$intercom', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,$intercom) ->
+  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast) ->
     $scope.htmlReady();
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
@@ -10,8 +10,6 @@ angular.module('lemonades')
     $scope.leaving = false
     $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #lemonades";
 
-    $scope.init = ()->
-      $rootScope.getUser()
 
     $scope.initHowItWorks = ()->
       $("#howItWorks").carousel({
@@ -24,6 +22,8 @@ angular.module('lemonades')
     $scope.login = ()->
       $location.path("/login")
 
+    $scope.loginToJoin = ()->
+      $location.path("/login").search({'join':$scope.groupId})
 
     $scope.leaveGroup = ->
       return if $scope.leaving
@@ -49,9 +49,11 @@ angular.module('lemonades')
 
       )
 
-    $scope.joinGroup = ->
+    $scope.joinGroup = (automatedJoin)->
       return if $scope.joining
+      console.log "Joining the group"
       $scope.joining = true
+      automatedJoin = typeof automatedJoin != 'undefined' ? automatedJoin : false;
       btn = $("#joinGroup").button('loading')
       req =
         method: "POST"
@@ -60,15 +62,21 @@ angular.module('lemonades')
           'Session-Key': $scope.sessionKey
       $http(req).success(
         (data)->
+          btn.button("reset")
           $scope.joining = false
           if data.success
             $scope.group = data.group
-            btn.button("reset")
             return
+          if automatedJoin
+            $location.search({})
+            $scope.init()
       ).error(
         (data)->
           $scope.joining = false
           btn.button("reset")
+          if automatedJoin
+            $location.search({})
+            $scope.init()
       )
 
     $scope.logout = ->
@@ -80,7 +88,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            $intercom.shutdown();
             $cookieStore.remove("lmnsskey")
             $scope.sessionKey=null
             return
@@ -118,29 +125,34 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
-      req =
-        method: "GET"
-        url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId
-        headers:
-          'Session-Key': $scope.sessionKey
-      $http(req).success(
-        (data)->
-          if data.success
-            $rootScope.title = "Buy " + data.group.product.name + " with me on lemonades.in"
-            $rootScope.image = data.group.product.product_image
-            $rootScope.url = $location.absUrl()
-            $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on lemonades and get huge discount." if data.group.interested_users_count == 1
-            $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on lemonades and get huge discount." if data.group.interested_users_count > 1
-            $scope.group = data.group
-            $scope.shareText = "Buy " + data.group.product.name + " with me on lemonades.in"
-            return
-          $scope.status =
-            message: data.message
-            success: false
-      ).error(
-        (data)->
-          $scope.status =
-            message: data.message
-            success: false
-      )
+      $rootScope.getUser()
+      if $location.search()["join"]!= undefined
+        $scope.joinGroup(true)
+      else
+        req =
+          method: "GET"
+          url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId
+          headers:
+            'Session-Key': $scope.sessionKey
+        $http(req).success(
+          (data)->
+            if data.success
+              $rootScope.title = "Buy " + data.group.product.name + " with me on lemonades.in"
+              $rootScope.image = data.group.product.product_image
+              $rootScope.url = $location.absUrl()
+              $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on lemonades and get huge discount." if data.group.interested_users_count == 1
+              $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on lemonades and get huge discount." if data.group.interested_users_count > 1
+              $scope.group = data.group
+              $scope.shareText = "Buy " + data.group.product.name + " with me on lemonades.in"
+              $location.search({})
+              return
+            $scope.status =
+              message: data.message
+              success: false
+        ).error(
+          (data)->
+            $scope.status =
+              message: data.message
+              success: false
+        )
 ])

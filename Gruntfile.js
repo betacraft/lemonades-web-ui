@@ -353,6 +353,23 @@ module.exports = function (grunt) {
       }
     },
 
+    cdn: {
+      options: {
+        /** @required - root URL of your CDN (may contains sub-paths as shown below) */
+        cdn: 'http://cdn.lemonades.in',
+        /** @optional  - if provided both absolute and relative paths will be converted */
+        flatten: true
+      },
+      dist: {
+        /** @required  - gets sources here, may be same as dest  */
+        cwd: '<%= yeoman.dist %>',
+        /** @required  - puts results here with respect to relative paths  */
+        dest: '<%= yeoman.dist %>',
+        /** @required  - files to process */
+        src: ['index.html', 'styles/*.css', 'views/*.html']
+      }
+    },
+
     // Replace Google CDN references
     cdnify: {
       dist: {
@@ -577,7 +594,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'cdn:dist'
   ]);
 
   grunt.registerTask('default', [

@@ -12,6 +12,7 @@ angular.module('lemonades')
       $rootScope.image = ""
       $rootScope.url = "http://www.lemonades.in"
       $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
+
       $scope.landing = ->
         $location.path("/")
 
@@ -26,6 +27,10 @@ angular.module('lemonades')
             if data.success
               session.store(data.user)
               $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
+              if $location.search()["join"]!= undefined
+                groupId = $location.search()["join"]
+                $location.path("/group/"+groupId).search({"join":"true"})
+                return
               $location.path("/dashboard")
               return
             $scope.status =
@@ -71,6 +76,7 @@ angular.module('lemonades')
               className: 'danger',
               content: 'There was some error in logging in with Google Plus. Please try again',
             })
+
       $scope.forgotPassword = ->
         $scope.fg_status = {}
         if $scope.object.email == undefined ||$scope.object.email == ""

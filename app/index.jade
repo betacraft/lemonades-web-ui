@@ -70,7 +70,6 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/angulartics/src/angulartics-ga.js')
     script(src='bower_components/angular-google-plus/dist/angular-google-plus.js')
     script(src='bower_components/ngtoast/dist/ngToast.js')
-    script(src='bower_components/angular-intercom/angular-intercom.js')
     script(src='bower_components/angular-easyfb/angular-easyfb.js')
     script(src='bower_components/html5shiv/dist/html5shiv.js')
     script(src='bower_components/respond/dest/respond.src.js')
@@ -93,3 +92,7 @@ html(lang="en",ng-app="lemonades")
     script(src="scripts/directives/group.js")
     script(src="scripts/directives/showtab.js")
     // endbuild
+    script(type='text/javascript', src='http://assets.freshdesk.com/widget/freshwidget.js')
+    script(type='text/javascript').
+      FreshWidget.init("", {"queryString": "&widgetType=popup", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "white", "buttonBg": "#e8277a", "alignment": "2", "offset": "235px", "formHeight": "500px", "url": "https://lemonades.freshdesk.com"} );
+

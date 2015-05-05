@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('MyGroupsCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location','$intercom',($scope, $cookies, $cookieStore, $http, $rootScope, $location,$intercom) ->
+  .controller('MyGroupsCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location',($scope, $cookies, $cookieStore, $http, $rootScope, $location) ->
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.object = {}
     $scope.pageNo = 0;
@@ -39,8 +39,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           if data.success
-            $intercom.shutdown();
-            $cookieStore.remove("lmnsskey")
             $location.path("/dashboard")
             $scope.sessionKey = null
             return
