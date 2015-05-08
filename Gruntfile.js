@@ -526,6 +526,7 @@ module.exports = function (grunt) {
         },
         constants: {
           config: {
+            url:'http://www.lemonades.in',
             name: 'production',
             baseUrl: 'http://lemonades.elasticbeanstalk.com',
             intercomAppId: 'nasq14dx',

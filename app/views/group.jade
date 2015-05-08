@@ -20,6 +20,7 @@ section(ng-init="init()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.text-right.col-sm-2.col-md-offset-6
           button.btn.btn-primary-border(type="button",data-toggle='modal', data-target='#myModal') How It Works ?
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
           button.btn.btn-primary-border(ng-click="dashboard()")="More Groups"
           button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login"
           button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
@@ -45,15 +46,17 @@ div.container
             p(style="font-size=25px;")="Online Market Price"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1")=" (Flipkart)"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1")=" (Amazon)"
+              span="  |  "
+              a#updatePrice(ng-click="updatePrice()",data-loading-text="Updating...")="Update Info"
             h3="{{group.product.price_value | currency:'Rs. '}}"
       div.row(style="margin-top:10px;")
         div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
           div.col-md-2.col-sm-12.text-center
-            div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.lemonades.in/#!/group/{{groupId}}?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button_count")
+            div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.lemonades.in/group/{{groupId}}/share?by={{user.id}}&stamp={{timestamp}}&utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button_count")
           div.col-md-2.text-center.col-sm-12
             a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.lemonades.in/#!/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
           div.col-md-2.text-center.col-sm-12
-            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/#!/group/{{groupId}}?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in/group/{{groupId}}/share?by={{user.id}}&stamp={{timestamp}}&utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
       div.row
         div.col-md-12
           div.interestedBox(style="margin-right:5px;")
@@ -82,7 +85,7 @@ div.container
             a(showtab="",href="#discussions",aria-controls="discussions",role="tab",data-toggle="tab",style="font-size:17px;")="Discussions"
         div.tab-content(style="min-height:300px;")
           div#discussions.tab-pane.active(role="tabpanel",style="overflow-x:hidden;")
-            div.fb-comments(data-href="http://www.lemonades.in/#/group/{{groupId}}?utm_source=fb_comments&utm_medium=website&utm_campaign=comments",data-numposts="5",data-colorscheme="light",style="width:100%;")
+            div.fb-comments(data-href="http://www.lemonades.in/#!/group/{{groupId}}?utm_source=fb_comments&utm_medium=website&utm_campaign=comments",data-numposts="5",data-colorscheme="light",style="width:100%;")
 
 
 script(type="text/javascript").

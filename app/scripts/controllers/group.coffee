@@ -9,7 +9,30 @@ angular.module('lemonades')
     $scope.joining = false
     $scope.leaving = false
     $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #lemonades";
+    $scope.timestamp = Date.now()
 
+    $scope.updatePrice = ()->
+      btn = $("#updatePrice").button('loading')
+      req =
+        method: "POST"
+        url: $rootScope.baseUrl + "/api/v1/product/"+$scope.group.product.id+ "/update_price"
+        headers:
+          'Session-Key': $scope.sessionKey
+      $http(req).success(
+        (data)->
+          console.log data
+          if data.success
+            $scope.group.product = data.product
+            btn.button("reset")
+            return
+      ).error(
+        (data)->
+          btn.button("reset")
+
+      )
+
+    $scope.myGroups = ->
+      $location.path("/my-groups")
 
     $scope.initHowItWorks = ()->
       $("#howItWorks").carousel({
@@ -46,8 +69,8 @@ angular.module('lemonades')
         (data)->
           $scope.leaving = false
           btn.button("reset")
-
       )
+
 
     $scope.joinGroup = (automatedJoin)->
       return if $scope.joining
@@ -65,6 +88,7 @@ angular.module('lemonades')
           btn.button("reset")
           $scope.joining = false
           if data.success
+            $scope.timestamp = Date.now()
             $scope.group = data.group
             return
           if automatedJoin
@@ -125,6 +149,7 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
+      $('html,body').scrollTop(0);
       $rootScope.getUser()
       if $location.search()["join"]!= undefined
         $scope.joinGroup(true)
@@ -144,7 +169,6 @@ angular.module('lemonades')
               $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on lemonades and get huge discount." if data.group.interested_users_count > 1
               $scope.group = data.group
               $scope.shareText = "Buy " + data.group.product.name + " with me on lemonades.in"
-              $location.search({})
               return
             $scope.status =
               message: data.message

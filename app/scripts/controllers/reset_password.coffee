@@ -6,6 +6,7 @@ angular.module('lemonades')
     $scope.user = {}
     $scope.status= {}
     authKey = $routeParams.auth_key
+
     $scope.resetPassword = () ->
       if $scope.user.password == undefined || $scope.user.password == "" || $scope.user.password != $scope.user.confirm_password || $scope.user.password.length < 8
         $scope.status = {
