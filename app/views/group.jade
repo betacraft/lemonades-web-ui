@@ -46,7 +46,9 @@ div.container
             p(style="font-size=25px;")="Online Market Price"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1")=" (Flipkart)"
               a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1")=" (Amazon)"
-              span="  |  "
+              span='  '
+              ="|"
+              ='  '
               a#updatePrice(ng-click="updatePrice()",data-loading-text="Updating...")="Update Info"
             h3="{{group.product.price_value | currency:'Rs. '}}"
       div.row(style="margin-top:10px;")
