@@ -12,6 +12,7 @@ angular
     'ngToast',
     'lemonades.config',
     'seo',
+    'angular-loading-bar',
     'angulartics.google.analytics'])
   .run(['$rootScope','$location','$http','$cookieStore','config',($rootScope,$location,$http,$cookieStore,config)->
     $rootScope.baseUrl = config.baseUrl
@@ -126,6 +127,16 @@ angular
         controller: 'ConfirmEmailCtrl'
       .otherwise
         redirectTo: '/'
-#   $locationProvider.html5Mode({enabled:true,requireBase:true}).hashPrefix();
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');
   ])
+  .run ['$rootScope','$anchorScroll',($rootScope,$anchorScroll) ->
+    $rootScope.$on '$locationChangeSuccess', (event, nextRoute) ->
+      window.scrollTo(0,0)
+    return
+  ]
+  .config [
+    'cfpLoadingBarProvider'
+    (cfpLoadingBarProvider) ->
+      cfpLoadingBarProvider.includeSpinner = false
+      return
+  ]

@@ -86,7 +86,7 @@ p {
   height: 67px;
   left: -12px;
   top: -12px;
-  z-index: 99;
+  z-index: 4;
 }
 
 .socialShare{
@@ -98,9 +98,8 @@ p {
 }
 
 .offerTagBigText {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   color: #343434;
   text-transform: uppercase;
   float: left;
@@ -110,7 +109,6 @@ p {
 }
 
 .offerTagSmallText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 10px;
   font-weight: 700;
   color: #343434;
@@ -130,7 +128,6 @@ p {
 }
 
 .cardBigText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 40px;
   font-weight: 700;
   color: #343434;
@@ -140,7 +137,6 @@ p {
 }
 
 .lowestPriceSmallText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: #343434;
@@ -151,7 +147,6 @@ p {
 }
 
 .lowestPriceBigText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 25px;
   font-weight: 700;
   color: #343434;
@@ -161,7 +156,6 @@ p {
 }
 
 .cardSmallText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: #343434;
@@ -253,7 +247,7 @@ p {
   background: url(../images/ovarlay.png) bottom left repeat-x;
   position: absolute;
   bottom: 0;
-  z-index: 1500;
+  z-index: 3;
   padding-top: 100px;
 }
 
@@ -316,14 +310,12 @@ p {
 }
 
 .footerLinks a {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 15px;
   font-weight: 400;
   color: #5a5a5a;
 }
 
 .copyrightTxt {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 15px;
   font-weight: 400;
   color: #5a5a5a;
@@ -336,7 +328,6 @@ p {
   background: #ff227c;
   border: #c3bbbe 2px solid;
   width: 100%;
-  font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
   color: #fff;
   font-size: 16px;
@@ -389,7 +380,6 @@ p {
 }
 
 .categoryList li a {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #828282;
@@ -425,7 +415,6 @@ p {
 }
 
 .bigtagBigText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
@@ -434,7 +423,6 @@ p {
 }
 
 .bigtagSmallText {
-  font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: #ffffff;
@@ -478,8 +466,6 @@ p {
   text-align: center;
   background: #ff227c;
   bottom: 0px;
-
-  font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
   font-weight: 400;
   color: #fff;
@@ -500,7 +486,6 @@ p {
   text-align: center;
   background: #ececec;
   bottom: 0;
-  font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
   font-weight: 400;
   color: #a5a5a5;
@@ -542,7 +527,8 @@ p {
 
 .interestedBox {
   padding: 25px;
-  border: solid #c2c2c2 2px;
+  border: solid #ECECEC 2px;
+  background-color: #ECECEC;
   width: auto;
   height: auto;
   float: left;

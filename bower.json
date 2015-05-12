@@ -18,7 +18,8 @@
     "angular-easyfb": "~1.2.1",
     "html5shiv": "~3.7.2",
     "respond": "~1.4.2",
-    "angular-seo": "latest"
+    "angular-seo": "latest",
+    "angular-loading-bar": "~0.7.1"
   },
   "devDependencies": {
     "angular-mocks": "1.4.0-rc.0",

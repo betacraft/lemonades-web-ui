@@ -23,10 +23,10 @@ section(ng-init="init()")
           a(ng-click="landing()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
         div.col-md-4.pull-right.col-md-offset-6.text-right
-          .btn.btn-primary-border(ng-show="sessionKey",ng-click="allGroups()")="All Groups"
-          .btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create Group"
-          a.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
-          .btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="allGroups()")="All Groups"
+          button.btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create Group"
+          button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
+          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 section(ng-show="createdGroups.length == 0 && joinedGroups.length == 0")
   div.container(style="margin-top:30px;")
     div.row
@@ -50,12 +50,7 @@ section(ng-show="joinedGroups.length > 0")
         p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Joined By You"
     div.row
       group(ng-repeat="group in joinedGroups",group=group)
-
     div.row(style="margin-top:30px;")
       div.col-md-12.text-center
         a.btn.btn-primary-border(ng-show="joinedGroupPageNo > -1",ng-click="getJoinedGroups()")="Load more"
 hr(style="margin-top:100px;")
-footer
-  div.container
-    div.row
-      dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"

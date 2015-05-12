@@ -1,32 +1,31 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
-h1, h2, h3, h4, h5, h6, p {
-	font-family: 'Ubuntu', sans-serif;
+h1, h2, h3, h4, h5, h6, p,body,html {
+	font-family: 'proxima-nova-soft', sans-serif;
 	margin: 0px;
 	padding: 0px;
 }
 h1 {
 	font-size: 66px;
-	font-weight: 700;
+	font-weight: bold;
 }
 h2 {
 	font-size: 40px;
-	font-weight: 700;
+	font-weight: bold;
 }
 h3 {
 	font-size: 30px;
-	font-weight: 700;
+	font-weight: bold;
 }
 h4 {
 	font-size: 25px;
-	font-weight: 700;
+	font-weight: bold;
 }
 
 h5 {
 	font-size: 20px;
-	font-weight: 400;
+	font-weight: normal;
 }
 a {
 	color: #e8277a;
@@ -40,31 +39,31 @@ a:hover {
     height: auto;
     float: left;
     overflow: hidden;
-    
+
 }
 .priceBox h1{
     font-size: 30px;
-	font-weight: 700;
+	font-weight: bold;
     color: #3e3e3e;
 }
 
 .priceBox h2{
     font-size: 20px;
-	font-weight: 400;
+	font-weight: normal;
     color: #6e6e6e;
- 
+
 }
 
 
 .interestedBox h1{
         font-size: 44px;
-	font-weight: 700;
+	font-weight: bold;
     color: #ff227c;
 }
 
 .interestedBox h2{
         font-size: 14px;
-	font-weight: 700;
+	font-weight: bold;
     color: #6e6e6e;
 }
 
@@ -72,24 +71,24 @@ a:hover {
 
 .closeDealBox h1{
         font-size: 44px;
-	font-weight: 700;
+	font-weight: bold;
     color: #ff227c;
 }
 
 .closeDealBox h2{
         font-size: 14px;
-	font-weight: 700;
+	font-weight: bold;
     color: #6e6e6e;
 }
 
-.bigWhiteSliderBigCircle h1{ 
+.bigWhiteSliderBigCircle h1{
     font-size: 44px;
-	font-weight: 700;
+	font-weight: bold;
     color: #3e3e3e;
 }
 .bigWhiteSliderBigCircle h2{
         font-size: 14px;
-	font-weight: 700;
+	font-weight: bold;
     color: #6e6e6e;
 }
 
@@ -98,7 +97,7 @@ a:hover {
     height:  auto;
     position: absolute;
          font-size: 14px;
-	font-weight: 400;
+	font-weight: normal;
     color: #6e6e6e;
     text-align: center;
     z-index: 15;

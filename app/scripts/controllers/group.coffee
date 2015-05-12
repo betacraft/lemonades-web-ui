@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast) ->
+  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast','$window', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast,$window) ->
     $scope.htmlReady();
     $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
@@ -149,7 +149,6 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
-      $('html,body').scrollTop(0);
       $rootScope.getUser()
       if $location.search()["join"]!= undefined
         $scope.joinGroup(true)

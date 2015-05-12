@@ -1,4 +1,4 @@
-div.col-md-4(ng-click="goToGroup(group.id)")
+div.col-md-4(ng-click="goToGroup(group.id)" style="min-height:502px;")
   a.card
     .offerTag
       span.offerTagSmallText Up To
@@ -24,7 +24,7 @@ div.col-md-4(ng-click="goToGroup(group.id)")
           div.lowestPriceSmallText="GROUP DISCOUNT"
           div.cardSmallText="ON MARKET PRICE"
       div.row(ng-show="group.interested_users_count >= group.required_user_count")
-        div.col-md-10(style="margin-top:5px;margin-bottom:10px;")
+        div.col-md-12(style="margin-top:5px;margin-bottom:10px;")
           div.cardSmallText="We are collecting"
           div.lowestPriceSmallText="DEALS IN {{8 - group.reached_goal}} DAYS"
           div.lowestPriceSmallText="ON MARKET PRICE"

@@ -17,19 +17,19 @@ div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",a
       div.modal-footer
         button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
 section(ng-init="init()")
-  div.container-fluid.bgGray(style="padding:10px;")
+  div.container-fluid.bgGray(style="padding:10px;position:absolute;width:100%;z-index:5;top:0;")
     div.row
       div.col-md-12
         div.col-md-2
           a(ng-click="landing()")
             img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-6.pull-right.col-md-offset-4.text-right
+        div.col-md-6.pull-right.col-md-offset-4.text-right.col-sm-12
           button.btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
           button.btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create / Search Group"
           button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
           button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 section
-  div.container(style="margin-top:30px;")
+  div.container(style="margin-top:80px;")
     div.row
       div.col-md-6
         p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Groups"
@@ -38,8 +38,4 @@ section
     div.row(style="margin-top:30px;")
       div.col-md-12.text-center
         a.btn.btn-primary-border(ng-show="pageNo > -1 && groups",ng-click="getGroups()")="Load more"
-hr(style="margin-top:100px;")
-footer
-  div.container
-    div.row
-      dov.col-md-12.text-center.copyrightTxt="(C) Lemonades LLC"
+hr(style="margin-top:40px;")
