@@ -10,6 +10,7 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
+      $rootScope.path = 0;
       $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
       $rootScope.image = ""
       $rootScope.url = "http://www.lemonades.in"
@@ -41,6 +42,12 @@ angular.module('lemonades')
 
     $scope.login = ()->
       $location.path("/login");
+
+    $scope.privacy = ()->
+      $location.path("/privacy");
+
+    $scope.termsOfService = ()->
+      $location.path("/terms-of-service");
 
     $scope.register = ()->
       $location.path("/register");

@@ -31,9 +31,6 @@ angular.module('lemonades')
 
       )
 
-    $scope.myGroups = ->
-      $location.path("/my-groups")
-
     $scope.initHowItWorks = ()->
       $("#howItWorks").carousel({
         interval:5000,
@@ -103,22 +100,7 @@ angular.module('lemonades')
             $scope.init()
       )
 
-    $scope.logout = ->
-      req =
-        method: "POST"
-        url: $rootScope.baseUrl + "/api/v1/user/logout"
-        headers:
-          'Session-Key': $scope.sessionKey
-      $http(req).success(
-        (data)->
-          if data.success
-            $cookieStore.remove("lmnsskey")
-            $scope.sessionKey=null
-            return
-      ).error(
-        (data)->
-          #doing nothing
-      )
+
 
     $scope.createGroup = ->
       btn = $("#createGroup").button("loading")
@@ -149,6 +131,7 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
+      $rootScope.path = 2;
       $rootScope.getUser()
       if $location.search()["join"]!= undefined
         $scope.joinGroup(true)

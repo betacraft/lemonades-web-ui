@@ -1,80 +1,34 @@
-script(type="text/javascript").
-  $('#myModal').on('shown.bs.modal', function () {
-    callPlayer('yt-player', 'playVideo');
-  });
-  $('#myModal').on('hidden.bs.modal', function () {
-    $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
-  });
-#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-  .modal-dialog
-    .modal-content
-      #yt-player.modal-body
-        iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
-
 div.container-fluid-full(ng-init="init()")
-  section(style="padding-bottom:50px;background-color:#ECECEC;")
-    div.container-fluid
-      div.row(style="padding-top:15px;")
-        div.col-md-12
-          img.pull-left(src="images/innerPageLogo.png",width="200px;")
-          a.pull-right.btn.btn-primary-border(ng-show="sessionKey",ng-click="dashboard()")="Dashboard"
-          a.pull-right.btn.btn-primary-border(ng-show="sessionKey===undefined",ng-click="login()")="Login"
-          a.pull-right.btn.btn-primary-border.marginRight10px(ng-show="sessionKey===undefined",ng-click="register()")="Register"
-      div.row
-        div.col-md-12.text-center(style="margin-top:5px;margin-bottom:15px;")
-          p.pinkText(style="font-size:45px;font-weight:bold;")="Next Generation Of Group Buying"
+  div.container(style="margin-top:60px;padding-bottom:20px;")
+    div.row.text-center
+      div.col-md-12(style="margin-top:30px;")
+        p(style="color:#424242;font-size:45px;font-weight:bold;")="The Next Generation Of Group Buying"
       div.row.text-center.marginTop50px(style="margin-right:10px;margin-left:10px;")
-        div.col-md-12
-          img.img-responsive(src="images/how_it_work.png")
-      div.row.text-center.marginTop50px
-        button.btn.btn-primary-border.btn-lg(type='button',data-toggle='modal', data-target='#myModal')
-          | How It Works ?
+        div.col-md-12(style="margin-top:30px;")
+          img.img-responsive(src="images/gra.png")
+        div.col-md-12(style="margin-top:30px;")
+          p(style="color:#e8277a;font-size:25px;font-weight:bold;")="Spot your product, Join Group and Get Huge Group Discounts"
+  hr
   section(ng-show="groups.length > 0")
     div.container(style="margin-top:20px;")
       div.row
         div.col-md-6
           p.colorDarkGray.rightPinkLine(style="font-size:30px;")="Trending Groups"
-        div.col-md-6.text-right
-          a.btn.btn-primary-border(ng-click="dashboard()")="More"
       div.row
         group(ng-repeat="group in groups",group=group)
     div.row(style="margin-top:30px;")
       div.col-md-12.text-center
-        a.btn.btn-primary-border(ng-click="dashboard()")="More"
-    hr
-  footer
-    div.container(style="margin-top:50px")
-      div.row
-        div.col-md-12.text-center
-          h2.colorDarkGray
-            | Spread your
-            span.heart
-            | for us
-        div.col-md-12.text-center(style="margin-top:30px;")
-          div.col-md-2.col-md-offset-3
-            div.fb-share-button(data-href="http://www.lemonades.in?utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share",data-layout="button_count")
-          div.col-md-2.text-center
-            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="Make groups and Get huge discounts on products #sale #discounts #smartphones",data-url="http://www.lemonades.in?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
-          div.col-md-2.text-center
-            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.lemonades.in?utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
-        div.col-md-12.text-center(style="margin-top:20px;margin-bottom:20px;")
-          div.fb-page(data-href="https://www.facebook.com/groupup.in",data-hide-cover="false",data-show-facepile="true",data-show-posts="false", data-width="500",style="width:500px;")
-        div.row
-        div.col-md-12.text-center
-  script(type="text/javascript").
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-      js = d.createElement(s);
-      js.id = id;
-      js.src = p + '://platform.twitter.com/widgets.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'twitter-wjs'));
-    (function () {
-      var po = document.createElement('script');
-      po.type = 'text/javascript';
-      po.async = true;
-      po.src = 'https://apis.google.com/js/platform.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(po, s);
-    })();
-
+        a.btn.btn-lg.btn-primary-border(ng-click="dashboard()")="View More Groups"
+footer
+  div.container-fluid.bgGray(style="margin-top:20px;padding-top:20px;padding-bottom:20px;")
+    div.row
+      div.col-md-12.text-center
+        a.btn.btn-primary-border-black(href="https://www.facebook.com/groupup.in",target="_blank") Like Us
+        a.btn.btn-primary-border-black(href="https://twitter.com/letsgroupup",target="_blank",style="margin-left:5px;") Follow Us
+        a.btn.btn-primary-border-black(style="margin-left:5px;") How It Works
+      div.col-md-12.text-center(style="margin-top:20px;")
+        a(style="color:#000000;",ng-click="privacy()") Privacy Policy
+        span=" | "
+        a(style="color:#000000;",ng-click="termsOfService()") Terms Of Service
+      div.col-md-12.text-center(style="margin-top:5px;")
+        p Copyrights GroupUP

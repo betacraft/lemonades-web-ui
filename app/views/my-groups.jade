@@ -15,18 +15,7 @@ div#createGroupModal.modal(name="createGroupModal",tabindex="-1",role="dialog",a
             input#productLink.form-control(type="uri",placeholder="Flipkart Product Link",ng-model="object.product_link",name="productLink",required)
       div.modal-footer
         button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Create"
-section(ng-init="init()")
-  div.container-fluid.bgGray(style="padding:10px;")
-    div.row
-      div.col-md-12
-        div.col-md-2
-          a(ng-click="landing()")
-            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-4.pull-right.col-md-offset-6.text-right
-          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="allGroups()")="All Groups"
-          button.btn.btn-primary-border(ng-show="sessionKey",data-toggle="modal",data-target="#createGroupModal")="Create Group"
-          button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login To Buy"
-          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
+section(ng-init="init()",style="margin-top:80px;")
 section(ng-show="createdGroups.length == 0 && joinedGroups.length == 0")
   div.container(style="margin-top:30px;")
     div.row

@@ -5,12 +5,41 @@ angular.module('lemonades')
   $scope.object = {}
   $scope.pageNo = 0;
   $scope.groups = {}
+  $scope.searchTerm = ""
+  $scope.fetchingGroups =false;
   $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
   $rootScope.image = ""
   $rootScope.url = "http://www.lemonades.in"
   $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
 
+  $scope.createGroup = ->
+    btn = $("#createGroup").button("loading")
+    req =
+      method: "POST"
+      url: $rootScope.baseUrl + "/api/v1/group"
+      headers:
+        'Session-Key': $rootScope.sessionKey
+      data: $scope.object
+    $http(req).success(
+      (data)->
+        $("#createGroupModal").modal("hide")
+        btn.button("reset")
+        if data.success
+          $location.path("/group/" + data.group.id)
+          return
+        $scope.status =
+          message: data.message
+          success: false
+    ).error(
+      (data)->
+        btn.button("reset")
+        $scope.status =
+          message: data.message
+          success: false
+    )
+
   $scope.init = ()->
+    $rootScope.path = 1;
     $rootScope.getUser()
     $scope.getGroups()
 
@@ -48,17 +77,34 @@ angular.module('lemonades')
         #doing nothing
     )
 
-  $scope.getGroups = ->
+  $scope.getGroupsForSearch = ->
+    console.log "CAlling get groups for search"
+    $scope.getGroups(true)
+
+
+  $scope.getGroups = (forSearch)->
+    forSearch = typeof forSearch  != 'undefined' ? forSearch  : false;
+    return if $scope.fetchingGroups
+    $scope.fetchingGroups = true
+    if forSearch
+      $scope.pageNo = 0
+      $scope.groups = []
+    if $scope.pageNo == -1
+      $scope.fetchingGroups = false
+      return
     req =
       method: "GET"
-      url: $rootScope.baseUrl + "/api/v1/groups?page=" + $scope.pageNo
+      url: $rootScope.baseUrl + "/api/v1/groups"
+      params: {page:$scope.pageNo,search:$scope.searchTerm}
       headers:
         'Session-Key': $scope.sessionKey
     $http(req).success(
       (data)->
+        console.log data
         if data.success
           if data.groups == null
             $scope.pageNo = -1
+            $scope.fetchingGroups = false
             return
           if $scope.pageNo == 0
             $scope.groups = data.groups
@@ -68,36 +114,12 @@ angular.module('lemonades')
             $scope.pageNo = -1
           else
             $scope.pageNo += 1
+          $scope.fetchingGroups = false
           return
     ).error(
       (data)->
+        $scope.fetchingGroups = false
         #doing nothing
-    )
-
-  $scope.createGroup = ->
-    btn = $("#createGroup").button("loading")
-    req =
-      method: "POST"
-      url: $rootScope.baseUrl + "/api/v1/group"
-      headers:
-        'Session-Key': $scope.sessionKey
-      data: $scope.object
-    $http(req).success(
-      (data)->
-        $("#createGroupModal").modal("hide")
-        btn.button("reset")
-        if data.success
-          $location.path("/group/" + data.group.id)
-          return
-        $scope.status =
-          message: data.message
-          success: false
-    ).error(
-      (data)->
-        btn.button("reset")
-        $scope.status =
-          message: data.message
-          success: false
     )
 ])
 

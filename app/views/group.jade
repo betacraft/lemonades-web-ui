@@ -12,18 +12,18 @@ script(type="text/javascript").
         iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
 
 section(ng-init="init()")
-  div.container-fluid.bgGray(style="padding:10px;position:absolute;width:100%;z-index:5;top:0;")
-    div.row
-      div.col-md-12.col-sm-12
-        div.col-md-2.col-sm-2
-          a(ng-click="dashboard()")
-            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-6.pull-right.text-right.col-md-offset-4.col-sm-12
-          button.btn.btn-primary-border(type="button",data-toggle='modal', data-target='#myModal') How It Works ?
-          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
-          button.btn.btn-primary-border(ng-click="dashboard()")="More Groups"
-          button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login"
-          button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
+  //div.container-fluid.bgGray(style="padding:10px;position:absolute;width:100%;z-index:5;top:0;")
+  //  div.row
+  //    div.col-md-12.col-sm-12
+  //      div.col-md-2.col-sm-2
+  //        div(ng-click="dashboard()",style="cursor:pointer;")
+  //          p.pinkText(style="font-size:30px;font-weight:bold;")="GroupUP"
+  //      div.col-md-6.pull-right.text-right.col-md-offset-4.col-sm-12
+  //        button.btn.btn-primary-border(type="button",data-toggle='modal', data-target='#myModal') How It Works ?
+  //        button.btn.btn-primary-border(ng-show="sessionKey",ng-click="myGroups()")="My Groups"
+  //        button.btn.btn-primary-border(ng-click="dashboard()")="More Groups"
+  //        button.btn.btn-primary-border(ng-hide="sessionKey",ng-click="$root.goToLogin()")="Login"
+  //        button.btn.btn-primary-border(ng-show="sessionKey",ng-click="logout()")="Logout"
 div.container(style="margin-top:60px;")
   div.row
     div.col-lg-4(style="")

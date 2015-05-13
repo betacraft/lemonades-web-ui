@@ -12,6 +12,8 @@ angular
     'ngToast',
     'lemonades.config',
     'seo',
+    'ui.bootstrap',
+    'infinite-scroll',
     'angular-loading-bar',
     'angulartics.google.analytics'])
   .run(['$rootScope','$location','$http','$cookieStore','config',($rootScope,$location,$http,$cookieStore,config)->
@@ -19,7 +21,9 @@ angular
     $rootScope.loading = false
     $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
     $rootScope.image = ""
+    $rootScope.sessionKey = "";
     $rootScope.user = {}
+    $rootScope.path = 0;
     $rootScope.url = "http://www.lemonades.in"
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
     $rootScope.getUser = ->
@@ -31,6 +35,7 @@ angular
       $http(req).success(
         (data)->
           if data.success
+            $rootScope.sessionKey = data.user.session_key
             $rootScope.user = data.user
             return
           $cookieStore.remove("lmnsskey")
@@ -125,12 +130,19 @@ angular
       .when '/user/:auth_key/confirm_email',
         templateUrl: 'views/confirm_email.html'
         controller: 'ConfirmEmailCtrl'
+      .when '/privacy',
+        templateUrl: 'views/privacy.html'
+        controller: 'PrivacyCtrl'
+      .when '/terms-of-service',
+        templateUrl: 'views/terms-of-service.html'
+        controller: 'TermsOfServiceCtrl'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');
   ])
   .run ['$rootScope','$anchorScroll',($rootScope,$anchorScroll) ->
     $rootScope.$on '$locationChangeSuccess', (event, nextRoute) ->
+      console.log "Next route => " + nextRoute
       window.scrollTo(0,0)
     return
   ]

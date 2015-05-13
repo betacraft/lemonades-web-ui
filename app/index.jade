@@ -44,7 +44,31 @@ html(lang="en",ng-app="lemonades")
       })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
       ga('create', 'UA-61572806-1', 'auto');
       //ga('create', 'UA-61572806-2', 'auto');
-  body
+  body(ng-controller="LandingCtrl as ctrl")
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          #yt-player.modal-body
+            iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
+    div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true",style="z-index:10000;")
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            button.close(type="button",data-dismiss="modal")
+              span(aria-hidden="true")
+              span.sr-only="Close"
+            h4#createGroupModal.modal-title="Create / Search Group"
+          div.modal-body
+            div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
+              p.colorPink="{{status.message}}"
+            form(role="form",name="form",novalidate)
+              div.form-group
+                label(for="productLink")="Flipkart/Amazon.in Product Link"
+                input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
+            a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}") Mail Us this link, we will try to fix this
+          div.modal-footer
+            a#mailUs.btn.btn-primary-border(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product")="Mail Us"
+            button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
     <!--[if lt IE 7]>
     p.browsehappy
       | You are using an
@@ -54,6 +78,40 @@ html(lang="en",ng-app="lemonades")
       |  to improve your experience.
     <![endif]-->
     toast
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(ng-click="landing()")
+          img(src="images/logo_new.png",style="height:50px;margin-top:-15px;")
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li(ng-class="{'active':path===1,'':path!==1}")
+              a(ng-click="dashboard()",)
+                | Groups
+            li
+              a(ng-show="sessionKey && path!==1",data-toggle="modal",data-target="#createGroupModal",style="border-bottom-color:#ff227c;")
+                | Create Group
+          ul.nav.navbar-nav.navbar-right
+            li(ng-hide="sessionKey")
+              a(ng-click="login()")
+                | Login
+            li(ng-hide="sessionKey")
+              a(ng-click="register()")
+                | Register
+            li.dropdown(ng-show="sessionKey" dropdown on-toggle="toggled(open)")
+              a.dropdown-toggle(href,dropdown-toggle)
+                | Menu
+                span.caret
+              ul.dropdown-menu(role='menu')
+                li(ng-class="{'active':path===4,'':path!==4}")
+                  a(ng-click="myGroups()") My Groups
+                li.divider
+                li
+                  a(ng-click="logout()") Logout
     div(ng-view)
     // build:js scripts/vendor.js
     // bower:js
@@ -78,12 +136,15 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/respond/dest/respond.src.js')
     script(src='bower_components/angular-seo/angular-seo.js')
     script(src='bower_components/angular-loading-bar/build/loading-bar.js')
+    script(src='bower_components/angular-bootstrap/ui-bootstrap.js')
+    script(src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js')
     // endbower
     // endbuild
     // build:js(.tmp) scripts/app.js
     script(src="scripts/app.js")
     script(src="scripts/shared/config.js")
     script(src="scripts/controllers/main.js")
+    script(src="scripts/controllers/landing.js")
     script(src="scripts/controllers/login.js")
     script(src="scripts/controllers/register.js")
     script(src="scripts/controllers/dashboard.js")
@@ -95,11 +156,35 @@ html(lang="en",ng-app="lemonades")
     script(src="scripts/controllers/confirm_email.js")
     script(src="scripts/directives/group.js")
     script(src="scripts/directives/showtab.js")
+    script(src="scripts/controllers/privacy.js")
+    script(src="scripts/controllers/terms-of-service.js")
     // endbuild
     script(type="text/javascript", src="//use.typekit.net/xpw2ktq.js")
     script(type="text/javascript").
+      $('#myModal').on('shown.bs.modal', function () {
+        callPlayer('yt-player', 'playVideo');
+      });
+      $('#myModal').on('hidden.bs.modal', function () {
+        $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
+      });
+    script(type="text/javascript").
       try{Typekit.load();}catch(e){}
-    script(type='text/javascript', src='http://assets.freshdesk.com/widget/freshwidget.js')
     script(type='text/javascript').
-      FreshWidget.init("", {"queryString": "&widgetType=popup", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "white", "buttonBg": "#e8277a", "alignment": "2", "offset": "235px", "formHeight": "500px", "url": "https://lemonades.freshdesk.com"} );
+      <!-- Start of groupup Zendesk Widget script -->
+      /*<![CDATA[*/window.zEmbed || function (e, t) {
+        var n, o, d, i, s, a = [], r = document.createElement("iframe");
+        window.zEmbed = function () {
+          a.push(arguments)
+        }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document;
+        try {
+          o = s
+        } catch (c) {
+          n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s
+        }
+        o.open()._l = function () {
+          var o = this.createElement("script");
+          n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)
+        }, o.write('<body onload="document._l();">'), o.close()
+      }("//assets.zendesk.com/embeddable_framework/main.js", "groupup.zendesk.com");/*]]>*/
+      <!-- End of groupup Zendesk Widget script -->
 

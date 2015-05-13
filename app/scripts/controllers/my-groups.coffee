@@ -14,6 +14,7 @@ angular.module('lemonades')
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
 
     $scope.init = ()->
+      $rootScope.path=4;
       $rootScope.getUser()
       if($scope.sessionKey == "")
         $location.path("/dashboard")

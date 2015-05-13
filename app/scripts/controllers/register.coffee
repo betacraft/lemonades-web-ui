@@ -7,6 +7,9 @@ angular.module('lemonades')
       $scope.captchaResponse = ""
       $scope.captchaInvalid = false
 
+      $scope.init = ->
+        $rootScope.path = 6
+
       $scope.isCaptchaValid = ()->
         console.log "calling is captcha valid"
         return $scope.captchaResponse != ""
@@ -40,6 +43,7 @@ angular.module('lemonades')
                 dismissButton:true
               })
               $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
+              $rootScope.sessionKey = data.user.session_key
               if $location.search()["join"]!= undefined
                 groupId = $location.search()["join"]
                 $location.path("/group/"+groupId).search({"join":"true"})
