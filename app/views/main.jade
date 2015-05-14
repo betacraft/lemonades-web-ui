@@ -1,13 +1,19 @@
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      #yt-player.modal-body
+        iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
 div.container-fluid-full(ng-init="init()")
   div.container(style="margin-top:60px;padding-bottom:20px;")
     div.row.text-center
       div.col-md-12(style="margin-top:30px;")
         p(style="color:#424242;font-size:45px;font-weight:bold;")="The Next Generation Of Group Buying"
+        p(style="color:#e8277a;font-size:25px;font-weight:bold;")="Where you create the deals and We make them real !!"
       div.row.text-center.marginTop50px(style="margin-right:10px;margin-left:10px;")
         div.col-md-12(style="margin-top:30px;")
           img.img-responsive(src="images/gra.png")
         div.col-md-12(style="margin-top:30px;")
-          p(style="color:#e8277a;font-size:25px;font-weight:bold;")="Spot your product, Join Group and Get Huge Group Discounts"
+          p(style="color:#e8277a;font-size:25px;font-weight:bold;")="Spot your product, Join/Create Group and Get Huge Group Discounts"
   hr
   section(ng-show="groups.length > 0")
     div.container(style="margin-top:20px;")
@@ -25,7 +31,7 @@ footer
       div.col-md-12.text-center
         a.btn.btn-primary-border-black(href="https://www.facebook.com/groupup.in",target="_blank") Like Us
         a.btn.btn-primary-border-black(href="https://twitter.com/letsgroupup",target="_blank",style="margin-left:5px;") Follow Us
-        a.btn.btn-primary-border-black(style="margin-left:5px;") How It Works
+        a.btn.btn-primary-border-black(style="margin-left:5px;",data-toggle="modal",data-target="#myModal") How It Works
       div.col-md-12.text-center(style="margin-top:20px;")
         a(style="color:#000000;",ng-click="privacy()") Privacy Policy
         span=" | "

@@ -45,19 +45,15 @@ html(lang="en",ng-app="lemonades")
       ga('create', 'UA-61572806-1', 'auto');
       //ga('create', 'UA-61572806-2', 'auto');
   body(ng-controller="LandingCtrl as ctrl")
-    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          #yt-player.modal-body
-            iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
     div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true",style="z-index:10000;")
       div.modal-dialog
         div.modal-content
           div.modal-header
-            button.close(type="button",data-dismiss="modal")
-              span(aria-hidden="true")
-              span.sr-only="Close"
-            h4#createGroupModal.modal-title="Create / Search Group"
+            div.row
+              div.col-md-8
+                h4#createGroupModal.modal-title="Create / Search Group"
+              div.col-md-4
+                a#mailUs.btn.btn-primary-border-black.pull-right(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product")="Mail Us"
           div.modal-body
             div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
               p.colorPink="{{status.message}}"
@@ -67,7 +63,6 @@ html(lang="en",ng-app="lemonades")
                 input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
             a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}") Mail Us this link, we will try to fix this
           div.modal-footer
-            a#mailUs.btn.btn-primary-border(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product")="Mail Us"
             button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
     <!--[if lt IE 7]>
     p.browsehappy
@@ -92,9 +87,6 @@ html(lang="en",ng-app="lemonades")
             li(ng-class="{'active':path===1,'':path!==1}")
               a(ng-click="dashboard()",)
                 | Groups
-            li
-              a(ng-show="sessionKey && path!==1",data-toggle="modal",data-target="#createGroupModal",style="border-bottom-color:#ff227c;")
-                | Create Group
           ul.nav.navbar-nav.navbar-right
             li(ng-hide="sessionKey")
               a(ng-click="login()")
@@ -112,6 +104,7 @@ html(lang="en",ng-app="lemonades")
                 li.divider
                 li
                   a(ng-click="logout()") Logout
+          button.btn.btn-primary.pull-right(ng-show="sessionKey",style="font-size:18px;margin-top:8px;margin-right:5px;",data-toggle="modal",data-target="#createGroupModal") Create Group
     div(ng-view)
     // build:js scripts/vendor.js
     // bower:js

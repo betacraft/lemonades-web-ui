@@ -1,32 +1,9 @@
-div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true",style="z-index:10000;")
-  div.modal-dialog
-    div.modal-content
-      div.modal-header
-        button.close(type="button",data-dismiss="modal")
-          span(aria-hidden="true")
-          span.sr-only="Close"
-        h4#createGroupModal.modal-title="Create / Search Group"
-      div.modal-body
-        div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
-          p.colorPink="{{status.message}}"
-        form(role="form",name="form",novalidate)
-          div.form-group
-            label(for="productLink")="Flipkart/Amazon.in Product Link"
-            input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
-        a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}") Mail Us this link, we will try to fix this
-      div.modal-footer
-        a#mailUs.btn.btn-primary-border(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product")="Mail Us"
-        button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
 section(ng-init="init()",style="background:#FFFFFF;")
-  div(style="height:100px;position:absolute;top:0;width:100%;background-color:#FFFFFF;z-index:9;")
-    div.bgGray(style="position:absolute;top:64px;padding-top:10px;padding-bottom:10px;left:auto;right:auto;z-index:10;width:100%;")
-      div.container()
-        div.row
-          div.col-md-10(style="padding-top:3px;")
-            input.form-control(type="text",placeholder="Search For Products",ng-model="searchTerm",ng-change="getGroupsForSearch()")
-          div.col-md-2
-            button.btn.btn-primary(ng-show="sessionKey",style="width:100%;font-size:18px;",data-toggle="modal",data-target="#createGroupModal") Create Group
-            button.btn.btn-primary(ng-hide="sessionKey",style="width:100%;font-size:18px;")="Login To Create Group"
+  div(style="position:absolute;top:60px;padding-top:10px;padding-bottom:10px;left:auto;right:auto;z-index:10;width:100%;background-color:#FFFFFF;")
+    div.container()
+      div.row
+        div.col-md-6.col-md-offset-3(style="padding-top:3px;")
+          input.form-control(type="text",placeholder="Search For Products",ng-model="searchTerm",ng-change="getGroupsForSearch()")
 section(style="margin-top:100px;margin-bottom:20px;")
   div.container
     div.row

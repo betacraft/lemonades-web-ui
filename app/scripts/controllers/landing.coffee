@@ -25,6 +25,11 @@ angular.module('lemonades')
           #doing nothing
       )
 
+    $scope.initCreateGroup = ->
+      console.log "Init Create Group"
+      $("#createGroup").button("reset")
+      $scope.object = null
+
     $scope.createGroup = ->
       btn = $("#createGroup").button("loading")
       req =
