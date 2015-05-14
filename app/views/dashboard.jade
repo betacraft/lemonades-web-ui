@@ -3,8 +3,20 @@ section(ng-init="init()",style="background:#FFFFFF;")
     div.container()
       div.row
         div.col-md-6.col-md-offset-3(style="padding-top:3px;")
-          input.form-control(type="text",placeholder="Search For Products",ng-model="searchTerm",ng-change="getGroupsForSearch()")
+          div.input-group
+            input.form-control(type="text",placeholder="Search For Products",ng-model="searchTerm",ng-change="getGroupsForSearch()")
+            span.input-group-btn
+              button.btn.btn-primary(type="button",ng-click="clearSearchTerm()") x
 section(style="margin-top:100px;margin-bottom:20px;")
   div.container
     div.row
       group(ng-repeat="group in groups",group=group,infinite-scroll="getGroups()" infinite-scroll-distance="3")
+section(style="margin-top:100px;margin-bottom:20px;",ng-show="searchTerm !== '' && groups === null || groups.length===0")
+  div.container
+    div.row
+      div.col-md-12.text-center
+        p(style="color:#424242;font-size:25px;font-weight:bold;")="We think its time to create a deal for you !!"
+        p(ng-show="sessionKey",style="color:#424242;font-size:25px;font-weight:bold;") It's simple, just click on Create Group :)
+        button.btn.btn-lg.btn-primary(ng-hide="sessionKey",ng-click="login()",style="margin-top:20px;") Login To Create Deal
+
+

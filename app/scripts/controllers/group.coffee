@@ -8,7 +8,7 @@ angular.module('lemonades')
     $scope.group = {}
     $scope.joining = false
     $scope.leaving = false
-    $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #lemonades";
+    $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #GroupUP";
     $scope.timestamp = Date.now()
 
     $scope.updatePrice = ()->
@@ -144,13 +144,13 @@ angular.module('lemonades')
         $http(req).success(
           (data)->
             if data.success
-              $rootScope.title = "Buy " + data.group.product.name + " with me on lemonades.in"
+              $rootScope.title = "Buy " + data.group.product.name + " with me on GroupUP.in"
               $rootScope.image = data.group.product.product_image
               $rootScope.url = $location.absUrl()
-              $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on lemonades and get huge discount." if data.group.interested_users_count == 1
-              $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on lemonades and get huge discount." if data.group.interested_users_count > 1
+              $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on GroupUP.in and get huge discount." if data.group.interested_users_count == 1
+              $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on GroupUP.in and get huge discount." if data.group.interested_users_count > 1
               $scope.group = data.group
-              $scope.shareText = "Buy " + data.group.product.name + " with me on lemonades.in"
+              $scope.shareText = "Buy " + data.group.product.name + " with me on GroupUP.in"
               return
             $scope.status =
               message: data.message

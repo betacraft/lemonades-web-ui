@@ -79,12 +79,17 @@ p {
   margin-top: 50px;
 }
 
+.offerTagWrap{
+
+}
+
 .offerTag {
-  background: url(../images/offerTAg.png) no-repeat left top;
+  background: url(../images/tag.svg) no-repeat left top;
+  fill:#424242;
   position: absolute;
   width: 115px;
   height: 67px;
-  left: -12px;
+  left: -10px;
   top: -12px;
   z-index: 4;
 }
@@ -426,7 +431,7 @@ p {
 
 .pinkBTN {
   height: 40px;
-  background: #ff227c;
+  background: #A257FF;
   border: #c3bbbe 2px solid;
   width: 100%;
   font-weight: normal;
@@ -436,7 +441,7 @@ p {
 }
 
 .pinkBTN:hover {
-  background: #a81752;
+  background: #A257FF;
   color: #fff;
 }
 
@@ -565,7 +570,7 @@ p {
   width: 100%;
   height: auto;
   text-align: center;
-  background: #ff227c;
+  background: #A257FF;
   bottom: 0px;
   font-size: 20px;
   font-weight: 400;
@@ -577,7 +582,7 @@ p {
 .bigPink100pBtn:hover {
   text-decoration: none;
   color: #fff;
-  background: #d9226d;
+  background: #B257FF;
 }
 
 .bigGray100pBtn {

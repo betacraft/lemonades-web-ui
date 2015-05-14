@@ -494,7 +494,10 @@ module.exports = function (grunt) {
               'bower_components/angular-easyfb/angular-easyfb.js',
               'bower_components/html5shiv/dist/html5shiv.js',
               'bower_components/respond/dest/respond.src.js',
-              'bower_components/angular-seo/angular-seo.js'
+              'bower_components/angular-seo/angular-seo.js',
+              'bower_components/angular-loading-bar/build/loading-bar.js',
+              'bower_components/angular-bootstrap/ui-bootstrap.js',
+              'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js'
             ]
           }
         ]

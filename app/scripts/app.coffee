@@ -19,12 +19,12 @@ angular
   .run(['$rootScope','$location','$http','$cookieStore','config',($rootScope,$location,$http,$cookieStore,config)->
     $rootScope.baseUrl = config.baseUrl
     $rootScope.loading = false
-    $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
+    $rootScope.title = "GroupUP.in : The Next Generation of Group Buying";
     $rootScope.image = ""
     $rootScope.sessionKey = "";
     $rootScope.user = {}
     $rootScope.path = 0;
-    $rootScope.url = "http://www.lemonades.in"
+    $rootScope.url = "http://www.groupup.in"
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
     $rootScope.getUser = ->
       req =

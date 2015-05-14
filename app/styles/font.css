@@ -28,10 +28,10 @@ h5 {
 	font-weight: normal;
 }
 a {
-	color: #e8277a;
+	color: #A257FF;
 }
 a:hover {
-	color: #e8277a;
+	color: #A257FF;
 }
 
 .priceBox{
@@ -58,7 +58,7 @@ a:hover {
 .interestedBox h1{
         font-size: 44px;
 	font-weight: bold;
-    color: #ff227c;
+    color: #424242;
 }
 
 .interestedBox h2{
@@ -72,7 +72,7 @@ a:hover {
 .closeDealBox h1{
         font-size: 44px;
 	font-weight: bold;
-    color: #ff227c;
+    color: #424242;
 }
 
 .closeDealBox h2{

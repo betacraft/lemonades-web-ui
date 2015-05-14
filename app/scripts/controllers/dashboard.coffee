@@ -43,6 +43,10 @@ angular.module('lemonades')
     $rootScope.getUser()
     $scope.getGroups()
 
+  $scope.clearSearchTerm = ->
+    $scope.searchTerm = ""
+    $scope.getGroups(false)
+
   $scope.landing = ->
     $location.path("/")
 
