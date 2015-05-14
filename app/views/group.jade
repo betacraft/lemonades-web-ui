@@ -15,7 +15,7 @@ section(ng-init="init()")
 div.container(style="margin-top:60px;")
   div.row
     div.col-lg-4(style="")
-      div.sideImagewrapp(style="height:450px;cursor:pointer;")
+      div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
         div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()")="Leave This Group"
         a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()")="Login to Join"
         a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...")="I am interested"
