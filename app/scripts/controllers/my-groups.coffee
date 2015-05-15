@@ -8,6 +8,7 @@ angular.module('lemonades')
     $scope.joinedGroupPageNo = 0;
     $scope.createdGroups = []
     $scope.joinedGroups = []
+    $scope.fetchingGroups = false
     $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
     $rootScope.image = ""
     $rootScope.url = "http://www.lemonades.in"
@@ -49,6 +50,7 @@ angular.module('lemonades')
       )
 
     $scope.getCreatedGroups = ->
+      $scope.fetchingGroups = true
       req =
         method: "GET"
         url: $rootScope.baseUrl + "/api/v1/user/groups/created?page=" + $scope.pageNo
@@ -56,6 +58,7 @@ angular.module('lemonades')
           'Session-Key': $scope.sessionKey
       $http(req).success(
         (data)->
+          $scope.fetchingGroups = false
           if data.success
             if data.created_groups == null
               $scope.pageNo = -1
@@ -71,10 +74,12 @@ angular.module('lemonades')
             return
       ).error(
         (data)->
+          $scope.fetchingGroups = false
           #doing nothing
       )
 
     $scope.getJoinedGroups = ->
+      $scope.fetchingGroups = true
       req =
         method: "GET"
         url: $rootScope.baseUrl + "/api/v1/user/groups/joined?page=" + $scope.joinedGroupPageNo
@@ -82,6 +87,7 @@ angular.module('lemonades')
           'Session-Key': $scope.sessionKey
       $http(req).success(
         (data)->
+          $scope.fetchingGroups = false
           if data.success
             if data.joined_groups == null
               $scope.joinedGroupPageNo = -1
@@ -97,33 +103,9 @@ angular.module('lemonades')
             return
       ).error(
         (data)->
+          $scope.fetchingGroups = false
           #doing nothing
       )
 
-    $scope.createGroup = ->
-      btn = $("#createGroup").button("loading")
-      req =
-        method: "POST"
-        url: $rootScope.baseUrl + "/api/v1/group"
-        headers:
-          'Session-Key': $scope.sessionKey
-        data: $scope.object
-      $http(req).success(
-        (data)->
-          $("#createGroupModal").modal("hide")
-          btn.button("reset")
-          if data.success
-            $location.path("/group/" + data.group.id)
-            return
-          $scope.status =
-            message: data.message
-            success: false
-      ).error(
-        (data)->
-          btn.button("reset")
-          $scope.status =
-            message: data.message
-            success: false
-      )
 ])
 

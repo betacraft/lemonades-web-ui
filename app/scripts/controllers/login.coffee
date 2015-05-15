@@ -33,7 +33,7 @@ angular.module('lemonades')
               $rootScope.sessionKey = data.user.session_key
               if $location.search()["join"]!= undefined
                 groupId = $location.search()["join"]
-                $location.path("/group/"+groupId).search({"join":"true"})
+                $location.path("/group/"+groupId).search({"join":groupId})
                 return
               if $location.search()["next"] != undefined
                 $location.path($location.search()["next"]).search({})

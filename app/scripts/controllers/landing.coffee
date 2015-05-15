@@ -1,7 +1,7 @@
 'use strict';
 angular.module('lemonades')
 .controller('LandingCtrl',
-  ['$scope', '$location', '$rootScope', '$cookieStore', '$http', ($scope, $location, $rootScope, $cookieStore, $http) ->
+  ['$scope', '$location', '$rootScope', '$cookieStore', '$http','ngToast', ($scope, $location, $rootScope, $cookieStore, $http,ngToast) ->
     $scope.htmlReady();
     $scope.deals = {}
     $scope.dropdownStatus = {
@@ -29,6 +29,7 @@ angular.module('lemonades')
       console.log "Init Create Group"
       $("#createGroup").button("reset")
       $scope.object = null
+      $scope.status = {}
 
     $scope.createGroup = ->
       btn = $("#createGroup").button("loading")
@@ -42,6 +43,7 @@ angular.module('lemonades')
         (data)->
           $("#createGroupModal").modal("hide")
           btn.button("reset")
+          $scope.object = null
           if data.success
             $location.path("/group/" + data.group.id)
             return
@@ -50,6 +52,7 @@ angular.module('lemonades')
             success: false
       ).error(
         (data)->
+          $scope.object = null
           btn.button("reset")
           $scope.status =
             message: data.message
@@ -63,10 +66,12 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
-      $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
-      $rootScope.image = ""
-      $rootScope.url = "http://www.lemonades.in"
-      $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
+      ngToast.create({
+        className: 'info',
+        content: 'We are currently running a final demo run on the production environment. All the data will be flushed on Monday and We will be LIVE :)',
+        dismissOnTimeout:false,
+        dismissButton:true
+      })
       $rootScope.getUser()
 
     $scope.login = ()->
@@ -78,6 +83,7 @@ angular.module('lemonades')
       $location.path("/my-groups")
 
     $scope.register = ()->
+      $location.search({"next":$location.path()})
       $location.path("/register");
 
     $scope.toggled = (open) ->

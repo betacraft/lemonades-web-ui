@@ -39,7 +39,8 @@ angular.module('lemonades')
     )
 
   $scope.init = ()->
-    $rootScope.path = 1;
+    $location.search({})
+    $rootScope.path = 1
     $rootScope.getUser()
     $scope.getGroups()
 

@@ -5,26 +5,19 @@ script(type="text/javascript").
     angular.element(document.getElementById('signUpForm')).scope().captchaResponse = resp;
   };
 
+
 div.container-fluid-full
-  div.container-fluid-full.bgGray(style="padding:10px;")
-    div.row
-      div.col-md-12
-        div.col-md-2
-          a(ng-click="landing()")
-            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-4.pull-right.col-md-offset-6.text-right
-          .btn.btn-primary-border(ng-click="login()")="Login"
-  div.container(style="margin-top:50px;")
-  h2.text-center(style="color:#E8277A;")="Register"
+  div.container(style="margin-top:90px;")
+  h2.text-center(style="color:#424242;")="Register"
   div.container(style="margin-bottom:50px;")
     div.col-md-4.col-sm-4.col-sm-offset-4.col-md-offset-4
-      div(ng-show="status !== undefined && status.success !== true")
+      div(ng-show="status !== undefined && status.success !== true",style="margin-top:10px;")
         div.panel-danger.text-center
           p {{status.message}}
       form#signUpForm(role="form",name="form",style="margin-top:20px;",novalidate)
         div(ng-class="{'has-error form-group':form.$submitted && form.email.$error.required || form.email.$error.email === true,'form-group':true}")
           label(for="email")="Email"
-          input#email.form-control(type="email",style="font-size:16px;",name="email",placeholder="Email",ng-model="user.email",required="")
+          input#email.form-control(type="email",style="font-size:16px;text-transform: lowercase;",name="email",placeholder="Email",ng-model="user.email",required="")
           span(ng-show="hasError(form.email) && !form.email.$error.required") Invalid Email Address
           span(ng-show="form.email.$dirty && form.email.$error.required") Required
         div(ng-class="{'has-error form-group':form.$submitted && form.mobile.$error.required || form.mobile.$error.email === true,'form-group':true}")

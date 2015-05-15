@@ -356,7 +356,7 @@ module.exports = function (grunt) {
     cdn: {
       options: {
         /** @required - root URL of your CDN (may contains sub-paths as shown below) */
-        cdn: 'http://cdn.lemonades.in',
+        cdn: 'http://cdn.groupup.in',
         /** @optional  - if provided both absolute and relative paths will be converted */
         flatten: true
       },
@@ -529,7 +529,7 @@ module.exports = function (grunt) {
         },
         constants: {
           config: {
-            url:'http://www.lemonades.in',
+            url:'http://www.groupup.in',
             name: 'production',
             baseUrl: 'http://lemonades.elasticbeanstalk.com',
             intercomAppId: 'nasq14dx',

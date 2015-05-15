@@ -3,12 +3,13 @@ html(lang="en",ng-app="lemonades")
   head
     base(href="/")
     meta(charset="utf-8")
+    link(rel="shortcut icon",href="http://cdn.groupup.in/favicon.ico")
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name='fragment', content='!')
     meta(name="viewport" content="width=device-width, initial-scale=1")
     meta(name="description",content="Spot your product -> Form Groups -> Get huge group discounts. Use product links from Flipkart,Amazon.in to create a group page. And start sharing it to grow that group and get huge group buying discount.")
     meta(property='og:type', content='website')
-    meta(property='og:url', content='http://www.lemonades.in')
+    meta(property='og:url', content='http://www.groupup.in')
     meta(property='og:title', content='GroupUP.in : Buy in Groups And Get Huge Discounts')
     meta(property='og:image', content='images/logo.svg')
     meta(property='og:image:height', content='300')
@@ -44,7 +45,7 @@ html(lang="en",ng-app="lemonades")
       })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
       ga('create', 'UA-61572806-1', 'auto');
       //ga('create', 'UA-61572806-2', 'auto');
-  body(ng-controller="LandingCtrl as ctrl",ng-cloak)
+  body(ng-controller="LandingCtrl as ctrl",ng-cloak,ng-init="init()")
     div#createGroupModal.modal(name="createGroupModal",tabindex="-2",role="dialog",aria-labelledby="createGroupModalLabel",aria-hidden="true",style="z-index:10000;")
       div.modal-dialog
         div.modal-content
@@ -104,7 +105,7 @@ html(lang="en",ng-app="lemonades")
                 li.divider
                 li
                   a(ng-click="logout()") Logout
-          button(ng-class="{'btn btn-primary pull-right':path!==2,'btn btn-primary-border pull-right':path==2}",ng-show="sessionKey",style="font-size:18px;margin-top:8px;margin-right:5px;",data-toggle="modal",data-target="#createGroupModal") Create Group
+          button(ng-class="{'btn btn-primary pull-right':path!==2,'btn btn-primary-border pull-right':path==2}",ng-show="sessionKey",style="font-size:18px;margin-top:8px;margin-right:5px;",data-toggle="modal",data-target="#createGroupModal",ng-click="initCreateGroup()") Create Group
     div(ng-view)
     // build:js scripts/vendor.js
     // bower:js
@@ -153,13 +154,6 @@ html(lang="en",ng-app="lemonades")
     script(src="scripts/controllers/terms-of-service.js")
     // endbuild
     script(type="text/javascript", src="//use.typekit.net/xpw2ktq.js")
-    script(type="text/javascript").
-      $('#myModal').on('shown.bs.modal', function () {
-        callPlayer('yt-player', 'playVideo');
-      });
-      $('#myModal').on('hidden.bs.modal', function () {
-        $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
-      });
     script(type="text/javascript").
       try{Typekit.load();}catch(e){}
     script(type='text/javascript').

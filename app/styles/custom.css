@@ -49,7 +49,7 @@ p {
 }
 
 .pinkText{
-  color:#e8277a;
+  color:#A257FF;
 }
 
 .width100p {
@@ -64,7 +64,7 @@ p {
 }
 
 .rightPinkLine {
-  border-left: solid 5px #ff227c;
+  border-left: solid 5px #A257FF;
   padding-left: 20px;
 }
 
@@ -197,7 +197,7 @@ p {
 
 .statusBar-pink {
   width: 60%;
-  background: #ff227c;
+  background: #A257FF;
   height: 2px;
   position: absolute;
   outline: 1px solid #cdcdcd;
@@ -602,7 +602,7 @@ p {
 .bigGray100pBtn:hover {
   text-decoration: none;
   color: #ffffff;
-  background: #d9226d;
+  background: #A257FF;
 }
 
 .share {

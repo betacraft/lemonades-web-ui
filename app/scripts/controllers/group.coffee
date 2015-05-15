@@ -3,7 +3,6 @@
 angular.module('lemonades')
   .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast','$window', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast,$window) ->
     $scope.htmlReady();
-    $scope.sessionKey = $cookieStore.get("lmnsskey")
     $scope.groupId = $routeParams.id;
     $scope.group = {}
     $scope.joining = false
@@ -17,7 +16,7 @@ angular.module('lemonades')
         method: "POST"
         url: $rootScope.baseUrl + "/api/v1/product/"+$scope.group.product.id+ "/update_price"
         headers:
-          'Session-Key': $scope.sessionKey
+          'Session-Key': $rootScope.sessionKey
       $http(req).success(
         (data)->
           console.log data
@@ -53,7 +52,7 @@ angular.module('lemonades')
         method: "POST"
         url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId + "/leave"
         headers:
-          'Session-Key': $scope.sessionKey
+          'Session-Key': $rootScope.sessionKey
       $http(req).success(
         (data)->
           $scope.leaving = false
@@ -79,7 +78,7 @@ angular.module('lemonades')
         method: "POST"
         url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId + "/join"
         headers:
-          'Session-Key': $scope.sessionKey
+          'Session-Key': $rootScope.sessionKey
       $http(req).success(
         (data)->
           btn.button("reset")
@@ -87,7 +86,6 @@ angular.module('lemonades')
           if data.success
             $scope.timestamp = Date.now()
             $scope.group = data.group
-            return
           if automatedJoin
             $location.search({})
             $scope.init()
@@ -108,7 +106,7 @@ angular.module('lemonades')
         method: "POST"
         url: $rootScope.baseUrl + "/api/v1/group"
         headers:
-          'Session-Key': $scope.sessionKey
+          'Session-Key': $rootScope.sessionKey
         data: $scope.object
       $http(req).success(
         (data)->
@@ -133,14 +131,14 @@ angular.module('lemonades')
     $scope.init = ->
       $rootScope.path = 2;
       $rootScope.getUser()
-      if $location.search()["join"]!= undefined
+      if $location.search()["join"]!= undefined && $location.search()["join"] == $scope.groupId
         $scope.joinGroup(true)
       else
         req =
           method: "GET"
           url: $rootScope.baseUrl + "/api/v1/group/"+$scope.groupId
           headers:
-            'Session-Key': $scope.sessionKey
+            'Session-Key': $rootScope.sessionKey
         $http(req).success(
           (data)->
             if data.success

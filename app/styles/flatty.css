@@ -3900,6 +3900,23 @@ fieldset[disabled] .btn-default.active {
   border-color: #A257FF;
 }
 
+.btn-primary-gray {
+  color: #ffffff;
+  background-color: #a5a5a5;
+  border-color: #a5a5a5;
+}
+
+.btn-primary-gray:hover,
+.btn-primary-gray:focus,
+.btn-primary-gray.focus,
+.btn-primary-gray:active,
+.btn-primary-gray.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #000000;
+  background-color: transparent;
+  border-color: #a5a5a5;
+}
+
 .btn-primary-border-black {
   color: #000000;
   background-color: transparent;

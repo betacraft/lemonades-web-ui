@@ -14,6 +14,9 @@ angular.module('lemonades')
         console.log "calling is captcha valid"
         return $scope.captchaResponse != ""
 
+      $scope.resetCaptcha = ()->
+        grecaptcha.reset()
+
       $scope.landing = ->
         $location.path("/")
 
@@ -46,15 +49,20 @@ angular.module('lemonades')
               $rootScope.sessionKey = data.user.session_key
               if $location.search()["join"]!= undefined
                 groupId = $location.search()["join"]
-                $location.path("/group/"+groupId).search({"join":"true"})
+                $location.path("/group/"+groupId).search({"join":groupId})
+                return
+              if $location.search()["next"] != undefined
+                $location.path($location.search()["next"]).search({})
                 return
               $location.path("/dashboard")
               return
+            $scope.resetCaptcha()
             $scope.status =
               message: data.message
               success: false
         ).error(
           (data)->
+            $scope.resetCaptcha()
             btn.button("reset")
             $scope.status =
               message: data.message

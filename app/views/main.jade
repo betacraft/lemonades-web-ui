@@ -1,15 +1,41 @@
+script(type="text/javascript").
+  function callPlayer(func, args) {
+    var iframes = document.getElementsByTagName('iframe');
+    for (var i = 0; i < iframes.length; ++i) {
+      if (iframes[i]) {
+        var src = iframes[i].getAttribute('src');
+        if (src) {
+          if (src.indexOf('youtube.com/embed') != -1) {
+            iframes[i].contentWindow.postMessage(JSON.stringify({
+              'event': 'command',
+              'func': func,
+              'args': args || []
+            }), "*");
+          }
+        }
+      }
+    }
+  }
+  $('#myModal').on('shown.bs.modal', function () {
+    callPlayer('yt-player', 'playVideo');
+  });
+  $('#myModal').on('hidden.bs.modal', function () {
+    $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
+  });
 #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
   .modal-dialog
     .modal-content
       #yt-player.modal-body
         iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
+      div.modal-footer
+        a.btn.btn-primary-gray(href="http://www.youtube.com/embed/_F6rBAHOrDs?autoplay=1",target="_blank",ng-click="dismissMyModal()") View on Youtube
 div.container-fluid-full(ng-init="init()")
   div.container-fluid-full(style="background-color:#FFFFFF;")
     div.container(style="margin-top:60px;padding-bottom:20px;")
       div.row.text-center
         div.col-md-12(style="margin-top:30px;")
           p(style="color:#424242;font-size:45px;font-weight:bold;")="The Next Generation Of Group Buying"
-          p(style="color:#424242;font-size:25px;font-weight:bold;")="Where deals are created by you"
+          p(style="color:#424242;font-size:25px;font-weight:bold;")="Where deals are created by you for you !"
         div.row.text-center.marginTop50px(style="margin-right:10px;margin-left:10px;")
           div.col-md-12(style="margin-top:30px;")
             img.img-responsive(src="images/gra.png")
@@ -30,13 +56,16 @@ footer
     div.row
       div.col-md-12.text-center
         a(style="color:#000000;",href="https://www.facebook.com/groupup.in",target="_blank") Like Us
-        span=" | "
+        span
+        ="  |  "
         a(href="https://twitter.com/letsgroupup",target="_blank",style="color:#000000;margin-left:5px;") Follow Us
-        span=" | "
+        span
+        ="  |  "
         a(style="color:#000000;margin-left:5px;",data-toggle="modal",data-target="#myModal") How It Works
       div.col-md-12.text-center(style="margin-top:3px;")
         a(style="color:#000000;",ng-click="privacy()") Privacy Policy
-        span=" | "
+        span
+        =" | "
         a(style="color:#000000;",ng-click="termsOfService()") Terms Of Service
       div.col-md-12.text-center(style="margin-top:5px;")
         p Copyrights GroupUP

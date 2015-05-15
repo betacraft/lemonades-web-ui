@@ -16,15 +16,7 @@ div#forgotPasswordModal.modal(name="forgotPasswordModal",tabindex="-1",role="dia
       div.modal-footer
         button#forgotPassword.btn.btn-primary-border(type="button",data-loading-text="Loading...",ng-disabled="form.emailAddress.$error.required===true",ng-click="forgotPassword()")="Reset"
 div.container-fluid-full
-  div.container-fluid.bgGray(style="padding:10px;")
-    div.row
-      div.col-md-12.col-sm-12
-        div.col-md-2.col-sm-2
-          a(ng-click="landing()")
-            img.img-responsive.text-center(src="images/innerPageLogo.png",width="160px;")
-        div.col-md-4.pull-right.col-md-offset-6.text-right.col-sm-4.col-sm-offset-6
-          .btn.btn-primary-border(ng-click="register()")="Register"
-  div.container(style="margin-top:50px;")
+  div.container(style="margin-top:90px;")
     div.col-md-12.text-center
       h2.text-center(style="color:#424242")="Login"
     div.col-md-4.col-sm-4.col-sm-offset-4.col-md-offset-4
@@ -34,7 +26,7 @@ div.container-fluid-full
       form#loginForm(role="form",name="form",style="margin-top:20px;",novalidate)
         div
           label(for="email")="Email"
-          input#email.form-control(type="text",style="font-size:16px;",name="email",ng-model="user.email",placeholder="me@you.com",required="")
+          input#email.form-control(type="text",style="font-size:16px;text-transform: lowercase;",name="email",ng-model="user.email",placeholder="me@you.com",required="")
         div(style="margin-top:5px;")
           label(for="password")="Password"
           input#password.form-control(type="password",style="font-size:16px;",name="pwd",ng-model="user.password",placeholder="password",required="")

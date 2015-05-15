@@ -10,6 +10,7 @@ angular.module('lemonades')
       $location.path("/dashboard")
 
     $scope.init = ->
+      $location.search({})
       $rootScope.path = 0;
       $rootScope.title = "Lemonades.in : Next Generation of Group Buying";
       $rootScope.image = ""
@@ -17,6 +18,10 @@ angular.module('lemonades')
       $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
       $rootScope.getUser()
       $scope.getGroups()
+
+
+    $scope.dismissMyModal = ()->
+      $("#myModal").modal('hide')
 
     $scope.goToGroup = (groupId)->
       $location.path("/group/" + groupId)
