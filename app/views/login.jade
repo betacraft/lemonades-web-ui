@@ -31,10 +31,5 @@ div.container-fluid-full
           label(for="password")="Password"
           input#password.form-control(type="password",style="font-size:16px;",name="pwd",ng-model="user.password",placeholder="password",required="")
         div.text-center(style="margin-top:10px;margin-bottom:20px;")
-          a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",data-toggle="modal",data-target="#forgotPasswordModal")="Forgot Password"
-          button.btn.btn-primary-border.pull-right#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...")="Login"
-    //div.col-md-3.col-sm-3.text-center(style="margin-top:60px;")
-    //  a#loginWithFacebook.text-center(ng-click="loginWithFacebook()")
-    //    image(src="images/fb_login.png",style="width:190px;")
-    //  a#loginWithGPlus.text-center(ng-click="loginWithGooglePlus()")
-    //    image(src="images/google_sign_in.png",style="width:195px;")
+          a#forgotPasswordButton.pull-left(style="margin-top:10px;",type="submit",data-toggle="modal",data-target="#forgotPasswordModal",analytics-on="click",analytics-event="forgot-password-login-page",analytics-label="forgot-password-login-page",analytics-category="users")="Forgot Password"
+          button.btn.btn-primary-border.pull-right#loginButton(type="submit",ng-click="login()",data-loading-text="Logging in...",analytics-on="click",analytics-event="login-login-page",analytics-label="login-login-page",analytics-category="users")="Login"

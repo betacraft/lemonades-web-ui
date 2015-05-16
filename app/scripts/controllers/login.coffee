@@ -2,8 +2,8 @@
 
 angular.module('lemonades')
 .controller('LoginCtrl',
-  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', 'ngToast','GooglePlus',
-    ($scope, $cookieStore, $http, $rootScope, $location, session, ngToast,GooglePlus) ->
+  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', 'ngToast','GooglePlus','$analytics',
+    ($scope, $cookieStore, $http, $rootScope, $location, session, ngToast,GooglePlus,$analytics) ->
       $scope.user = {}
       $scope.fbUser = {}
       $scope.fbStatus = null
@@ -28,6 +28,7 @@ angular.module('lemonades')
           (data)->
             btn.button("reset")
             if data.success
+              $analytics.eventTrack('login-success-login-page', {  category: 'users', label: 'login-success-login-page' });
               session.store(data.user)
               $cookieStore.put("lmnsskey", data.user.session_key, {expires: 1, path: "/"})
               $rootScope.sessionKey = data.user.session_key

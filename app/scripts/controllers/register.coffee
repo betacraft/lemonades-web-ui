@@ -1,8 +1,8 @@
 'use strict';
 angular.module('lemonades')
 .controller('RegisterCtrl',
-  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', 'ngToast', 'GooglePlus',
-    ($scope, $cookieStore, $http, $rootScope, $location, session, ngToast, GooglePlus) ->
+  ['$scope', '$cookieStore', '$http', '$rootScope', '$location', 'session', 'ngToast', 'GooglePlus','$analytics',
+    ($scope, $cookieStore, $http, $rootScope, $location, session, ngToast, GooglePlus,$analytics) ->
       $scope.user = {}
       $scope.captchaResponse = ""
       $scope.captchaInvalid = false
@@ -37,6 +37,7 @@ angular.module('lemonades')
             btn.button("reset")
             $scope.status = {}
             if data.success
+              $analytics.eventTrack('register-success-register-page', { category: 'users', label: 'register-success-register-page' });
               session.store(data.user)
               ngToast.create({
                 className: 'info',

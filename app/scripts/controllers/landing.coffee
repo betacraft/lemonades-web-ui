@@ -68,7 +68,7 @@ angular.module('lemonades')
     $scope.init = ->
       ngToast.create({
         className: 'info',
-        content: 'We are currently running a final demo run on the production environment. All the data will be flushed on Monday and We will be LIVE :)',
+        content: 'We are currently running a final demo run on the production environment. All the data will be flushed on Monday and We will be LIVE on 19th May 2015 :)',
         dismissOnTimeout:false,
         dismissButton:true
       })

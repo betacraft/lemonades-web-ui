@@ -83,7 +83,6 @@ angular.module('lemonades')
     )
 
   $scope.getGroupsForSearch = ->
-    console.log "CAlling get groups for search"
     $scope.getGroups(true)
 
 
@@ -105,7 +104,6 @@ angular.module('lemonades')
         'Session-Key': $scope.sessionKey
     $http(req).success(
       (data)->
-        console.log data
         if data.success
           if data.groups == null
             $scope.pageNo = -1

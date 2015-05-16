@@ -1,24 +1,11 @@
-script(type="text/javascript").
-  $('#myModal').on('shown.bs.modal', function () {
-    callPlayer('yt-player', 'playVideo');
-  });
-  $('#myModal').on('hidden.bs.modal', function () {
-    $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
-  });
-#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-  .modal-dialog
-    .modal-content
-      #yt-player.modal-body
-        iframe(src='//www.youtube.com/embed/_F6rBAHOrDs?rel=0&enablejsapi=1', allowfullscreen='', width='100%', frameborder='0', height='400px')
-
 section(ng-init="init()")
 div.container(style="margin-top:60px;")
   div.row
     div.col-lg-4(style="")
       div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
-        div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()")="Leave This Group"
-        a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()")="Login to Join"
-        a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...")="I am interested"
+        div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups")="Leave This Group"
+        a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups")="Login to Join"
+        a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups")="I am interested"
         div(style="width:100%;")
           img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
     div.col-lg-8
@@ -32,22 +19,22 @@ div.container(style="margin-top:60px;")
         div.col-md-12
           div.priceBox
             p(style="font-size=25px;")="Online Market Price"
-              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1")=" (Flipkart)"
-              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1")=" (Amazon)"
+              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('flipkart')!==-1",analytics-on="click",analytics-event="flipkart-product-info-group-page",analytics-label="flipkart-product-info-group-page",analytics-category="referral-event")=" (Flipkart)"
+              a(href="{{group.product.product_link}}",target="_blank",ng-show="group.product.product_link.indexOf('amazon')!==-1",analytics-on="click",analytics-event="amazon-product-info-group-page",analytics-label="amazon-product-info-group-page",analytics-category="referral-event")=" (Amazon)"
               span=''
               ='  '
               ="|"
               ='  '
-              a#updatePrice(ng-click="updatePrice()",data-loading-text="Updating...")="Update Info"
+              a#updatePrice(ng-click="updatePrice()",data-loading-text="Updating...",analytics-on="click",analytics-event="update-info-group-page",analytics-label="update-info-group-page",analytics-category="products")="Update Info"
             h3="{{group.product.price_value | currency:'Rs. '}}"
       div.row(style="margin-top:10px;")
         div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
           div.col-md-2.col-sm-12.text-center
-            div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.groupup.in/group/{{groupId}}/share?by={{user.id}}&stamp={{timestamp}}&utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button")
+            div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.groupup.in/group/{{groupId}}/share?by={{user.id}}&stamp={{timestamp}}&utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button",analytics-on="click",analytics-event="fb-share-group-page",analytics-label="fb-share-group-page",analytics-category="social-event")
           div.col-md-2.text-center.col-sm-12
-            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.groupup.in/#!/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share")="Tweet"
+            a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.groupup.in/#!/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share",analytics-on="click",analytics-event="tweet-group-page",analytics-label="tweet-group-page",analytics-category="social-event")="Tweet"
           div.col-md-2.text-center.col-sm-12
-            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.groupup.in/#!/group/{{groupId}}?by={{user.id}}&stamp={{timestamp}}&utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share")
+            a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.groupup.in/#!/group/{{groupId}}?by={{user.id}}&stamp={{timestamp}}&utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share",analytics-on="click",analytics-event="gplus-share-group-page",analytics-label="gplus-share-group-page",analytics-category="social-event")
       div.row
         div.col-md-12
           div.interestedBox(style="margin-right:5px;")

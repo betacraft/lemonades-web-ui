@@ -8,7 +8,7 @@ section(ng-init="init()",style="background:#FFFFFF;")
             span.input-group-btn
               button.btn.btn-primary-gray(type="button",ng-click="clearSearchTerm()") Show All
 
-section(style="margin-top:100px;margin-bottom:20px;")
+section(style="margin-top:100px;margin-bottom:20px;",analytics-on="scrollby",analytics-event="scrolled-groups-dashboard-screen",analytics-category="groups",analytics-label="scrolled-groups-dashboard-screen")
   div.container
     div.row
       group(ng-repeat="group in groups",group=group,infinite-scroll="getGroups()" infinite-scroll-distance="3")
@@ -17,8 +17,10 @@ section(style="margin-top:100px;margin-bottom:20px;",ng-show="searchTerm !== '' 
     div.row
       div.col-md-12.text-center
         p(style="color:#424242;font-size:25px;font-weight:bold;")="We think its time to create a deal for you !!"
-        p(ng-show="sessionKey",style="color:#424242;font-size:25px;font-weight:bold;") It's simple, just click on Create Group :)
-        button.btn.btn-lg.btn-primary(ng-hide="sessionKey",ng-click="login()",style="margin-top:20px;") Login To Create Deal
+        p(ng-show="sessionKey",style="color:#424242;font-size:25px;font-weight:bold;") Just click on
+          button.btn.btn-primary(ng-show="sessionKey",style="font-size:18px;",ng-disabled="true") Create Group
+          = " on top bar"
+        button.btn.btn-lg.btn-primary(ng-hide="sessionKey",ng-click="login()",style="margin-top:20px;",analytics-on="click",analytics-event="login-to-create-group-dashboard-page",analytics-label="login-to-create-group-dashboard-page",analytics-category="users") Login To Create Deal
 section(style="margin-top:100px;margin-bottom:20px;",ng-show="fetchingGroups")
   div.container
     div.row

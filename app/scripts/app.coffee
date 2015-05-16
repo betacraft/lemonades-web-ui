@@ -15,6 +15,7 @@ angular
     'ui.bootstrap',
     'infinite-scroll',
     'angular-loading-bar',
+    'angulartics.scroll',
     'angulartics.google.analytics'])
   .run(['$rootScope','$location','$http','$cookieStore','config',($rootScope,$location,$http,$cookieStore,config)->
     $rootScope.baseUrl = config.baseUrl
@@ -142,7 +143,6 @@ angular
   ])
   .run ['$rootScope','$anchorScroll',($rootScope,$anchorScroll) ->
     $rootScope.$on '$locationChangeSuccess', (event, nextRoute) ->
-      console.log "Next route => " + nextRoute
       window.scrollTo(0,0)
     return
   ]

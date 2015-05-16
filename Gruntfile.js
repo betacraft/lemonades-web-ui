@@ -488,6 +488,7 @@ module.exports = function (grunt) {
               'bower_components/SHA-1/sha1.js',
               'bower_components/angulartics/src/angulartics.js',
               'bower_components/angulartics/src/angulartics-ga.js',
+              'bower_components/angulartics/src/angulartics-scroll.js',
               'bower_components/angular-google-plus/dist/angular-google-plus.js',
               'bower_components/ngtoast/dist/ngToast.js',
               'bower_components/angular-intercom/angular-intercom.js',

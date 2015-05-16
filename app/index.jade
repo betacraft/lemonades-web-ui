@@ -52,9 +52,9 @@ html(lang="en",ng-app="lemonades")
           div.modal-header
             div.row
               div.col-md-8
-                h4#createGroupModal.modal-title="Create / Search Group"
+                h4#createGroupModal.modal-title="Create"
               div.col-md-4
-                a#mailUs.btn.btn-primary-border-black.pull-right(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product")="Mail Us"
+                a#mailUs.btn.btn-primary-border-black.pull-right(type="button",href="mailto:akshay@rainingclouds.com?subject=Create A group for my product",analytics-on="click",analytics-event="mail-us-create-group-dialog",analytics-category="site-event")="Mail Us"
           div.modal-body
             div(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;")
               p.colorPink="{{status.message}}"
@@ -62,9 +62,9 @@ html(lang="en",ng-app="lemonades")
               div.form-group
                 label(for="productLink")="Flipkart/Amazon.in Product Link"
                 input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
-            a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}") Mail Us this link, we will try to fix this
+            a.btn.btn-primary-border(ng-show="status !== undefined && status.success === false",style="margin-bottom:10px;",href="mailto:akshay@rainingclouds.com?subject=Unable to parse&body=I want to create a group for : {{object.product_link}}",analytics-on="click",analytics-event="mail-us-error-page-create-group-dialog",analytics-category="site-event") Mail Us this link, we will try to fix this
           div.modal-footer
-            button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()")="Go"
+            button#createGroup.btn.btn-primary-border(type="button",data-loading-text="Fetching Info",ng-disabled="form.productLink.$error.required===true",ng-click="createGroup()",analytics-on="click",analytics-event="create-group-create-group-dialog",analytics-category="site-event")="Go"
     <!--[if lt IE 7]>
     p.browsehappy
       | You are using an
@@ -86,13 +86,13 @@ html(lang="en",ng-app="lemonades")
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
             li(ng-class="{'active':path===1,'':path!==1}")
-              a(ng-click="dashboard()",)
+              a(ng-click="dashboard()",analytics-on="click",analytics-event="go-to-dashboard-nav-bar",analytics-category="site-event")
                 | Groups
           ul.nav.navbar-nav.navbar-right
             li(ng-hide="sessionKey")
-              a(ng-click="login()")
+              a(ng-click="login()",analytics-on="click",analytics-event="login-nav-bar",analytics-category="site-event")
                 | Login
-            li(ng-hide="sessionKey")
+            li(ng-hide="sessionKey",analytics-on="click",analytics-event="register-nav-bar",analytics-category="site-event")
               a(ng-click="register()")
                 | Register
             li.dropdown(ng-show="sessionKey" dropdown on-toggle="toggled(open)")
@@ -101,11 +101,11 @@ html(lang="en",ng-app="lemonades")
                 span.caret
               ul.dropdown-menu(role='menu')
                 li(ng-class="{'active':path===4,'':path!==4}")
-                  a(ng-click="myGroups()") My Groups
+                  a(ng-click="myGroups()",analytics-on="click",analytics-event="my-groups-nav-bar",analytics-category="site-event") My Groups
                 li.divider
                 li
-                  a(ng-click="logout()") Logout
-          button(ng-class="{'btn btn-primary pull-right':path!==2,'btn btn-primary-border pull-right':path==2}",ng-show="sessionKey",style="font-size:18px;margin-top:8px;margin-right:5px;",data-toggle="modal",data-target="#createGroupModal",ng-click="initCreateGroup()") Create Group
+                  a(ng-click="logout()",analytics-on="click",analytics-event="logout-nav-bar") Logout
+          button(ng-class="{'btn btn-primary pull-right':path!==2,'btn btn-primary-border pull-right':path==2}",ng-show="sessionKey",style="font-size:18px;margin-top:8px;margin-right:5px;",data-toggle="modal",data-target="#createGroupModal",ng-click="initCreateGroup()",analytics-on="click",analytics-event="create-group-nav-bar",analytics-category="site-event") Create Group
     div(ng-view)
     // build:js scripts/vendor.js
     // bower:js
@@ -123,6 +123,7 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/SHA-1/sha1.js')
     script(src='bower_components/angulartics/src/angulartics.js')
     script(src='bower_components/angulartics/src/angulartics-ga.js')
+    script(src='bower_components/angulartics/src/angulartics-scroll.js')
     script(src='bower_components/angular-google-plus/dist/angular-google-plus.js')
     script(src='bower_components/ngtoast/dist/ngToast.js')
     script(src='bower_components/angular-easyfb/angular-easyfb.js')
