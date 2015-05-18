@@ -52,10 +52,10 @@ angular.module('lemonades')
                 groupId = $location.search()["join"]
                 $location.path("/group/"+groupId).search({"join":groupId})
                 return
-              if $location.search()["next"] != undefined
+              if $location.search()["next"] != undefined && $location.search()["next"] != '/login'
                 $location.path($location.search()["next"]).search({})
                 return
-              $location.path("/dashboard")
+              $location.path("/dashboard").search({})
               return
             $scope.resetCaptcha()
             $scope.status =

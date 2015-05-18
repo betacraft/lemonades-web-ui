@@ -17,9 +17,9 @@ section(style="margin-top:100px;margin-bottom:20px;",ng-show="searchTerm !== '' 
     div.row
       div.col-md-12.text-center
         p(style="color:#424242;font-size:25px;font-weight:bold;")="We think its time to create a deal for you !!"
-        p(ng-show="sessionKey",style="color:#424242;font-size:25px;font-weight:bold;") Just click on
+        p(ng-show="sessionKey",style="color:#424242;font-size:25px;font-weight:bold;") Just click
           button.btn.btn-primary(ng-show="sessionKey",style="font-size:18px;",ng-disabled="true") Create Group
-          = " on top bar"
+          = " button on the top bar"
         button.btn.btn-lg.btn-primary(ng-hide="sessionKey",ng-click="login()",style="margin-top:20px;",analytics-on="click",analytics-event="login-to-create-group-dashboard-page",analytics-label="login-to-create-group-dashboard-page",analytics-category="users") Login To Create Deal
 section(style="margin-top:100px;margin-bottom:20px;",ng-show="fetchingGroups")
   div.container

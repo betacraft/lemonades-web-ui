@@ -1,6 +1,6 @@
 'use strict'
 angular.module('lemonades')
-.controller('DashboardCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location', ($scope, $cookies, $cookieStore, $http, $rootScope, $location) ->
+.controller('DashboardCtrl', ['$scope', '$cookies', '$cookieStore', '$http', '$rootScope', '$location','$analytics', ($scope, $cookies, $cookieStore, $http, $rootScope, $location,$analytics) ->
   $scope.sessionKey = $cookieStore.get("lmnsskey")
   $scope.object = {}
   $scope.pageNo = 0;
@@ -83,6 +83,7 @@ angular.module('lemonades')
     )
 
   $scope.getGroupsForSearch = ->
+    $analytics.eventTrack('search-for-products-dashboard-page', {  category: 'users', label: 'search-for-products-dashboard-page' });
     $scope.getGroups(true)
 
 
@@ -93,6 +94,7 @@ angular.module('lemonades')
     if forSearch
       $scope.pageNo = 0
       $scope.groups = []
+      $analytics.eventTrack('search-query-dashboard-page', {  category: 'users', label: $scope.searchTerm });
     if $scope.pageNo == -1
       $scope.fetchingGroups = false
       return
