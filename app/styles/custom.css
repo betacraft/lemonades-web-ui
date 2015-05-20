@@ -36,6 +36,17 @@ p {
   visibility: visible;
 }
 
+.center-modal {
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -350px;
+  padding: 20px;
+}
+
 .popup > iframe {
   position:absolute;
   top:50px;

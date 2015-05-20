@@ -19,7 +19,6 @@ angular.module('lemonades')
           'Session-Key': $rootScope.sessionKey
       $http(req).success(
         (data)->
-          console.log data
           if data.success
             $scope.group.product = data.product
             btn.button("reset")
@@ -56,7 +55,6 @@ angular.module('lemonades')
       $http(req).success(
         (data)->
           $scope.leaving = false
-          console.log data
           if data.success
             $scope.group = data.group
             btn.button("reset")
@@ -70,7 +68,6 @@ angular.module('lemonades')
 
     $scope.joinGroup = (automatedJoin)->
       return if $scope.joining
-      console.log "Joining the group"
       $scope.joining = true
       automatedJoin = typeof automatedJoin != 'undefined' ? automatedJoin : false;
       btn = $("#joinGroup").button('loading')
@@ -84,8 +81,14 @@ angular.module('lemonades')
           btn.button("reset")
           $scope.joining = false
           if data.success
+            $('#shareGroupModal').modal('show')
             $scope.timestamp = Date.now()
             $scope.group = data.group
+          if !data.success
+            ngToast.create({
+              className: 'danger',
+              content: data.message,
+            })
           if automatedJoin
             $location.search({})
             $scope.init()
@@ -98,33 +101,6 @@ angular.module('lemonades')
             $scope.init()
       )
 
-
-
-    $scope.createGroup = ->
-      btn = $("#createGroup").button("loading")
-      req =
-        method: "POST"
-        url: $rootScope.baseUrl + "/api/v1/group"
-        headers:
-          'Session-Key': $rootScope.sessionKey
-        data: $scope.object
-      $http(req).success(
-        (data)->
-          btn.button("reset")
-          $("#createGroupModal").modal("hide")
-          if data.success
-            $location.path("/group/"+data.group.id)
-            return
-          $scope.status =
-            message: data.message
-            success: false
-      ).error(
-        (data)->
-          btn.button("reset")
-          $scope.status =
-            message: data.message
-            success: false
-      )
     $scope.dashboard = ->
       $location.path("/dashboard")
 

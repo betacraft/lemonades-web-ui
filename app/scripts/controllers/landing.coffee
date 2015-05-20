@@ -41,10 +41,10 @@ angular.module('lemonades')
         data: $scope.object
       $http(req).success(
         (data)->
-          $("#createGroupModal").modal("hide")
           btn.button("reset")
           $scope.object = null
           if data.success
+            $("#createGroupModal").modal("hide")
             $location.path("/group/" + data.group.id)
             return
           $scope.status =

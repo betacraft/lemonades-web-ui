@@ -63,7 +63,7 @@ html(lang="en",ng-app="lemonades")
             form(role="form",name="form",novalidate)
               div.form-group
                 label(for="productLink")="Flipkart/Amazon.in/Snapdeal/Paytm Product Link"
-                input#productLink.form-control(type="uri",placeholder="Flipkart/Amazon.in Product Link",ng-model="object.product_link",name="productLink",required)
+                input#productLink.form-control(type="uri",ng-model="object.product_link",name="productLink",required)
               div.form-group
                 p Example : Flipkart Product Url
                   p
