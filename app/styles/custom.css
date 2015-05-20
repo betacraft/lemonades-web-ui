@@ -36,6 +36,7 @@ p {
   visibility: visible;
 }
 
+
 .center-modal {
   width: 800px;
   height: 400px;
@@ -760,10 +761,25 @@ p {
   text-decoration: none;
 }
 
+
+@media (min-width: 1200px) {
+  .stickyContainer {
+    position: fixed;
+    top: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .stickyContainer {
+    position: inherit;
+  }
+}
+
 @media (max-width: 990px) {
   .home-logo {
     width: 40%;
   }
+
 }
 
 @media (max-width: 1100px) {

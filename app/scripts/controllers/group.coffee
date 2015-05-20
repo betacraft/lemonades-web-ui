@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('lemonades')
-  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast','$window', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast,$window) ->
+  .controller('GroupCtrl', ['$scope', '$cookies','$cookieStore', '$http', '$rootScope','$routeParams','$location','ngToast','$window','$filter', ($scope, $cookies,$cookieStore, $http, $rootScope,$routeParams,$location,ngToast,$window,$filter) ->
     $scope.htmlReady();
     $scope.groupId = $routeParams.id;
     $scope.group = {}
@@ -9,6 +9,9 @@ angular.module('lemonades')
     $scope.leaving = false
     $scope.shareText = "Buy electronic items in group with huge discounts #onlineshopping #GroupUP";
     $scope.timestamp = Date.now()
+    $scope.labels = []
+    $scope.series = []
+    $scope.cdata = []
 
     $scope.updatePrice = ()->
       btn = $("#updatePrice").button('loading')
@@ -124,6 +127,14 @@ angular.module('lemonades')
               $rootScope.description = data.group.interested_users_count + " person is interested in buying " + data.group.product.name + ". Join him on GroupUP.in and get huge discount." if data.group.interested_users_count == 1
               $rootScope.description = data.group.interested_users_count + " people are interested in buying " + data.group.product.name + ". Join them on GroupUP.in and get huge discount." if data.group.interested_users_count > 1
               $scope.group = data.group
+              $scope.series.push("Price History (Rs)")
+              seriesData = []
+              for price in data.group.product.price_history
+                console.log price
+                $scope.labels.push($filter('date')(price.date, 'd/M', null))
+                seriesData.push(price.price_value)
+              $scope.cdata.push(seriesData)
+
               $scope.shareText = "Buy " + data.group.product.name + " with me on GroupUP.in"
               return
             $scope.status =

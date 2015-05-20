@@ -14,6 +14,7 @@ angular
     'seo',
     'ui.bootstrap',
     'infinite-scroll',
+    'chart.js',
     'angular-loading-bar',
     'angulartics.scroll',
     'angulartics.google.analytics'])
@@ -141,6 +142,23 @@ angular
         redirectTo: '/'
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');
   ])
+  .config ['ChartJsProvider',(ChartJsProvider) ->
+    # Configure all charts
+    ChartJsProvider.setOptions
+      colours: [
+        '#97BBCD'
+        '#DCDCDC'
+        '#F7464A'
+        '#46BFBD'
+        '#FDB45C'
+        '#949FB1'
+        '#4D5360'
+      ]
+      responsive: true
+    # Configure all doughnut charts
+    ChartJsProvider.setOptions 'Doughnut', animateScale: false
+    return
+  ]
   .run ['$rootScope','$anchorScroll',($rootScope,$anchorScroll) ->
     $rootScope.$on '$locationChangeSuccess', (event, nextRoute) ->
       window.scrollTo(0,0)

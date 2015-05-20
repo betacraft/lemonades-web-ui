@@ -16,13 +16,15 @@ div#shareGroupModal.center-modal.modal.fade(name="shareGroupModal",tabindex="-2"
 section(ng-init="init()")
 div.container(style="margin-top:60px;",ng-cloak="")
   div.row
-    div.col-lg-4(style="")
-      div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
-        div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups")="Leave This Group"
-        a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups")="Login to Join"
-        a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups")="I am interested"
-        div(style="width:100%;")
-          img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
+    div.col-lg-4
+      div.container.stickyContainer
+        div.col-lg-4
+          div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
+            div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups")="Leave This Group"
+            a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups")="Login to Join"
+            a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups")="I am interested"
+            div(style="width:100%;")
+              img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
     div.col-lg-8
       div.row
         div.col-md-12.marginTop25px
@@ -78,6 +80,11 @@ div.container(style="margin-top:60px;",ng-cloak="")
             span(style="color:#A257FF;")="{{group.expires_in}} days"
             = ' '
             |  to get you an attractive deal.
+      div.row()
+        div.col-md-12(style="margin-top:15px;")
+          h3 Price History
+        div.col-md-6(style="margin-top:15px;")
+          canvas#line.chart.chart-line(data='cdata', labels='labels', legend='true', series='series', click='onClick')
       div.row(ng-show="group.product.specs && group.product.specs.length > 0")
         div.col-md-12(style="margin-top:15px;")
           h3 Specifications
