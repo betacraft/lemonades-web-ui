@@ -23,7 +23,6 @@ html(lang="en",ng-app="lemonades")
     link(href="bower_components/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
     link(href="bower_components/ngtoast/dist/ngToast.min.css",rel="stylesheet")
     link(href="bower_components/ngtoast/dist/ngToast-animations.min.css",rel="stylesheet")
-    link(rel='stylesheet', href='bower_components/angular-chart.js/dist/angular-chart.css')
     // endbower
     // endbuild
     //build:css(.tmp) styles/main.css
@@ -83,14 +82,14 @@ html(lang="en",ng-app="lemonades")
     toast
     nav.navbar.navbar-default.navbar-fixed-top
       .container
-        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+        button.navbar-toggle(type='button', ng-click="toggleNavbar()")
           span.sr-only Toggle navigation
           span.icon-bar
           span.icon-bar
           span.icon-bar
         a.navbar-brand(ng-click="landing()")
           img(src="images/logo.svg",style="height:50px;margin-top:-15px;")
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        #bs-example-navbar-collapse-1.navbar-collapse(collapse="isCollapsed")
           ul.nav.navbar-nav
             li(ng-class="{'active':path===1,'':path!==1}")
               a(ng-click="dashboard()",analytics-on="click",analytics-event="go-to-dashboard-nav-bar",analytics-category="site-event")
@@ -141,7 +140,7 @@ html(lang="en",ng-app="lemonades")
     script(src='bower_components/angular-bootstrap/ui-bootstrap.js')
     script(src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js')
     script(src='bower_components/Chart.js/Chart.js')
-    script(src='bower_components/angular-chart.js/dist/angular-chart.js')
+    script(src='bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.js')
     // endbower
     // endbuild
     // build:js(.tmp) scripts/app.js

@@ -20,13 +20,13 @@ div.container(style="margin-top:60px;",ng-cloak="")
       div.container.stickyContainer
         div.col-lg-4
           div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
-            div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups")="Leave This Group"
-            a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups")="Login to Join"
-            a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups")="I am interested"
+            div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="Leave This Group"
+            a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="Login to Join"
+            a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="I am interested"
             div(style="width:100%;")
               img.image-center(src="{{group.product.product_image}}",style="max-height:300px;max-width:300px;")
-    div.col-lg-8
-      div.row
+    div#productInfo.col-lg-8
+      div#productName.row
         div.col-md-12.marginTop25px
           h2="{{group.product.name}}"
       hr
@@ -52,12 +52,12 @@ div.container(style="margin-top:60px;",ng-cloak="")
             h3(ng-show="group.save_amount > 0")="{{group.product.price_value - group.save_amount | currency:'Rs. '}}"
             p(ng-show="group.save_amount > 0") Based on current mentioned discount
       div.row(style="margin-top:20px;")
-        div.col-md-12.text-center(style="margin-left:-20px;margin-top:10px;")
-          div.col-md-2.col-sm-12.text-center
+        div.col-md-12.col-sm-12.text-center(style="margin-left:-20px;margin-top:10px;")
+          div.col-md-2.col-sm-2.text-center(style="margin-bottom:5px;")
             div.fb-share-button(onrender='fbLikeRendered()', data-href='http://www.groupup.in/group/{{groupId}}/share?by={{user.id}}&stamp={{timestamp}}&utm_source=fb_share_landing_page&utm_medium=website&utm_campaign=share', data-type="button",analytics-on="click",analytics-event="fb-share-group-page",analytics-label="fb-share-group-page",analytics-category="social-event")
-          div.col-md-2.text-center.col-sm-12
+          div.col-md-2.text-center.col-sm-2
             a.twitter-share-button(href="https://twitter.com/share",data-size="medium",data-text="{{shareText}}",data-url= "http://www.groupup.in/#!/group/{{groupId}}?utm_source=tw_share_landing_page&utm_medium=website&utm_campaign=share",analytics-on="click",analytics-event="tweet-group-page",analytics-label="tweet-group-page",analytics-category="social-event")="Tweet"
-          div.col-md-2.text-center.col-sm-12
+          div.col-md-2.text-center.col-sm-2
             a.g-plus(data-action="share",data-annotation="bubble",data-height="24",data-href="http://www.groupup.in/#!/group/{{groupId}}?by={{user.id}}&stamp={{timestamp}}&utm_source=gplus_landing_page&utm_medium=website&utm_campaign=share",analytics-on="click",analytics-event="gplus-share-group-page",analytics-label="gplus-share-group-page",analytics-category="social-event")
       div.row
         div.col-md-12
@@ -80,11 +80,11 @@ div.container(style="margin-top:60px;",ng-cloak="")
             span(style="color:#A257FF;")="{{group.expires_in}} days"
             = ' '
             |  to get you an attractive deal.
-      div.row()
-        div.col-md-12(style="margin-top:15px;")
+      div.row
+        div.col-md-12(style="margin-top:15px;",ng-show="cdata.datasets.length > 0")
           h3 Price History
-        div.col-md-6(style="margin-top:15px;")
-          canvas#line.chart.chart-line(data='cdata', labels='labels', legend='true', series='series', click='onClick')
+        div.col-md-8(style="margin-top:15px;")
+          canvas.priceChart(tc-chartjs-line, chart-options='options', chart-data='cdata', ng-show="cdata.datasets.length > 0",style="width:100%;")
       div.row(ng-show="group.product.specs && group.product.specs.length > 0")
         div.col-md-12(style="margin-top:15px;")
           h3 Specifications

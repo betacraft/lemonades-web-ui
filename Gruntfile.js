@@ -498,7 +498,9 @@ module.exports = function (grunt) {
               'bower_components/angular-seo/angular-seo.js',
               'bower_components/angular-loading-bar/build/loading-bar.js',
               'bower_components/angular-bootstrap/ui-bootstrap.js',
-              'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js'
+              'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
+              'bower_components/Chart.js/Chart.js',
+              'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.js'
             ]
           }
         ]

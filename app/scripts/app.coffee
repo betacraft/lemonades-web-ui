@@ -14,7 +14,7 @@ angular
     'seo',
     'ui.bootstrap',
     'infinite-scroll',
-    'chart.js',
+    'tc.chartjs',
     'angular-loading-bar',
     'angulartics.scroll',
     'angulartics.google.analytics'])
@@ -26,8 +26,11 @@ angular
     $rootScope.sessionKey = "";
     $rootScope.user = {}
     $rootScope.path = 0;
+    $rootScope.isCollapsed = true;
     $rootScope.url = "http://www.groupup.in"
     $rootScope.description = "Select product -> Create Groups -> Get huge bulk discounts."
+    $rootScope.toggleNavbar = ->
+      $rootScope.isCollapsed = !$rootScope.isCollapsed;
     $rootScope.getUser = ->
       req =
         method: "GET"
@@ -142,26 +145,11 @@ angular
         redirectTo: '/'
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');
   ])
-  .config ['ChartJsProvider',(ChartJsProvider) ->
-    # Configure all charts
-    ChartJsProvider.setOptions
-      colours: [
-        '#97BBCD'
-        '#DCDCDC'
-        '#F7464A'
-        '#46BFBD'
-        '#FDB45C'
-        '#949FB1'
-        '#4D5360'
-      ]
-      responsive: true
-    # Configure all doughnut charts
-    ChartJsProvider.setOptions 'Doughnut', animateScale: false
-    return
-  ]
   .run ['$rootScope','$anchorScroll',($rootScope,$anchorScroll) ->
     $rootScope.$on '$locationChangeSuccess', (event, nextRoute) ->
       window.scrollTo(0,0)
+      console.log "changing"
+      $rootScope.isCollapsed = true
     return
   ]
   .config [

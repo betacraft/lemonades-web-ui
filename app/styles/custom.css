@@ -769,9 +769,16 @@ p {
   }
 }
 
+.priceChart{
+  width:600px;
+}
+
 @media (max-width: 800px) {
   .stickyContainer {
     position: inherit;
+  }
+  .priceChart{
+    width:350px;
   }
 }
 
