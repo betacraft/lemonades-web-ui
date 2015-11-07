@@ -141,6 +141,9 @@ angular
       .when '/terms-of-service',
         templateUrl: 'views/terms-of-service.html'
         controller: 'TermsOfServiceCtrl'
+      .when '/checkout',
+        templateUrl: 'views/checkout.html'
+        controller: 'CheckoutCtrl'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode({enabled:false,requireBase:true}).hashPrefix('!');

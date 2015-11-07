@@ -20,7 +20,7 @@ div.container(style="margin-top:60px;",ng-cloak="")
       div.container.stickyContainer
         div.col-lg-4
           div.sideImagewrapp(style="height:450px;cursor:pointer;overflow:hidden;")
-            div.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="Leave This Group"
+            a.bigGray100pBtn#leaveGroup(ng-show="sessionKey && group.id !== undefined && group.is_joined",ng-click="leaveGroup()",analytics-on="click",analytics-event="leave-group-page",analytics-label="leave-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="Leave This Group"
             a.bigPink100pBtn(ng-hide="sessionKey",ng-click="loginToJoin()",analytics-on="click",analytics-event="login-to-join-group-page",analytics-label="login-to-join-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="Login to Join"
             a.bigPink100pBtn#joinGroup(ng-show="sessionKey && group.id !== undefined && !group.is_joined",ng-click="joinGroup()",data-loading-text="Joining...",analytics-on="click",analytics-event="interested-group-page",analytics-label="interested-group-page",analytics-category="groups",style="width:95%;margin-left:2.5%;")="I am interested"
             div(style="width:100%;")
